@@ -12,7 +12,7 @@ namespace Hyvinvointisovellus.Controllers
 {
     public class PalauteController : Controller
     {
-        private HyvinvointiDBEntities db = new HyvinvointiDBEntities();
+        private HyvinvointiDBEntities1 db = new HyvinvointiDBEntities1();
 
         // GET: Palaute
         public ActionResult Index()
@@ -101,6 +101,8 @@ namespace Hyvinvointisovellus.Controllers
         }
 
         // GET: Palaute/Edit/5
+
+
         public ActionResult Edit(int? id)
         {
             if (Session["UserName"] == null)

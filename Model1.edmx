@@ -11,7 +11,11 @@
           </Key>
           <Property Name="HymynaamaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TyontekijaID" Type="int" />
-          <Property Name="Hymynaama" Type="int" />
+          <Property Name="Hymynaama" Type="nvarchar" MaxLength="50" />
+          <Property Name="Start" Type="date" />
+          <Property Name="End" Type="date" />
+          <Property Name="ThemeColor" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsFullDay" Type="bit" />
         </EntityType>
         <EntityType Name="Kirjautuminen">
           <Key>
@@ -47,18 +51,6 @@
           <Property Name="Postinumero" Type="nvarchar" MaxLength="50" />
           <Property Name="Postitoimipaikka" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK__Hymynaama__Tyont__693CA210">
-          <End Role="Tyontekijat" Type="Self.Tyontekijat" Multiplicity="0..1" />
-          <End Role="Hymynaama" Type="Self.Hymynaama" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tyontekijat">
-              <PropertyRef Name="TyontekijaID" />
-            </Principal>
-            <Dependent Role="Hymynaama">
-              <PropertyRef Name="TyontekijaID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Palaute__Tyontek__6A30C649">
           <End Role="Tyontekijat" Type="Self.Tyontekijat" Multiplicity="0..1" />
           <End Role="Palaute" Type="Self.Palaute" Multiplicity="*" />
@@ -77,10 +69,6 @@
           <EntitySet Name="Palaute" EntityType="Self.Palaute" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tyonantaja" EntityType="Self.Tyonantaja" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tyontekijat" EntityType="Self.Tyontekijat" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Hymynaama__Tyont__693CA210" Association="Self.FK__Hymynaama__Tyont__693CA210">
-            <End Role="Tyontekijat" EntitySet="Tyontekijat" />
-            <End Role="Hymynaama" EntitySet="Hymynaama" />
-          </AssociationSet>
           <AssociationSet Name="FK__Palaute__Tyontek__6A30C649" Association="Self.FK__Palaute__Tyontek__6A30C649">
             <End Role="Tyontekijat" EntitySet="Tyontekijat" />
             <End Role="Palaute" EntitySet="Palaute" />
@@ -96,8 +84,12 @@
           </Key>
           <Property Name="HymynaamaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TyontekijaID" Type="Int32" />
-          <Property Name="Hymynaama1" Type="Int32" />
+          <Property Name="Hymynaama1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Tyontekijat" Relationship="Self.FK__Hymynaama__Tyont__693CA210" FromRole="Hymynaama" ToRole="Tyontekijat" />
+          <Property Name="Start" Type="DateTime" Precision="0" />
+          <Property Name="End" Type="DateTime" Precision="0" />
+          <Property Name="ThemeColor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsFullDay" Type="Boolean" />
         </EntityType>
         <EntityType Name="Kirjautuminen">
           <Key>
@@ -128,13 +120,13 @@
             <PropertyRef Name="TyontekijaID" />
           </Key>
           <Property Name="TyontekijaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Sukunimi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Hymynaama" Relationship="Self.FK__Hymynaama__Tyont__693CA210" FromRole="Tyontekijat" ToRole="Hymynaama" />
-          <NavigationProperty Name="Palaute" Relationship="Self.FK__Palaute__Tyontek__6A30C649" FromRole="Tyontekijat" ToRole="Palaute" />
           <Property Name="Etunimi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sukunimi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Osoite" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Postinumero" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Postitoimipaikka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Hymynaama" Relationship="Self.FK__Hymynaama__Tyont__693CA210" FromRole="Tyontekijat" ToRole="Hymynaama" />
+          <NavigationProperty Name="Palaute" Relationship="Self.FK__Palaute__Tyontek__6A30C649" FromRole="Tyontekijat" ToRole="Palaute" />
         </EntityType>
         <Association Name="FK__Hymynaama__Tyont__693CA210">
           <End Role="Tyontekijat" Type="Self.Tyontekijat" Multiplicity="0..1" />
@@ -160,7 +152,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="HyvinvointiDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="HyvinvointiDBEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Hymynaama" EntityType="Self.Hymynaama" />
           <EntitySet Name="Kirjautuminen" EntityType="Self.Kirjautuminen" />
           <EntitySet Name="Palaute" EntityType="Self.Palaute" />
@@ -180,10 +172,14 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="HyvinvointiDBModelStoreContainer" CdmEntityContainer="HyvinvointiDBEntities">
+        <EntityContainerMapping StorageEntityContainer="HyvinvointiDBModelStoreContainer" CdmEntityContainer="HyvinvointiDBEntities1">
           <EntitySetMapping Name="Hymynaama">
             <EntityTypeMapping TypeName="HyvinvointiDBModel.Hymynaama">
               <MappingFragment StoreEntitySet="Hymynaama">
+                <ScalarProperty Name="IsFullDay" ColumnName="IsFullDay" />
+                <ScalarProperty Name="ThemeColor" ColumnName="ThemeColor" />
+                <ScalarProperty Name="End" ColumnName="End" />
+                <ScalarProperty Name="Start" ColumnName="Start" />
                 <ScalarProperty Name="HymynaamaID" ColumnName="HymynaamaID" />
                 <ScalarProperty Name="TyontekijaID" ColumnName="TyontekijaID" />
                 <ScalarProperty Name="Hymynaama1" ColumnName="Hymynaama" />
@@ -219,12 +215,12 @@
           <EntitySetMapping Name="Tyontekijat">
             <EntityTypeMapping TypeName="HyvinvointiDBModel.Tyontekijat">
               <MappingFragment StoreEntitySet="Tyontekijat">
-                <ScalarProperty Name="Postitoimipaikka" ColumnName="Postitoimipaikka" />
-                <ScalarProperty Name="Postinumero" ColumnName="Postinumero" />
-                <ScalarProperty Name="Osoite" ColumnName="Osoite" />
-                <ScalarProperty Name="Etunimi" ColumnName="Etunimi" />
                 <ScalarProperty Name="TyontekijaID" ColumnName="TyontekijaID" />
+                <ScalarProperty Name="Etunimi" ColumnName="Etunimi" />
                 <ScalarProperty Name="Sukunimi" ColumnName="Sukunimi" />
+                <ScalarProperty Name="Osoite" ColumnName="Osoite" />
+                <ScalarProperty Name="Postinumero" ColumnName="Postinumero" />
+                <ScalarProperty Name="Postitoimipaikka" ColumnName="Postitoimipaikka" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -4,12 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Hyvinvointisovellus;
-
+using System.Data.Entity;
+using System.Net;
 
 namespace Hyvinvointisovellus.Controllers
 {
     public class HomeController : Controller
     {
+
         public ActionResult Index()
         {
             if (Session["UserName"] == null)
@@ -19,6 +21,32 @@ namespace Hyvinvointisovellus.Controllers
             }
             else ViewBag.LoggedStatus = "Kirjautunut";
             return View();
+            throw new NotImplementedException();
+        }
+        public ActionResult IndexTyonantaja()
+        {
+            if (Session["UserName"] == null)
+            {
+                ViewBag.LoggedStatus = "Ei kirjautunut";
+                return View("Kirjautuminen");
+            }
+            else ViewBag.LoggedStatus = "Kirjautunut";
+            return View();
+            throw new NotImplementedException();
+        }
+        public ActionResult IndexTyontekija()
+        {
+
+            if (Session["UserName"] == null)
+            {
+                ViewBag.LoggedStatus = "Ei kirjautunut";
+                return View("Kirjautuminen");
+            }
+            else ViewBag.LoggedStatus = "Kirjautunut";
+
+            return View();
+            throw new NotImplementedException();
+
         }
 
         public ActionResult About()
@@ -54,16 +82,26 @@ namespace Hyvinvointisovellus.Controllers
             else ViewBag.LoggedStatus = "Kirjautunut";
             return View();
         }
-        public ActionResult Omattiedot()
+        
+        private HyvinvointiDBEntities1 db = new HyvinvointiDBEntities1();
+
+        public ActionResult OmattiedotTyontekija()
+        {
+            var hymynaama = db.Hymynaama.Include(h => h.Tyontekijat);
+            return View(hymynaama.ToList());
+            throw new NotImplementedException();
+        }        
+        public ActionResult OmattiedotTyonantaja()
         {
             return View();
+            throw new NotImplementedException();
         }
 
 
         [HttpPost]
         public ActionResult Authorize(Kirjautuminen LoginModel)
         {
-            HyvinvointiDBEntities db = new HyvinvointiDBEntities();
+            HyvinvointiDBEntities1 db = new HyvinvointiDBEntities1();
             //Haetaan käyttäjän/Loginin tiedot annetuilla tunnustiedoilla tietokannasta LINQ -kyselyllä
             var LoggedUser = db.Kirjautuminen.SingleOrDefault(x => x.Kayttajatunnus == LoginModel.Kayttajatunnus && x.Salasana == LoginModel.Salasana);
             if (LoggedUser != null)
@@ -71,7 +109,15 @@ namespace Hyvinvointisovellus.Controllers
                 //ViewBag.LoginMessage = "Kirjautuminen onnistui!";
                 ViewBag.LoggedStatus = "Kirjautunut";
                 Session["UserName"] = LoggedUser.Kayttajatunnus;
-                return RedirectToAction("Index", "Home"); //Tässä määritellään mihin onnistunut kirjautuminen johtaa --> Home/Index
+                if (LoggedUser.Kayttajatunnus == "Tiina")
+				{
+                    Session["Admin"] = LoggedUser.Kayttajatunnus;
+                    return RedirectToAction("IndexTyonantaja", "Home");
+                }
+                else 
+                { 
+                return RedirectToAction("IndexTyontekija", "Home"); //Tässä määritellään mihin onnistunut kirjautuminen johtaa --> Home/Index
+                }
             }
             else
             {
@@ -86,6 +132,15 @@ namespace Hyvinvointisovellus.Controllers
             Session.Abandon();
             ViewBag.LoggedStatus = "Ei kirjautunut";
             return RedirectToAction("Index", "Home"); //Uloskirjautumisen jälkeen pääsivulle
+        }
+
+        public JsonResult GetEvents()
+        {
+            using (HyvinvointiDBEntities1 db = new HyvinvointiDBEntities1())
+            {
+                var events = db.Hymynaama.ToList();
+                return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
         }
     }
 }

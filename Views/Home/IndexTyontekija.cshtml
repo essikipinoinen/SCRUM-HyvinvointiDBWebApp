@@ -1,0 +1,32 @@
+﻿@{
+	ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+	<h1>Hei @Session["UserName"]!</h1>
+	<p class="lead">
+		Tämä on työpaikoille suunnattu sovellus, jonka tarkoituksena on edistää työpaikan ja erityisesti työntekijöiden hyvinvointia.
+		Sovelluksen avulla pystyt tarkastelemaan omia tietojasi, antamaan palautetta työantajillesi sekä kertomaan päivän fiiliksesi.
+	</p>
+	@*<p><a href="~/Home/Palautteet" class="btn btn-primary btn-lg">Lue palautteita  &raquo;</a></p>*@ @*<-- jumbotronin button, tarvitaanko?*@
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Päivän fiilis</h2>
+        <p>Millainen päivä sinulla on tänään? </p>
+        <p><a class="btn btn-outline-dark" href="~/Hymynaama/Index">Kirjaamaan päivän fiilis &raquo;</a></p>
+    </div>
+
+    <div class="col-md-4">
+        <h2>Palaute</h2>
+        <p>Haluatko antaa palautetta työnantajallesi?</p>
+        <p><a class="btn btn-outline-dark" href="/Palaute/Index">Palautteisiin &raquo;</a></p>
+    </div>
+
+    <div class="col-md-4">
+        <h2>Omat tiedot</h2>
+        <p>Haluatko tarkastella tai muokata omia tietojasi?</p>
+        <p><a class="btn btn-outline-dark" href="/Home/OmattiedotTyontekija">Omiin tietoihin &raquo;</a></p>
+    </div>
+</div>

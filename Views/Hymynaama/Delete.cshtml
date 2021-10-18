@@ -4,37 +4,35 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2>Poista</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Haluatko varmasti poistaa tämän?</h3>
 <div>
-    <h4>Hymynaama</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Hymynaama1)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Hymynaama1)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Tyontekijat.Sukunimi)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Tyontekijat.Sukunimi)
-        </dd>
-
+        <dt>@Html.DisplayNameFor(model => model.Hymynaama1)</dt>
+        <dd>@Html.DisplayFor(model => model.Hymynaama1)</dd>
+        <dt>@Html.DisplayNameFor(model => model.Tyontekijat.Sukunimi)</dt>
+        <dd>@Html.DisplayFor(model => model.Tyontekijat.Sukunimi)</dd>
+        <dt>@Html.DisplayNameFor(model => model.Start)</dt>
+        <dd>@Html.DisplayFor(model => model.Start)</dd>
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Delete" class="btn btn-danger" onclick="meth_alert();" /> |
+            <a class="btn btn-secondary" href="/Hymynaama">Takaisin</a>
         </div>
+
+        <script type="text/javascript">
+            meth_alert = function () {
+
+                alert("Päivän fiilistiedot poistettu!");
+            };
+        </script>
+
     }
 </div>
