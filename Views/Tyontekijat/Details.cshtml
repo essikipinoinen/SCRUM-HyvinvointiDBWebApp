@@ -1,0 +1,56 @@
+﻿@model Hyvinvointisovellus.Tyontekijat
+
+@{
+    ViewBag.Title = "Details";
+}
+<p></p>
+<h2>Tietoja</h2>
+
+<div>
+    <hr />
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.Etunimi)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Etunimi)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Sukunimi)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Sukunimi)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Osoite)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Osoite)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Postinumero)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Postinumero)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Postitoimipaikka)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Postitoimipaikka)
+		</dd>
+	</dl>
+</div>
+<p>
+	@Html.ActionLink("Muokkaa", "Edit", new { id = Model.TyontekijaID }, new { @class = "btn btn-info" })
+	<a class="btn btn-secondary" href="/Tyontekijat">Takaisin</a>
+</p>

@@ -1,0 +1,47 @@
+﻿@model Hyvinvointisovellus.Palaute
+
+@{
+    ViewBag.Title = "Delete";
+}
+<p></p>
+<h2>Poista</h2>
+<p></p>
+<h3>Haluatko varmasti poistaa tämän palautteen?</h3>
+<div>
+    <hr />
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.Palaute1)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Palaute1)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Tyontekijat.Etunimi)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Tyontekijat.Etunimi)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Tyontekijat.Sukunimi)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Tyontekijat.Sukunimi)
+		</dd>
+
+	</dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+	<input type="submit" value="Poista" class="btn btn-danger" />
+	<a class="btn btn-secondary" href="/Palaute">Takaisin</a>
+</div>
+    }
+</div>
