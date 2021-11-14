@@ -32,7 +32,7 @@
 			<a class="nav-link active" href="#">Home<span class="visually-hidden">(current)</span>
 			</a>
 		</li>*@
-						@if (Session["Admin"] != null) 
+						@if (Session["Admin"] != null)
 						{
 							<li class="nav-item">
 								<a class="nav-link" href="~/Home/OmattiedotTyonantaja">Omat tiedot</a>
@@ -50,6 +50,12 @@
 						}
 						else
 						{
+							<li class="nav-item">
+								<a class="nav-link" href="~/Hymynaama/Index">Fiilikset</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="~/Palaute/Index">Palautteet</a>
+							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="~/Home/OmattiedotTyontekija">Omat tiedot</a>
 							</li>
