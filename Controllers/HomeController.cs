@@ -87,7 +87,7 @@ namespace Hyvinvointisovellus.Controllers
 
         public ActionResult OmattiedotTyontekija()
         {
-            var hymynaama = db.Hymynaama.Include(h => h.Tyontekijat);
+            var hymynaama = db.Hymynaama.Include(h => h.Kayttajat);
             return View(hymynaama.ToList());
             throw new NotImplementedException();
         }        
@@ -123,7 +123,7 @@ namespace Hyvinvointisovellus.Controllers
             {
                 //ViewBag.LoginMessage = "Kirjautuminen epäonnistui!";
                 ViewBag.LoggedStatus = "Ei kirjautunut";
-                LoginModel.LoginErrorMessage = "Tuntematon käyttäjätunnus tai salasana. Yritä uudelleen!";
+                //LoginModel.LoginErrorMessage = "Tuntematon käyttäjätunnus tai salasana. Yritä uudelleen!";
                 return View("Kirjautuminen", LoginModel); 
             }
         }
@@ -132,15 +132,6 @@ namespace Hyvinvointisovellus.Controllers
             Session.Abandon();
             ViewBag.LoggedStatus = "Ei kirjautunut";
             return RedirectToAction("Index", "Home"); //Uloskirjautumisen jälkeen pääsivulle
-        }
-
-        public JsonResult GetEvents()
-        {
-            using (HyvinvointiDBEntities1 db = new HyvinvointiDBEntities1())
-            {
-                var events = db.Hymynaama.ToList();
-                return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-            }
         }
     }
 }
