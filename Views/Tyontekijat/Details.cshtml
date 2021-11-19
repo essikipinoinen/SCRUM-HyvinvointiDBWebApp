@@ -1,4 +1,4 @@
-﻿@model Hyvinvointisovellus.Tyontekijat
+﻿@model Hyvinvointisovellus.Kayttajat
 
 @{
     ViewBag.Title = "Details";
@@ -26,6 +26,6 @@
 	</dl>
 </div>
 <p>
-	@Html.ActionLink("Muokkaa", "Edit", new { id = Model.TyontekijaID }, new { @class = "btn btn-info" })
+	@Html.ActionLink("Muokkaa", "Edit", new { id = Model.KayttajaID }, new { @class = "btn btn-info" })
 	<a class="btn btn-secondary" href="/Tyontekijat">Takaisin</a>
 </p>

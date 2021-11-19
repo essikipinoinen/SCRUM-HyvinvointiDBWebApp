@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Hyvinvointisovellus.Tyontekijat>
+﻿@model IEnumerable<Hyvinvointisovellus.Kayttajat>
 
 @{
     ViewBag.Title = "Index";
@@ -27,9 +27,9 @@
         <td>@Html.DisplayFor(modelItem => item.Etunimi)</td>
         <td>@Html.DisplayFor(modelItem => item.Sukunimi)</td>
         <td align="right">
-            @Html.ActionLink("Muokkaa", "Edit", new { id=item.TyontekijaID }, new { @class = "btn btn-outline-primary" })
-            @Html.ActionLink("Tietoja", "Details", new { id=item.TyontekijaID }, new { @class = "btn btn-outline-primary" })
-            @Html.ActionLink("Poista", "Delete", new { id=item.TyontekijaID }, new { @class = "btn btn-outline-primary" })
+            @Html.ActionLink("Muokkaa", "Edit", new { id=item.KayttajaID }, new { @class = "btn btn-outline-primary" })
+            @Html.ActionLink("Tietoja", "Details", new { id=item.KayttajaID }, new { @class = "btn btn-outline-primary" })
+            @Html.ActionLink("Poista", "Delete", new { id=item.KayttajaID }, new { @class = "btn btn-outline-primary" })
         </td>
     </tr>
 }
