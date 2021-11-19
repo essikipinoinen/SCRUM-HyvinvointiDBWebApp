@@ -119,7 +119,7 @@ namespace Hyvinvointisovellus.Controllers
             {
                 //ViewBag.LoginMessage = "Kirjautuminen epäonnistui!";
                 ViewBag.LoggedStatus = "Ei kirjautunut";
-                LoginModel.LoginErrorMessage = "Tuntematon käyttäjätunnus tai salasana. Yritä uudelleen!";
+                //LoginModel.LoginErrorMessage = "Tuntematon käyttäjätunnus tai salasana. Yritä uudelleen!";
                 return View("Kirjautuminen", LoginModel); 
             }
         }
@@ -130,13 +130,13 @@ namespace Hyvinvointisovellus.Controllers
             return RedirectToAction("Index", "Home"); //Uloskirjautumisen jälkeen pääsivulle
         }
 
-        //public JsonResult GetEvents()
-        //{
-        //    using (HyvinvointiDBEntities db = new HyvinvointiDBEntities())
-        //    {
-        //        var events = db.Hymynaama.ToList();
-        //        return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-        //    }
-        //}
+        public JsonResult GetEvents()
+        {
+            using (HyvinvointiDBEntities1 db = new HyvinvointiDBEntities1())
+            {
+                var events = db.Hymynaama.ToList();
+                return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+        }
     }
 }
