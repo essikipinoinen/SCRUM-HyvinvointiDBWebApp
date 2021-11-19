@@ -12,7 +12,7 @@ namespace Hyvinvointisovellus.Controllers
 {
     public class HymynaamaController : Controller
     {
-        private HyvinvointiDBEntities1 db = new HyvinvointiDBEntities1();
+        private HyvinvointiDBEntities db = new HyvinvointiDBEntities();
 
         // GET: Hymynaama
         public ActionResult Index()
@@ -28,7 +28,7 @@ namespace Hyvinvointisovellus.Controllers
             }
             else
             {
-                var hymynaama = db.Hymynaama.Include(h => h.Tyontekijat);
+                var hymynaama = db.Hymynaama.Include(h => h.Kayttajat);
                 return View(hymynaama.ToList());
             }
             
@@ -62,7 +62,7 @@ namespace Hyvinvointisovellus.Controllers
                 ViewBag.LoggedStatus = "Ei kirjautunut";
             }
             else ViewBag.LoggedStatus = "Kirjautunut";
-            ViewBag.TyontekijaID = new SelectList(db.Tyontekijat, "TyontekijaID", "Sukunimi", "Start");
+            ViewBag.TyontekijaID = new SelectList(db.Kayttajat, "KayttajaID", "Sukunimi", "Start");
             return View();
         }
 
@@ -85,7 +85,7 @@ namespace Hyvinvointisovellus.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.TyontekijaID = new SelectList(db.Tyontekijat, "TyontekijaID", "Sukunimi", hymynaama.TyontekijaID);
+            ViewBag.TyontekijaID = new SelectList(db.Kayttajat, "KayttajaID", "Sukunimi", hymynaama.KayttajaID);
             return View(hymynaama);
         }
 
@@ -106,7 +106,7 @@ namespace Hyvinvointisovellus.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.TyontekijaID = new SelectList(db.Tyontekijat, "TyontekijaID", "Sukunimi", hymynaama.TyontekijaID);
+            ViewBag.TyontekijaID = new SelectList(db.Kayttajat, "KayttajaID", "Sukunimi", hymynaama.KayttajaID);
             return View(hymynaama);
         }
 
@@ -128,7 +128,7 @@ namespace Hyvinvointisovellus.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.TyontekijaID = new SelectList(db.Tyontekijat, "TyontekijaID", "Sukunimi", hymynaama.TyontekijaID);
+            ViewBag.TyontekijaID = new SelectList(db.Kayttajat, "KayttajaID", "Sukunimi", hymynaama.KayttajaID);
             return View(hymynaama);
         }
 
@@ -179,7 +179,7 @@ namespace Hyvinvointisovellus.Controllers
 
         public JsonResult GetEvents()
         {
-            using (HyvinvointiDBEntities1 db = new HyvinvointiDBEntities1())
+            using (HyvinvointiDBEntities db = new HyvinvointiDBEntities())
             {
                 var events = db.Hymynaama.ToList();
                 return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };

@@ -12,7 +12,12 @@ namespace Hyvinvointisovellus.Controllers
 {
     public class PalauteController : Controller
     {
-        private HyvinvointiDBEntities1 db = new HyvinvointiDBEntities1();
+        private HyvinvointiDBEntities db = new HyvinvointiDBEntities();
+
+        public PalauteController(HyvinvointiDBEntities db)
+        {
+            this.db = db;
+        }
 
         // GET: Palaute
         public ActionResult Index()
@@ -28,7 +33,7 @@ namespace Hyvinvointisovellus.Controllers
             }
             else
             {
-                var palaute = db.Palaute.Include(p => p.Tyontekijat);
+                var palaute = db.Palaute.Include(p => p.KayttajaID);
                 return View(palaute.ToList());
             }
 
@@ -73,7 +78,7 @@ namespace Hyvinvointisovellus.Controllers
                 ViewBag.LoggedStatus = "Ei kirjautunut";
             }
             else ViewBag.LoggedStatus = "Kirjautunut";
-            ViewBag.TyontekijaID = new SelectList(db.Tyontekijat, "TyontekijaID", "Etunimi");
+            ViewBag.TyontekijaID = new SelectList(db.Kayttajat, "KayttajaID", "Etunimi");
             return View();
         }
 
@@ -82,7 +87,7 @@ namespace Hyvinvointisovellus.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PalauteID,TyontekijaID,Palaute1")] Palaute palaute)
+        public ActionResult Create([Bind(Include = "PalauteID,KayttajaID,Palaute1")] Palaute palaute)
         {
             if (Session["UserName"] == null)
             {
@@ -96,7 +101,7 @@ namespace Hyvinvointisovellus.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.TyontekijaID = new SelectList(db.Tyontekijat, "TyontekijaID", "Etunimi", palaute.TyontekijaID);
+            ViewBag.TyontekijaID = new SelectList(db.Kayttajat, "KayttajaID", "Etunimi", palaute.KayttajaID);
             return View(palaute);
         }
 
@@ -119,7 +124,7 @@ namespace Hyvinvointisovellus.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.TyontekijaID = new SelectList(db.Tyontekijat, "TyontekijaID", "Etunimi", palaute.TyontekijaID);
+            ViewBag.KayttajaID = new SelectList(db.Kayttajat, "KayttajaID", "Etunimi", palaute.KayttajaID);
             return View(palaute);
         }
 
@@ -128,7 +133,7 @@ namespace Hyvinvointisovellus.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PalauteID,TyontekijaID,Palaute1")] Palaute palaute)
+        public ActionResult Edit([Bind(Include = "PalauteID,KayttajaID,Palaute1")] Palaute palaute)
         {
             if (Session["UserName"] == null)
             {
@@ -141,7 +146,7 @@ namespace Hyvinvointisovellus.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.TyontekijaID = new SelectList(db.Tyontekijat, "TyontekijaID", "Etunimi", palaute.TyontekijaID);
+            ViewBag.TyontekijaID = new SelectList(db.Kayttajat, "KayttajaID", "Etunimi", palaute.KayttajaID);
             return View(palaute);
         }
 

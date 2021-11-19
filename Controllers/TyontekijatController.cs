@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Hyvinvointisovellus;
 
 namespace Hyvinvointisovellus.Controllers
 {
     public class TyontekijatController : Controller
     {
-        private HyvinvointiDBEntities1 db = new HyvinvointiDBEntities1();
+        private HyvinvointiDBEntities db = new HyvinvointiDBEntities();
 
         // GET: Tyontekijat
         public ActionResult Index()
@@ -28,7 +23,7 @@ namespace Hyvinvointisovellus.Controllers
             }
             else
             {
-                return View(db.Tyontekijat.ToList());
+                return View(db.Kayttajat.ToList());
             }
 
             //tämä esiin kun kirjautuminen halutaan käyttöön ->
@@ -56,7 +51,7 @@ namespace Hyvinvointisovellus.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tyontekijat tyontekijat = db.Tyontekijat.Find(id);
+            Kayttajat tyontekijat = db.Kayttajat.Find(id);
             if (tyontekijat == null)
             {
                 return HttpNotFound();
@@ -80,7 +75,7 @@ namespace Hyvinvointisovellus.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TyontekijaID,Etunimi,Sukunimi,Osoite,Postinumero,Postitoimipaikka")] Tyontekijat tyontekijat)
+        public ActionResult Create([Bind(Include = "KayttajaID,Etunimi,Sukunimi,Osoite,Postinumero,Postitoimipaikka")] Kayttajat tyontekijat)
         {
             if (Session["UserName"] == null)
             {
@@ -89,7 +84,7 @@ namespace Hyvinvointisovellus.Controllers
             else ViewBag.LoggedStatus = "Kirjautunut";
             if (ModelState.IsValid)
             {
-                db.Tyontekijat.Add(tyontekijat);
+                db.Kayttajat.Add(tyontekijat);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -109,7 +104,7 @@ namespace Hyvinvointisovellus.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tyontekijat tyontekijat = db.Tyontekijat.Find(id);
+            Kayttajat tyontekijat = db.Kayttajat.Find(id);
             if (tyontekijat == null)
             {
                 return HttpNotFound();
@@ -122,7 +117,7 @@ namespace Hyvinvointisovellus.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TyontekijaID,Etunimi,Sukunimi,Osoite,Postinumero,Postitoimipaikka")] Tyontekijat tyontekijat)
+        public ActionResult Edit([Bind(Include = "KayttajaID,Etunimi,Sukunimi,Osoite,Postinumero,Postitoimipaikka")] Kayttajat tyontekijat)
         {
             if (Session["UserName"] == null)
             {
@@ -150,7 +145,7 @@ namespace Hyvinvointisovellus.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tyontekijat tyontekijat = db.Tyontekijat.Find(id);
+               Kayttajat tyontekijat = db.Kayttajat.Find(id);
             if (tyontekijat == null)
             {
                 return HttpNotFound();
@@ -168,8 +163,8 @@ namespace Hyvinvointisovellus.Controllers
                 ViewBag.LoggedStatus = "Ei kirjautunut";
             }
             else ViewBag.LoggedStatus = "Kirjautunut";
-            Tyontekijat tyontekijat = db.Tyontekijat.Find(id);
-            db.Tyontekijat.Remove(tyontekijat);
+            Kayttajat tyontekijat = db.Kayttajat.Find(id);
+            db.Kayttajat.Remove(tyontekijat);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

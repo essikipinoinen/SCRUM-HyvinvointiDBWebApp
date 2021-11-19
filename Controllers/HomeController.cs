@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Hyvinvointisovellus;
 using System.Data.Entity;
-using System.Net;
 
 namespace Hyvinvointisovellus.Controllers
 {
@@ -83,11 +79,11 @@ namespace Hyvinvointisovellus.Controllers
             return View();
         }
         
-        private HyvinvointiDBEntities1 db = new HyvinvointiDBEntities1();
+        private HyvinvointiDBEntities db = new HyvinvointiDBEntities();
 
         public ActionResult OmattiedotTyontekija()
         {
-            var hymynaama = db.Hymynaama.Include(h => h.Tyontekijat);
+            var hymynaama = db.Hymynaama.Include(h => h.Kayttajat);
             return View(hymynaama.ToList());
             throw new NotImplementedException();
         }        
@@ -101,7 +97,7 @@ namespace Hyvinvointisovellus.Controllers
         [HttpPost]
         public ActionResult Authorize(Kirjautuminen LoginModel)
         {
-            HyvinvointiDBEntities1 db = new HyvinvointiDBEntities1();
+            HyvinvointiDBEntities db = new HyvinvointiDBEntities();
             //Haetaan käyttäjän/Loginin tiedot annetuilla tunnustiedoilla tietokannasta LINQ -kyselyllä
             var LoggedUser = db.Kirjautuminen.SingleOrDefault(x => x.Kayttajatunnus == LoginModel.Kayttajatunnus && x.Salasana == LoginModel.Salasana);
             if (LoggedUser != null)
@@ -134,13 +130,13 @@ namespace Hyvinvointisovellus.Controllers
             return RedirectToAction("Index", "Home"); //Uloskirjautumisen jälkeen pääsivulle
         }
 
-        public JsonResult GetEvents()
-        {
-            using (HyvinvointiDBEntities1 db = new HyvinvointiDBEntities1())
-            {
-                var events = db.Hymynaama.ToList();
-                return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-            }
-        }
+        //public JsonResult GetEvents()
+        //{
+        //    using (HyvinvointiDBEntities db = new HyvinvointiDBEntities())
+        //    {
+        //        var events = db.Hymynaama.ToList();
+        //        return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        //    }
+        //}
     }
 }
