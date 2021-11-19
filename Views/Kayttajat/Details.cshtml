@@ -1,0 +1,31 @@
+﻿@model Hyvinvointisovellus.Kayttajat
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="jumbotron">
+	<h1>Työntekijät</h1>
+	<p class="lead">
+		tietoja työntekijöistä.
+	</p>
+	@*<p><a href="~/Home/Palautteet" class="btn btn-primary btn-lg">Lue palautteita  &raquo;</a></p>*@ @*<-- jumbotronin button, tarvitaanko?*@
+</div>
+<div>
+    <hr />
+	<dl class="dl-horizontal">
+		<dt>@Html.DisplayNameFor(model => model.Etunimi)</dt>
+		<dd>@Html.DisplayFor(model => model.Etunimi)</dd>
+		<dt>@Html.DisplayNameFor(model => model.Sukunimi)</dt>
+		<dd>@Html.DisplayFor(model => model.Sukunimi)</dd>
+		<dt>@Html.DisplayNameFor(model => model.Osoite)</dt>
+		<dd>@Html.DisplayFor(model => model.Osoite)</dd>
+		<dt>@Html.DisplayNameFor(model => model.Postinumero)</dt>
+		<dd>@Html.DisplayFor(model => model.Postinumero)</dd>
+		<dt>@Html.DisplayNameFor(model => model.Postitoimipaikat)</dt>
+		<dd>@Html.DisplayFor(model => model.Postitoimipaikat)</dd>
+	</dl>
+</div>
+<p>
+	@Html.ActionLink("Muokkaa", "Edit", new { id = Model.KayttajaID }, new { @class = "btn btn-info" })
+	<a class="btn btn-secondary" href="/Kayttajat">Takaisin</a>
+</p>
