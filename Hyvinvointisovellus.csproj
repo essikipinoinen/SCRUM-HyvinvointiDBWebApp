@@ -130,13 +130,18 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\HymynaamaController.cs" />
     <Compile Include="Controllers\PalauteController.cs" />
     <Compile Include="Controllers\TyontekijatController.cs" />
+    <Compile Include="Event.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hymynaama.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kayttajat.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Kirjautuminen.cs">
@@ -160,11 +165,11 @@
     <Compile Include="Palaute.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tyonantaja.cs">
+    <Compile Include="Postitoimipaikat.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Tyontekijat.cs">
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rekisteroityminen.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
   </ItemGroup>
