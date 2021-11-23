@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Hyvinvointisovellus;
 
 namespace Hyvinvointisovellus.Controllers
 {
     public class EventController : Controller
     {
 
-        // GET: Event
+        //Tietokantayhteys esitellään kertaalleen Controllerin päätasolla? miksi
+        private readonly HyvinvointiDBEntities db = new HyvinvointiDBEntities();
+
+
         public ActionResult Index()
         {
             if (Session["UserName"] == null)
@@ -24,12 +26,11 @@ namespace Hyvinvointisovellus.Controllers
             }
             else
             {
-                var hymynaama = db.Hymynaama.Include(h => h.Kayttajat);
-                return View(hymynaama.ToList());
+                var events = db.Events;
+                return View(events.ToList());
             }
 
         }
-
 
         // Palauttaa tapahtumien datan kun jQueryllä toteutettu ajax pyyntö tulee näkymästä
         public JsonResult GetEvents()
