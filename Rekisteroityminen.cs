@@ -7,22 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Hyvinvointisovellus.Models
+namespace Hyvinvointisovellus
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Kirjautuminen
+    public partial class Rekisteroityminen
     {
-        public int KirjautumisID { get; set; }
-        public Nullable<int> RekisteröitymisID { get; set; }
+        public int RekisteroitymisID { get; set; }
+        public Nullable<System.DateTime> Alkupvm { get; set; }
         public string Kayttajatunnus { get; set; }
-        [DataType(DataType.Password)]
-        [Required(ErrorMessage = "Anna salasana!")]
         public string Salasana { get; set; }
-        public string LoginErrorMessage { get; set; }
         public Nullable<int> KayttajaID { get; set; }
     
         public virtual Kayttajat Kayttajat { get; set; }
+        public virtual Kayttajat Kayttajat1 { get; set; }
     }
 }

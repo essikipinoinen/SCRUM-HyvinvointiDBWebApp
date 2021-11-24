@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Hyvinvointisovellus.Models
+namespace Hyvinvointisovellus
 {
     using System;
     using System.Data.Entity;
@@ -25,14 +25,12 @@ namespace Hyvinvointisovellus.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Event> Event { get; set; }
-        public virtual DbSet<Kayttajat> Kayttajat { get; set; }
+        public virtual DbSet<Events> Events { get; set; }
+        public virtual DbSet<Hymynaama> Hymynaama { get; set; }
         public virtual DbSet<Kayttajat> Kayttajat { get; set; }
         public virtual DbSet<Kirjautuminen> Kirjautuminen { get; set; }
         public virtual DbSet<Palaute> Palaute { get; set; }
         public virtual DbSet<Postitoimipaikat> Postitoimipaikat { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
-        public virtual DbSet<ipv6_database_firewall_rules> ipv6_database_firewall_rules { get; set; }
+        public virtual DbSet<Rekisteroityminen> Rekisteroityminen { get; set; }
     }
 }

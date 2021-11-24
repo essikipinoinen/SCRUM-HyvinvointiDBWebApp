@@ -17,8 +17,13 @@ namespace Hyvinvointisovellus
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Kayttajat()
         {
+            this.Events = new HashSet<Events>();
+            this.Events1 = new HashSet<Events>();
             this.Hymynaama = new HashSet<Hymynaama>();
+            this.Hymynaama1 = new HashSet<Hymynaama>();
             this.Palaute = new HashSet<Palaute>();
+            this.Rekisteroityminen = new HashSet<Rekisteroityminen>();
+            this.Rekisteroityminen1 = new HashSet<Rekisteroityminen>();
             this.Kirjautuminen = new HashSet<Kirjautuminen>();
         }
 
@@ -32,11 +37,22 @@ namespace Hyvinvointisovellus
         public string Postitoimipaikka { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Events> Events { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Events> Events1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Hymynaama> Hymynaama { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Hymynaama> Hymynaama1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Palaute> Palaute { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rekisteroityminen> Rekisteroityminen { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rekisteroityminen> Rekisteroityminen1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Kirjautuminen> Kirjautuminen { get; set; }
+
         public virtual Postitoimipaikat Postitoimipaikat { get; set; }
     }
 }

@@ -136,7 +136,7 @@ namespace Hyvinvointisovellus.Controllers
             }
             else
             {
-                //ViewBag.LoginMessage = "Kirjautuminen epäonnistui!";
+                ViewBag.LoginMessage = "Kirjautuminen epäonnistui!";
                 ViewBag.LoggedStatus = "Ei kirjautunut";
                 LoginModel.LoginErrorMessage = "Tuntematon käyttäjätunnus tai salasana. Yritä uudelleen!";
                 return View("Kirjautuminen", LoginModel);
