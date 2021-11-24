@@ -13,10 +13,10 @@ namespace Hyvinvointisovellus.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class HyvinvointiDBEntities : DbContext
+    public partial class HyvinvointiDBEntities1 : DbContext
     {
-        public HyvinvointiDBEntities()
-            : base("name=HyvinvointiDBEntities")
+        public HyvinvointiDBEntities1()
+            : base("name=HyvinvointiDBEntities1")
         {
         }
     
@@ -27,12 +27,9 @@ namespace Hyvinvointisovellus.Models
     
         public virtual DbSet<Event> Event { get; set; }
         public virtual DbSet<Kayttajat> Kayttajat { get; set; }
-        public virtual DbSet<Kayttajat> Kayttajat { get; set; }
         public virtual DbSet<Kirjautuminen> Kirjautuminen { get; set; }
         public virtual DbSet<Palaute> Palaute { get; set; }
         public virtual DbSet<Postitoimipaikat> Postitoimipaikat { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
-        public virtual DbSet<ipv6_database_firewall_rules> ipv6_database_firewall_rules { get; set; }
     }
 }

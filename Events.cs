@@ -9,6 +9,7 @@
 
 namespace Hyvinvointisovellus
 {
+    using Hyvinvointisovellus.Models;
     using System;
     using System.Collections.Generic;
     

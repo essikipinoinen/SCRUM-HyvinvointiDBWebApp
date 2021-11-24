@@ -12,7 +12,6 @@ namespace Hyvinvointisovellus.Models
     using System;
     using System.Collections.Generic;
     
-<<<<<<< HEAD:Models/sysdiagrams.cs
     public partial class sysdiagrams
     {
         public string name { get; set; }
@@ -20,11 +19,5 @@ namespace Hyvinvointisovellus.Models
         public int diagram_id { get; set; }
         public Nullable<int> version { get; set; }
         public byte[] definition { get; set; }
-=======
-    public partial class Postitoimipaikat
-    {
-        public int Postinumero { get; set; }
-        public string Postitoimipaikka { get; set; }
->>>>>>> f2fc6a154a9091b52151f7f6549fdafe2ea1728b:Postitoimipaikat.cs
     }
 }

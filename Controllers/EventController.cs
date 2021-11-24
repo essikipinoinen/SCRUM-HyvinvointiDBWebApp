@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hyvinvointisovellus.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Hyvinvointisovellus.Controllers
     {
 
         //Tietokantayhteys esitellään kertaalleen Controllerin päätasolla? miksi
-        private readonly HyvinvointiDBEntities db = new HyvinvointiDBEntities();
+        private readonly HyvinvointiDBEntities1 db = new HyvinvointiDBEntities1();
 
 
         public ActionResult Index()
@@ -38,20 +39,20 @@ namespace Hyvinvointisovellus.Controllers
         // Palauttaa tapahtumien datan kun jQueryllä toteutettu ajax pyyntö tulee näkymästä
         public JsonResult GetEvents()
         {
-            var events = db.Events.ToList();
+            var events = db.Event.ToList();
             return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
         // Käytetään sekä uuden luontiin että olemassaolevan tapahtuman muokkaukseen
         [HttpPost]
-        public JsonResult SaveEvent(Events ev)
+        public JsonResult SaveEvent(Event ev)
         {
             bool status = false;
 
             if (ev.EventID > 0) // Jos ev.EventID tieto löytyy, kyse on olemassaolevasta kalenterimerkinnästä, jota siis muokataan uusilla arvoilla
             {
                 //Muutettu existing --> existingEventInDB JSO 20.09.2021
-                var existingEventInDB = db.Events.Where(ex => ex.EventID == ev.EventID).FirstOrDefault();
+                var existingEventInDB = db.Event.Where(ex => ex.EventID == ev.EventID).FirstOrDefault();
                 if (existingEventInDB != null) // Jos id:tä vastaava rivi löytyy kannasta, päivitetään kyseisen eventin tiedot 
                 {
                     existingEventInDB.Subject = ev.Subject;
@@ -64,7 +65,7 @@ namespace Hyvinvointisovellus.Controllers
             }
             else //Jos taasen ev.EventID = 0 (nolla), on kyseessä uuden kalenterimerkinnän lisääminen
             {
-                db.Events.Add(ev);
+                db.Event.Add(ev);
             }
 
             db.SaveChanges();
@@ -81,10 +82,10 @@ namespace Hyvinvointisovellus.Controllers
             var status = false;
 
             {
-                var ev = db.Events.Where(e => e.EventID == id).FirstOrDefault();
+                var ev = db.Event.Where(e => e.EventID == id).FirstOrDefault();
                 if (ev != null)
                 {
-                    db.Events.Remove(ev);
+                    db.Event.Remove(ev);
                     db.SaveChanges();
                     status = true;
                 }
