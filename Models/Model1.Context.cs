@@ -30,6 +30,6 @@ namespace Hyvinvointisovellus.Models
         public virtual DbSet<Kirjautuminen> Kirjautuminen { get; set; }
         public virtual DbSet<Palaute> Palaute { get; set; }
         public virtual DbSet<Postitoimipaikat> Postitoimipaikat { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+
     }
 }
