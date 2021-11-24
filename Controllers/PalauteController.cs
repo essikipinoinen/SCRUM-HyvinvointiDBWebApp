@@ -12,16 +12,18 @@ namespace Hyvinvointisovellus.Controllers
 {
     public class PalauteController : Controller
     {
-        private HyvinvointiDBEntities db = new HyvinvointiDBEntities();
+        private HyvinvointiDBEntities1 db = new HyvinvointiDBEntities1();
 
-        public PalauteController(HyvinvointiDBEntities db)
-        {
-            this.db = db;
-        }
+        //public PalauteController(HyvinvointiDBEntities1 db)
+        //{
+        //    this.db = db;
+        //}
 
         // GET: Palaute
         public ActionResult Index()
         {
+
+
             if (Session["UserName"] == null)
             {
                 ViewBag.LoggedStatus = "Ei kirjautunut";
@@ -33,7 +35,7 @@ namespace Hyvinvointisovellus.Controllers
             }
             else
             {
-                var palaute = db.Palaute.Include(p => p.KayttajaID);
+                var palaute = db.Palaute.Include(p => p.Kayttajat);
                 return View(palaute.ToList());
             }
 

@@ -11,7 +11,7 @@ namespace Hyvinvointisovellus
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Kayttajat
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,13 +26,16 @@ namespace Hyvinvointisovellus
             this.Rekisteroityminen1 = new HashSet<Rekisteroityminen>();
             this.Kirjautuminen = new HashSet<Kirjautuminen>();
         }
-    
+
         public int KayttajaID { get; set; }
         public string Etunimi { get; set; }
         public string Sukunimi { get; set; }
         public string Osoite { get; set; }
         public string Postinumero { get; set; }
-    
+        public string Kayttajatunnus { get; set; }
+        public string Salasana { get; set; }
+        public string Postitoimipaikka { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Events> Events { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

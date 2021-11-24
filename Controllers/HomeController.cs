@@ -80,14 +80,26 @@ namespace Hyvinvointisovellus.Controllers
             return View();
         }
         
-        private HyvinvointiDBEntities db = new HyvinvointiDBEntities();
+        private HyvinvointiDBEntities1 db = new HyvinvointiDBEntities1();
+
 
         public ActionResult OmattiedotTyontekija()
         {
-            var hymynaama = db.Hymynaama.Include(h => h.Kayttajat);
-            return View(hymynaama.ToList());
+
+            //var hymynaama = db.Hymynaama.Include(h => h.Kayttajat);
+            //return View(hymynaama.ToList());
+            //throw new NotImplementedException();
+
+
+            var kayttajaId = (int)Session["UserId"];
+
+            var omatTiedot = db.Kayttajat.Include(k => k.Kirjautuminen).Include(k => k.Postitoimipaikat).
+                Where(x => x.KayttajaID == kayttajaId);
+			return View(omatTiedot.ToList());
             throw new NotImplementedException();
-        }        
+        }
+      
+
         public ActionResult OmattiedotTyonantaja()
         {
             return View();
@@ -98,14 +110,20 @@ namespace Hyvinvointisovellus.Controllers
         [HttpPost]
         public ActionResult Authorize(Kirjautuminen LoginModel)
         {
-            HyvinvointiDBEntities db = new HyvinvointiDBEntities();
-            //Haetaan käyttäjän/Loginin tiedot annetuilla tunnustiedoilla tietokannasta LINQ -kyselyllä
-            var LoggedUser = db.Kirjautuminen.SingleOrDefault(x => x.Kayttajatunnus == LoginModel.Kayttajatunnus && x.Salasana == LoginModel.Salasana);
+            HyvinvointiDBEntities1 db = new HyvinvointiDBEntities1();
+			//Haetaan käyttäjän/Loginin tiedot annetuilla tunnustiedoilla tietokannasta LINQ -kyselyllä
+			var LoggedUser = db.Kirjautuminen.SingleOrDefault(x => x.Kayttajatunnus == LoginModel.Kayttajatunnus && x.Salasana == LoginModel.Salasana);
+
+            
+
             if (LoggedUser != null)
             {
                 //ViewBag.LoginMessage = "Kirjautuminen onnistui!";
                 ViewBag.LoggedStatus = "Kirjautunut";
                 Session["UserName"] = LoggedUser.Kayttajatunnus;
+                Session["UserId"] = LoggedUser.KayttajaID;
+                Session["PassWord"] = LoggedUser.Salasana;
+
                 if (LoggedUser.Kayttajatunnus == "Tiina")
 				{
                     Session["Admin"] = LoggedUser.Kayttajatunnus;
@@ -120,10 +138,11 @@ namespace Hyvinvointisovellus.Controllers
             {
                 ViewBag.LoginMessage = "Kirjautuminen epäonnistui!";
                 ViewBag.LoggedStatus = "Ei kirjautunut";
-                //LoginModel.LoginErrorMessage = "Tuntematon käyttäjätunnus tai salasana. Yritä uudelleen!";
+                LoginModel.LoginErrorMessage = "Tuntematon käyttäjätunnus tai salasana. Yritä uudelleen!";
                 return View("Kirjautuminen", LoginModel); 
             }
         }
+
         public ActionResult Logout()
         {
             Session.Abandon();
