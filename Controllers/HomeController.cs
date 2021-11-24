@@ -8,7 +8,7 @@ namespace Hyvinvointisovellus.Controllers
 {
     public class HomeController : Controller
     {
-
+        //
         public ActionResult Index()
         {
             if (Session["UserName"] == null)
