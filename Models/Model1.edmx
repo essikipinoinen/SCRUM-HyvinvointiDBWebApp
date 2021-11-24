@@ -1,0 +1,488 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HyvinvointiDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="Start" Type="datetime" />
+          <Property Name="End" Type="datetime" />
+          <Property Name="ThemeColor" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsFullDay" Type="bit" />
+          <Property Name="KayttajaID" Type="int" />
+          <Property Name="HymynaamaID" Type="int" />
+        </EntityType>
+        <EntityType Name="Kayttajat">
+          <Key>
+            <PropertyRef Name="KayttajaID" />
+          </Key>
+          <Property Name="KayttajaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Etunimi" Type="varchar" MaxLength="50" />
+          <Property Name="Sukunimi" Type="varchar" MaxLength="50" />
+          <Property Name="Osoite" Type="nvarchar" MaxLength="50" />
+          <Property Name="Postinumero" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Kirjautuminen">
+          <Key>
+            <PropertyRef Name="KirjautumisID" />
+          </Key>
+          <Property Name="KirjautumisID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kayttajatunnus" Type="nvarchar" MaxLength="50" />
+          <Property Name="Salasana" Type="nvarchar" MaxLength="50" />
+          <Property Name="KayttajaID" Type="int" />
+        </EntityType>
+        <EntityType Name="Palaute">
+          <Key>
+            <PropertyRef Name="PalauteID" />
+          </Key>
+          <Property Name="PalauteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Palaute1" Type="varchar" MaxLength="500" />
+          <Property Name="KayttajaID" Type="int" />
+        </EntityType>
+        <EntityType Name="Postitoimipaikat">
+          <Key>
+            <PropertyRef Name="Postinumero" />
+          </Key>
+          <Property Name="Postinumero" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Postitoimipaikka" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'HyvinvointiDB.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="database_firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="start_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="end_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="create_date" Type="datetime" Nullable="false" />
+          <Property Name="modify_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'HyvinvointiDB.sys.ipv6_database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ipv6_database_firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ipv6_address" />
+            <PropertyRef Name="end_ipv6_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="start_ipv6_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="end_ipv6_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="create_date" Type="datetime" Nullable="false" />
+          <Property Name="modify_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Palaute__Kayttajat">
+          <End Role="Kayttajat" Type="Self.Kayttajat" Multiplicity="0..1" />
+          <End Role="Palaute" Type="Self.Palaute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kayttajat">
+              <PropertyRef Name="KayttajaID" />
+            </Principal>
+            <Dependent Role="Palaute">
+              <PropertyRef Name="KayttajaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event_Kayttajat">
+          <End Role="Kayttajat" Type="Self.Kayttajat" Multiplicity="0..1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kayttajat">
+              <PropertyRef Name="KayttajaID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="KayttajaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kayttajat_Postitoimipaikat">
+          <End Role="Postitoimipaikat" Type="Self.Postitoimipaikat" Multiplicity="0..1" />
+          <End Role="Kayttajat" Type="Self.Kayttajat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Postitoimipaikat">
+              <PropertyRef Name="Postinumero" />
+            </Principal>
+            <Dependent Role="Kayttajat">
+              <PropertyRef Name="Postinumero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kirjautuminen_Kayttajat">
+          <End Role="Kayttajat" Type="Self.Kayttajat" Multiplicity="0..1" />
+          <End Role="Kirjautuminen" Type="Self.Kirjautuminen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kayttajat">
+              <PropertyRef Name="KayttajaID" />
+            </Principal>
+            <Dependent Role="Kirjautuminen">
+              <PropertyRef Name="KayttajaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HyvinvointiDBModelStoreContainer">
+          <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kayttajat" EntityType="Self.Kayttajat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kirjautuminen" EntityType="Self.Kirjautuminen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Palaute" EntityType="Self.Palaute" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Postitoimipaikat" EntityType="Self.Postitoimipaikat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [database_firewall_rules].[id] AS [id], 
+    [database_firewall_rules].[name] AS [name], 
+    [database_firewall_rules].[start_ip_address] AS [start_ip_address], 
+    [database_firewall_rules].[end_ip_address] AS [end_ip_address], 
+    [database_firewall_rules].[create_date] AS [create_date], 
+    [database_firewall_rules].[modify_date] AS [modify_date]
+    FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ipv6_database_firewall_rules" EntityType="Self.ipv6_database_firewall_rules" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [ipv6_database_firewall_rules].[id] AS [id], 
+    [ipv6_database_firewall_rules].[name] AS [name], 
+    [ipv6_database_firewall_rules].[start_ipv6_address] AS [start_ipv6_address], 
+    [ipv6_database_firewall_rules].[end_ipv6_address] AS [end_ipv6_address], 
+    [ipv6_database_firewall_rules].[create_date] AS [create_date], 
+    [ipv6_database_firewall_rules].[modify_date] AS [modify_date]
+    FROM [sys].[ipv6_database_firewall_rules] AS [ipv6_database_firewall_rules]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Palaute__Kayttajat" Association="Self.FK__Palaute__Kayttajat">
+            <End Role="Kayttajat" EntitySet="Kayttajat" />
+            <End Role="Palaute" EntitySet="Palaute" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event_Kayttajat" Association="Self.FK_Event_Kayttajat">
+            <End Role="Kayttajat" EntitySet="Kayttajat" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kayttajat_Postitoimipaikat" Association="Self.FK_Kayttajat_Postitoimipaikat">
+            <End Role="Postitoimipaikat" EntitySet="Postitoimipaikat" />
+            <End Role="Kayttajat" EntitySet="Kayttajat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kirjautuminen_Kayttajat" Association="Self.FK_Kirjautuminen_Kayttajat">
+            <End Role="Kayttajat" EntitySet="Kayttajat" />
+            <End Role="Kirjautuminen" EntitySet="Kirjautuminen" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HyvinvointiDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Subject" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Start" Type="DateTime" Precision="3" />
+          <Property Name="End" Type="DateTime" Precision="3" />
+          <Property Name="ThemeColor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsFullDay" Type="Boolean" />
+          <Property Name="KayttajaID" Type="Int32" />
+          <Property Name="HymynaamaID" Type="Int32" />
+          <NavigationProperty Name="Kayttajat" Relationship="Self.FK_Event_Kayttajat" FromRole="Event" ToRole="Kayttajat" />
+        </EntityType>
+        <EntityType Name="Kayttajat">
+          <Key>
+            <PropertyRef Name="KayttajaID" />
+          </Key>
+          <Property Name="KayttajaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Etunimi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sukunimi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Osoite" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Postinumero" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_Event_Kayttajat" FromRole="Kayttajat" ToRole="Event" />
+          <NavigationProperty Name="Palaute" Relationship="Self.FK__Palaute__Kayttajat" FromRole="Kayttajat" ToRole="Palaute" />
+          <NavigationProperty Name="Postitoimipaikat" Relationship="Self.FK_Kayttajat_Postitoimipaikat" FromRole="Kayttajat" ToRole="Postitoimipaikat" />
+          <NavigationProperty Name="Kirjautuminen" Relationship="Self.FK_Kirjautuminen_Kayttajat" FromRole="Kayttajat" ToRole="Kirjautuminen" />
+        </EntityType>
+        <EntityType Name="Kirjautuminen">
+          <Key>
+            <PropertyRef Name="KirjautumisID" />
+          </Key>
+          <Property Name="KirjautumisID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kayttajatunnus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Salasana" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KayttajaID" Type="Int32" />
+          <NavigationProperty Name="Kayttajat" Relationship="Self.FK_Kirjautuminen_Kayttajat" FromRole="Kirjautuminen" ToRole="Kayttajat" />
+        </EntityType>
+        <EntityType Name="Palaute">
+          <Key>
+            <PropertyRef Name="PalauteID" />
+          </Key>
+          <Property Name="PalauteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Palaute1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="KayttajaID" Type="Int32" />
+          <NavigationProperty Name="Kayttajat" Relationship="Self.FK__Palaute__Kayttajat" FromRole="Palaute" ToRole="Kayttajat" />
+        </EntityType>
+        <EntityType Name="Postitoimipaikat">
+          <Key>
+            <PropertyRef Name="Postinumero" />
+          </Key>
+          <Property Name="Postinumero" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Postitoimipaikka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kayttajat" Relationship="Self.FK_Kayttajat_Postitoimipaikat" FromRole="Postitoimipaikat" ToRole="Kayttajat" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="database_firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="start_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="end_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ipv6_database_firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ipv6_address" />
+            <PropertyRef Name="end_ipv6_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="start_ipv6_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="end_ipv6_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <Association Name="FK_Event_Kayttajat">
+          <End Role="Kayttajat" Type="Self.Kayttajat" Multiplicity="0..1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kayttajat">
+              <PropertyRef Name="KayttajaID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="KayttajaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Palaute__Kayttajat">
+          <End Role="Kayttajat" Type="Self.Kayttajat" Multiplicity="0..1" />
+          <End Role="Palaute" Type="Self.Palaute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kayttajat">
+              <PropertyRef Name="KayttajaID" />
+            </Principal>
+            <Dependent Role="Palaute">
+              <PropertyRef Name="KayttajaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kayttajat_Postitoimipaikat">
+          <End Role="Postitoimipaikat" Type="Self.Postitoimipaikat" Multiplicity="0..1" />
+          <End Role="Kayttajat" Type="Self.Kayttajat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Postitoimipaikat">
+              <PropertyRef Name="Postinumero" />
+            </Principal>
+            <Dependent Role="Kayttajat">
+              <PropertyRef Name="Postinumero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kirjautuminen_Kayttajat">
+          <End Role="Kayttajat" Type="Self.Kayttajat" Multiplicity="0..1" />
+          <End Role="Kirjautuminen" Type="Self.Kirjautuminen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kayttajat">
+              <PropertyRef Name="KayttajaID" />
+            </Principal>
+            <Dependent Role="Kirjautuminen">
+              <PropertyRef Name="KayttajaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HyvinvointiDBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Event" EntityType="Self.Event" />
+          <EntitySet Name="Kayttajat" EntityType="Self.Kayttajat" />
+          <EntitySet Name="Kirjautuminen" EntityType="Self.Kirjautuminen" />
+          <EntitySet Name="Palaute" EntityType="Self.Palaute" />
+          <EntitySet Name="Postitoimipaikat" EntityType="Self.Postitoimipaikat" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
+          <EntitySet Name="ipv6_database_firewall_rules" EntityType="Self.ipv6_database_firewall_rules" />
+          <AssociationSet Name="FK_Event_Kayttajat" Association="Self.FK_Event_Kayttajat">
+            <End Role="Kayttajat" EntitySet="Kayttajat" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Palaute__Kayttajat" Association="Self.FK__Palaute__Kayttajat">
+            <End Role="Kayttajat" EntitySet="Kayttajat" />
+            <End Role="Palaute" EntitySet="Palaute" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kayttajat_Postitoimipaikat" Association="Self.FK_Kayttajat_Postitoimipaikat">
+            <End Role="Postitoimipaikat" EntitySet="Postitoimipaikat" />
+            <End Role="Kayttajat" EntitySet="Kayttajat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kirjautuminen_Kayttajat" Association="Self.FK_Kirjautuminen_Kayttajat">
+            <End Role="Kayttajat" EntitySet="Kayttajat" />
+            <End Role="Kirjautuminen" EntitySet="Kirjautuminen" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HyvinvointiDBModelStoreContainer" CdmEntityContainer="HyvinvointiDBEntities1">
+          <EntitySetMapping Name="Event">
+            <EntityTypeMapping TypeName="HyvinvointiDBModel.Event">
+              <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Start" ColumnName="Start" />
+                <ScalarProperty Name="End" ColumnName="End" />
+                <ScalarProperty Name="ThemeColor" ColumnName="ThemeColor" />
+                <ScalarProperty Name="IsFullDay" ColumnName="IsFullDay" />
+                <ScalarProperty Name="KayttajaID" ColumnName="KayttajaID" />
+                <ScalarProperty Name="HymynaamaID" ColumnName="HymynaamaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kayttajat">
+            <EntityTypeMapping TypeName="HyvinvointiDBModel.Kayttajat">
+              <MappingFragment StoreEntitySet="Kayttajat">
+                <ScalarProperty Name="KayttajaID" ColumnName="KayttajaID" />
+                <ScalarProperty Name="Etunimi" ColumnName="Etunimi" />
+                <ScalarProperty Name="Sukunimi" ColumnName="Sukunimi" />
+                <ScalarProperty Name="Osoite" ColumnName="Osoite" />
+                <ScalarProperty Name="Postinumero" ColumnName="Postinumero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kirjautuminen">
+            <EntityTypeMapping TypeName="HyvinvointiDBModel.Kirjautuminen">
+              <MappingFragment StoreEntitySet="Kirjautuminen">
+                <ScalarProperty Name="KirjautumisID" ColumnName="KirjautumisID" />
+                <ScalarProperty Name="Kayttajatunnus" ColumnName="Kayttajatunnus" />
+                <ScalarProperty Name="Salasana" ColumnName="Salasana" />
+                <ScalarProperty Name="KayttajaID" ColumnName="KayttajaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Palaute">
+            <EntityTypeMapping TypeName="HyvinvointiDBModel.Palaute">
+              <MappingFragment StoreEntitySet="Palaute">
+                <ScalarProperty Name="PalauteID" ColumnName="PalauteID" />
+                <ScalarProperty Name="Palaute1" ColumnName="Palaute1" />
+                <ScalarProperty Name="KayttajaID" ColumnName="KayttajaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Postitoimipaikat">
+            <EntityTypeMapping TypeName="HyvinvointiDBModel.Postitoimipaikat">
+              <MappingFragment StoreEntitySet="Postitoimipaikat">
+                <ScalarProperty Name="Postinumero" ColumnName="Postinumero" />
+                <ScalarProperty Name="Postitoimipaikka" ColumnName="Postitoimipaikka" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="HyvinvointiDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="database_firewall_rules">
+            <EntityTypeMapping TypeName="HyvinvointiDBModel.database_firewall_rules">
+              <MappingFragment StoreEntitySet="database_firewall_rules">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
+                <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ipv6_database_firewall_rules">
+            <EntityTypeMapping TypeName="HyvinvointiDBModel.ipv6_database_firewall_rules">
+              <MappingFragment StoreEntitySet="ipv6_database_firewall_rules">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="start_ipv6_address" ColumnName="start_ipv6_address" />
+                <ScalarProperty Name="end_ipv6_address" ColumnName="end_ipv6_address" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -7,17 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Hyvinvointisovellus
+namespace Hyvinvointisovellus.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Palaute
+    public partial class database_firewall_rules
     {
-        public int PalauteID { get; set; }
-        public Nullable<int> TyontekijaID { get; set; }
-        public string Palaute1 { get; set; }
-    
-        public virtual Tyontekijat Tyontekijat { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public string start_ip_address { get; set; }
+        public string end_ip_address { get; set; }
+        public System.DateTime create_date { get; set; }
+        public System.DateTime modify_date { get; set; }
     }
 }

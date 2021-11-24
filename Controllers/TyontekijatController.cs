@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using Hyvinvointisovellus.Models;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -7,7 +8,7 @@ namespace Hyvinvointisovellus.Controllers
 {
     public class TyontekijatController : Controller
     {
-        private HyvinvointiDBEntities db = new HyvinvointiDBEntities();
+        private HyvinvointiDBEntities1 db = new HyvinvointiDBEntities1();
 
         // GET: Tyontekijat
         public ActionResult Index()

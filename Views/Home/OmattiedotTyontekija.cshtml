@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Hyvinvointisovellus.Kayttajat>
+﻿@model IEnumerable<Hyvinvointisovellus.Models.Kayttajat>
 
 @{
 	ViewBag.Title = "OmattiedotTyontekija";
@@ -108,9 +108,9 @@
 		<th>@Html.DisplayNameFor(model => model.Sukunimi)</th>
 		<th>@Html.DisplayNameFor(model => model.Osoite)</th>
 		<th>@Html.DisplayNameFor(model => model.Postinumero)</th>
-		<th>@Html.DisplayNameFor(model => model.Postitoimipaikka)</th>
-		<th>@Html.DisplayNameFor(model => model.Kayttajatunnus)</th>
-		<th>@Html.DisplayNameFor(model => model.Salasana)</th>
+		<th>@Html.DisplayNameFor(model => model.Postitoimipaikat.Postitoimipaikka)</th>
+		<th>Käyttäjätunnus</th>
+		<th>Salasana</th>
 
 
 		@*<th>@Html.DisplayNameFor(model => model.Start)</th>

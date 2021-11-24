@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="06cbec2ad64b440694d5ecadf425eda1" Name="Diagram1">
+        <EntityTypeShape EntityType="HyvinvointiDBModel.Event" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HyvinvointiDBModel.Kayttajat" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="HyvinvointiDBModel.Kirjautuminen" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HyvinvointiDBModel.Palaute" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HyvinvointiDBModel.Postitoimipaikat" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HyvinvointiDBModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HyvinvointiDBModel.database_firewall_rules" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HyvinvointiDBModel.ipv6_database_firewall_rules" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="HyvinvointiDBModel.FK_Event_Kayttajat" ManuallyRouted="false" />
+        <AssociationConnector Association="HyvinvointiDBModel.FK__Palaute__Kayttajat" ManuallyRouted="false" />
+        <AssociationConnector Association="HyvinvointiDBModel.FK_Kayttajat_Postitoimipaikat" ManuallyRouted="false" />
+        <AssociationConnector Association="HyvinvointiDBModel.FK_Kirjautuminen_Kayttajat" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

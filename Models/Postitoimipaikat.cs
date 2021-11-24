@@ -7,30 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Hyvinvointisovellus
+namespace Hyvinvointisovellus.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Tyontekijat
+    public partial class Postitoimipaikat
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Tyontekijat()
+        public Postitoimipaikat()
         {
-            this.Hymynaama = new HashSet<Hymynaama>();
-            this.Palaute = new HashSet<Palaute>();
+            this.Kayttajat = new HashSet<Kayttajat>();
         }
     
-        public int TyontekijaID { get; set; }
-        public string Etunimi { get; set; }
-        public string Sukunimi { get; set; }
-        public string Osoite { get; set; }
         public string Postinumero { get; set; }
         public string Postitoimipaikka { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Hymynaama> Hymynaama { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Palaute> Palaute { get; set; }
+        public virtual ICollection<Kayttajat> Kayttajat { get; set; }
     }
 }

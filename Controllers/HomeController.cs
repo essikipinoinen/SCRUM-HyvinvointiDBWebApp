@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using System.Data.Entity;
+using Hyvinvointisovellus.Models;
 
 namespace Hyvinvointisovellus.Controllers
 {
@@ -68,7 +69,7 @@ namespace Hyvinvointisovellus.Controllers
 
             return View();
         }
-        
+
         public ActionResult Kirjautuminen()
         {
             if (Session["UserName"] == null)
@@ -78,7 +79,7 @@ namespace Hyvinvointisovellus.Controllers
             else ViewBag.LoggedStatus = "Kirjautunut";
             return View();
         }
-        
+
         private HyvinvointiDBEntities1 db = new HyvinvointiDBEntities1();
 
 
@@ -94,10 +95,10 @@ namespace Hyvinvointisovellus.Controllers
 
             var omatTiedot = db.Kayttajat.Include(k => k.Kirjautuminen).Include(k => k.Postitoimipaikat).
                 Where(x => x.KayttajaID == kayttajaId);
-			return View(omatTiedot.ToList());
+            return View(omatTiedot.ToList());
             throw new NotImplementedException();
         }
-      
+
 
         public ActionResult OmattiedotTyonantaja()
         {
@@ -110,10 +111,10 @@ namespace Hyvinvointisovellus.Controllers
         public ActionResult Authorize(Kirjautuminen LoginModel)
         {
             HyvinvointiDBEntities1 db = new HyvinvointiDBEntities1();
-			//Haetaan käyttäjän/Loginin tiedot annetuilla tunnustiedoilla tietokannasta LINQ -kyselyllä
-			var LoggedUser = db.Kirjautuminen.SingleOrDefault(x => x.Kayttajatunnus == LoginModel.Kayttajatunnus && x.Salasana == LoginModel.Salasana);
+            //Haetaan käyttäjän/Loginin tiedot annetuilla tunnustiedoilla tietokannasta LINQ -kyselyllä
+            var LoggedUser = db.Kirjautuminen.SingleOrDefault(x => x.Kayttajatunnus == LoginModel.Kayttajatunnus && x.Salasana == LoginModel.Salasana);
 
-            
+
 
             if (LoggedUser != null)
             {
@@ -124,13 +125,13 @@ namespace Hyvinvointisovellus.Controllers
                 Session["PassWord"] = LoggedUser.Salasana;
 
                 if (LoggedUser.Kayttajatunnus == "Tiina")
-				{
+                {
                     Session["Admin"] = LoggedUser.Kayttajatunnus;
                     return RedirectToAction("IndexTyonantaja", "Home");
                 }
-                else 
-                { 
-                return RedirectToAction("IndexTyontekija", "Home"); //Tässä määritellään mihin onnistunut kirjautuminen johtaa --> Home/Index
+                else
+                {
+                    return RedirectToAction("IndexTyontekija", "Home"); //Tässä määritellään mihin onnistunut kirjautuminen johtaa --> Home/Index
                 }
             }
             else
@@ -138,7 +139,7 @@ namespace Hyvinvointisovellus.Controllers
                 //ViewBag.LoginMessage = "Kirjautuminen epäonnistui!";
                 ViewBag.LoggedStatus = "Ei kirjautunut";
                 LoginModel.LoginErrorMessage = "Tuntematon käyttäjätunnus tai salasana. Yritä uudelleen!";
-                return View("Kirjautuminen", LoginModel); 
+                return View("Kirjautuminen", LoginModel);
             }
         }
 
@@ -153,7 +154,7 @@ namespace Hyvinvointisovellus.Controllers
         {
             using (HyvinvointiDBEntities1 db = new HyvinvointiDBEntities1())
             {
-                var events = db.Hymynaama.ToList();
+                var events = db.Event.ToList();
                 return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
             }
         }

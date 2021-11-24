@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Hyvinvointisovellus
+namespace Hyvinvointisovellus.Models
 {
     using System;
     using System.Collections.Generic;
@@ -18,12 +18,12 @@ namespace Hyvinvointisovellus
         public int KirjautumisID { get; set; }
         [Required(ErrorMessage = "Anna käyttäjätunnus!")]
         public string Kayttajatunnus { get; set; }
+        [DataType(DataType.Password)]
         [Required(ErrorMessage = "Anna salasana!")]
         public string Salasana { get; set; }
-        public Nullable<int> KayttajaID { get; set; }
-
-        public virtual Kayttajat Kayttajat { get; set; }
         public string LoginErrorMessage { get; set; }
-        public string Postitoimipaikka { get; set; }
+        public Nullable<int> KayttajaID { get; set; }
+    
+        public virtual Kayttajat Kayttajat { get; set; }
     }
 }

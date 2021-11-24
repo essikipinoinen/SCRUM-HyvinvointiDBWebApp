@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Hyvinvointisovellus;
+using Hyvinvointisovellus.Models;
 
 namespace Hyvinvointisovellus.Controllers
 {
@@ -14,7 +15,7 @@ namespace Hyvinvointisovellus.Controllers
     {
         private HyvinvointiDBEntities1 db = new HyvinvointiDBEntities1();
 
-        //public PalauteController(HyvinvointiDBEntities1 db)
+        //public PalauteController(HyvinvointiDBEntities db)
         //{
         //    this.db = db;
         //}

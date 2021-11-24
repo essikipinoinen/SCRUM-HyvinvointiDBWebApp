@@ -7,21 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Hyvinvointisovellus
+namespace Hyvinvointisovellus.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Hymynaama
+    public partial class Event
     {
-        public int HymynaamaID { get; set; }
-        public Nullable<int> TyontekijaID { get; set; }
-        public string Hymynaama1 { get; set; }
+        public int EventID { get; set; }
+        public string Subject { get; set; }
+        public string Description { get; set; }
         public Nullable<System.DateTime> Start { get; set; }
         public Nullable<System.DateTime> End { get; set; }
         public string ThemeColor { get; set; }
         public Nullable<bool> IsFullDay { get; set; }
+        public Nullable<int> KayttajaID { get; set; }
+        public Nullable<int> HymynaamaID { get; set; }
     
-        public virtual Tyontekijat Tyontekijat { get; set; }
+        public virtual Kayttajat Kayttajat { get; set; }
     }
 }
