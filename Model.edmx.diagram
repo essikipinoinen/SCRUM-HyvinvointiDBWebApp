@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="65cd75ba88ed4edfa4f35699ad6fad42" Name="Diagram1">
+      <Diagram DiagramId="f54372b6e5dc49e79308c34e273f2796" Name="Diagram1">
         <EntityTypeShape EntityType="HyvinvointiDBEntitiesModel.Events" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="HyvinvointiDBEntitiesModel.Hymynaama" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="HyvinvointiDBEntitiesModel.Kayttajat" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />

@@ -49,5 +49,7 @@ namespace Hyvinvointisovellus
         public virtual ICollection<Rekisteroityminen> Rekisteroityminen1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Kirjautuminen> Kirjautuminen { get; set; }
+
+        public virtual Postitoimipaikat Postitoimipaikat { get; set; }
     }
 }

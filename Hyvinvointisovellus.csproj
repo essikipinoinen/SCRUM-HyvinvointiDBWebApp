@@ -129,10 +129,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PalauteController.cs" />
     <Compile Include="Controllers\TyontekijatController.cs" />
-    <Compile Include="Event.cs">
+    <Compile Include="Events.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -702,6 +703,7 @@
       <BrowseToURL>~/Home/OmattiedotTyonantaja</BrowseToURL>
     </Content>
     <Content Include="Views\Home\IndexTyontekija.cshtml" />
+    <Content Include="Views\Event\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include=".vs\HyvinvointiDBWebApp1\v16\" />

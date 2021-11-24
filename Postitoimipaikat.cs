@@ -12,9 +12,9 @@ namespace Hyvinvointisovellus
     using System;
     using System.Collections.Generic;
     
-    public partial class Tyonantaja
+    public partial class Postitoimipaikat
     {
-        public int TyonantajaID { get; set; }
-        public string Tyonantaja1 { get; set; }
+        public int Postinumero { get; set; }
+        public string Postitoimipaikka { get; set; }
     }
 }

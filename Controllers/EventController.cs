@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -26,8 +27,10 @@ namespace Hyvinvointisovellus.Controllers
             }
             else
             {
-                var events = db.Events;
-                return View(events.ToList());
+                //var hymynaama = db.Events.Include(e => e.KayttajaID);
+                //return View(hymynaama.ToList());
+
+                return View();
             }
 
         }

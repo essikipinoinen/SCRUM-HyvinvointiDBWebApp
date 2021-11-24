@@ -15,9 +15,9 @@ namespace Hyvinvointisovellus
     public partial class Palaute
     {
         public int PalauteID { get; set; }
-        public Nullable<int> TyontekijaID { get; set; }
+        public Nullable<int> KayttajaID { get; set; }
         public string Palaute1 { get; set; }
     
-        public virtual Tyontekijat Tyontekijat { get; set; }
+        public virtual Kayttajat Kayttajat { get; set; }
     }
 }
