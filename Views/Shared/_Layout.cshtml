@@ -15,11 +15,11 @@
 		<div class="container-fluid">
 			@if (Session["Admin"] != null)
 			{
-			<a class="navbar-brand" href="~/Home/IndexTyonantaja">Hyvinvointisovellus</a>
+				<a class="navbar-brand" href="~/Home/IndexTyonantaja">Hyvinvointisovellus</a>
 			}
 			else
 			{
-			<a class="navbar-brand" href="~/Home/IndexTyontekija">Hyvinvointisovellus</a>
+				<a class="navbar-brand" href="~/Home/IndexTyontekija">Hyvinvointisovellus</a>
 			}
 
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,39 +33,39 @@
 							</a>
 						</li>*@
 					@if (Session["Admin"] != null)
-                        {
-					<li class="nav-item">
-						<a class="nav-link" href="~/Home/OmattiedotTyonantaja">Omat tiedot</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="~/Tyontekijat/Index">Työntekijät</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="~/Home/Logout">Kirjaudu ulos</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="~/Palaute/Index">Palautteet</a>
-					</li>
-                        }
-                        else if (Session["UserName"] == null)
-                        {
+					{
+						<li class="nav-item">
+							<a class="nav-link" href="~/Home/OmattiedotTyonantaja">Omat tiedot</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="~/Tyontekijat/Index">Työntekijät</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="~/Home/Logout">Kirjaudu ulos</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="~/Palaute/Index">Palautteet</a>
+						</li>
+					}
+					else if (Session["UserName"] == null)
+					{
 
-                        }
-                        else
-                        {
-					<li class="nav-item">
-						<a class="nav-link" href="~/Event/Index">Fiilikset</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="~/Palaute/Index">Palautteet</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="~/Home/OmattiedotTyontekija">Omat tiedot</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="~/Home/Logout">Kirjaudu ulos</a>
-					</li>
-                        }
+					}
+					else
+					{
+						<li class="nav-item">
+							<a class="nav-link" href="~/Event/Index">Fiilikset</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="~/Palaute/Index">Palautteet</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="~/Home/OmattiedotTyontekija">Omat tiedot</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="~/Home/Logout">Kirjaudu ulos</a>
+						</li>
+					}
 
 					@*<li class="nav-item">
 							<a class="nav-link" href="~/Home/About">About</a>
@@ -135,6 +135,11 @@
 
 	<!-- DateTime picker js -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+	
+	<!-- Collapse - Accordion -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 	@Scripts.Render("~/bundles/Script-calendar")
 

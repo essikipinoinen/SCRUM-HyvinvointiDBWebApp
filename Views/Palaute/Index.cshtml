@@ -28,7 +28,7 @@
 <div>
 	@if (Session["Admin"] == null)
 	{
-		<a class="btn btn-info" href="/Palaute/Create">Lisää uusi palaute</a>
+	<a class="btn btn-info" href="/Palaute/Create">Lisää uusi palaute</a>
 	}
 </div>
 
@@ -39,27 +39,26 @@
 	<div id="accordion">
 		@foreach (var item in Model)
 		{
-			<div class="card">
-				<div class="card-header">
-					<a class="card-link naytaPalaute" data-palauteId="@item.PalauteID" data-toggle="collapse" href="#collapse_@item.PalauteID">
-						<form>
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<span class="input-group-text">@item.PalauteID</span>
-								</div>
-								<input type="text" class="form-control px-2" value="@item.Palaute1" disabled>
-								<input type="text" class="form-control px-2" value="@item.KayttajaID" disabled>
-							</div>
-						</form>
-					</a>
-				</div>
-				<div id="collapse_@item.PalauteID" class="collapse" data-parent="#accordion">
-					<div class="card-body">
-						<p>Ladataan palautetta @item.PalauteID</p>
-						@*<div id="kokoPalaute_@item.PalauteID"></div>*@
-					</div>
+		<div class="card">
+			<div class="card-header">
+				<a class="card-link naytaPalaute" data-palauteId="@item.PalauteID" data-toggle="collapse" href="#collapse_@item.PalauteID">
+					<form>
+						<div class="input-group">
+
+							<input type="text" class="form-control px-2" value="@item.Kayttajat.Etunimi @item.Kayttajat.Sukunimi " disabled>
+							<input type="text" class="form-control px-2" value="@item.Palaute1" style="text-overflow: ellipsis" disabled>
+
+						</div>
+					</form>
+				</a>
+			</div>
+			<div id="collapse_@item.PalauteID" class="collapse" data-parent="#accordion">
+				<div class="card-body">
+					<p>@item.Palaute1</p>
+					@*<div id="kokoPalaute_@item.PalauteID"></div>*@
 				</div>
 			</div>
+		</div>
 		}
 
 	</div>
