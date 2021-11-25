@@ -129,7 +129,7 @@
                             end: data.End != null ? moment(data.End) : null,
                             color: data.ThemeColor,
                             allDay: data.IsFullDay,
-                            EVENT_ID: data.EventID  /*lisätty EVENT_ID, jotta voisi käyttää kunmkin e ventin kohdistukseen / esim poistoissa*/
+                            EVENT_ID: data.EventID  /*lisätty EVENT_ID, jotta voisi käyttää kummankin eventin kohdistukseen / esim poistoissa*/
                         });
                     })
 
@@ -177,7 +177,7 @@
                 eventColor: '#378006',
                 events: events,
 
-                // Jos tapahtumaa klikataan kalenterissa:
+                // Jos tapahtumaa klikataan kalenterissa:         >Tämä ei toimi meillä
                 eventClick: function (calEvent, jsEvent, view) {
                     selectedEvent = calEvent;
                     $('#myModalDisplayEvent #eventTitle').text(calEvent.title);
@@ -241,7 +241,7 @@
                 alert("Poistan kalenterimerkinnän: " + eventti + '...');
                 $.ajax({
                     type: "POST",
-                    url: '/event/DeleteEvent/?id=' + selectedEvent.EVENT_ID,
+                    url: '/Event/DeleteEvent/?id=' + selectedEvent.EVENT_ID,
                     data: { 'eventID': selectedEvent.EVENT_ID },
                     success: function (data) {
                         if (data.status) {
@@ -284,7 +284,7 @@
         $('#btnSave').click(function () {
             //Tarkistuksia
             if ($('#txtSubject').val().trim() == "") {
-                alert('Kalenterimerkinnän aihe on pakollionen tieto');
+                alert('Kalenterimerkinnän aihe on pakollinen tieto');
                 return;
             }
             if ($('#txtStart').val().trim() == "") {
@@ -318,7 +318,7 @@
         })
         //Funktio, joka vie uudet taikka päivitetyt tiedot palvelimelle/kontrollerille
         function SaveEvent(data) {
-            //Pari seuraavaa koodiriviä vain debuggausta varten (otetaanctapahtuman EVENT_ID esiin)
+            //Pari seuraavaa koodiriviä vain debuggausta varten (otetaan tapahtuman EVENT_ID esiin)
             let eventti = selectedEvent.EVENT_ID;
             alert("Muokkaan kalenterimerkintää: " + eventti + '...');
             data.EventID = selectedEvent.EVENT_ID; //Strateginen sijoitus: Kontrollerille lähetettävän objektin avaintiedon pitää olla oikein ja siksi EVENT:ID sijoitetaan nyt
@@ -326,7 +326,7 @@
             //Kontrolleri tietää EVENT_ID: n arvon (0 taikka joku muu) perusteella onko kyseessä uusi vaiko vanha merkintä
             $.ajax({
                 type: "POST",
-                url: '/event/SaveEvent',
+                url: '/Event/SaveEvent',
                 data: data,
                 success: function (data) {
                     if (data.status) {
