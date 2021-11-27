@@ -366,6 +366,11 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Scripts\Skriptit\moment.js" />
+    <Content Include="Scripts\Skriptit\fullcalendar3.10.2.js" />
+    <Content Include="Scripts\Skriptit\fullcalendarfinnish.js" />
+    <Content Include="Scripts\Skriptit\datetimepicker.js" />
+    <Content Include="Scripts\Skriptit\jquery.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
