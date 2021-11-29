@@ -144,7 +144,7 @@ namespace Hyvinvointisovellus.Controllers
             {
                 db.Entry(omattiedot).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("IndexTyontekija");
+                return RedirectToAction("OmattiedotTyontekija");
             }
             return View(omattiedot);
         }
@@ -184,6 +184,15 @@ namespace Hyvinvointisovellus.Controllers
                 LoginModel.LoginErrorMessage = "Tuntematon käyttäjätunnus tai salasana. Yritä uudelleen!";
                 return View("Kirjautuminen", LoginModel);
             }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
 
         public ActionResult Logout()
