@@ -86,12 +86,6 @@ namespace Hyvinvointisovellus.Controllers
 
         public ActionResult OmattiedotTyontekija()
         {
-
-            //var hymynaama = db.Hymynaama.Include(h => h.Kayttajat);
-            //return View(hymynaama.ToList());
-            //throw new NotImplementedException();
-
-
             var kayttajaId = (int)Session["UserId"];
 
             var omatTiedot = db.Kayttajat.Include(k => k.Kirjautuminen).Include(k => k.Postitoimipaikat).
@@ -103,7 +97,11 @@ namespace Hyvinvointisovellus.Controllers
 
         public ActionResult OmattiedotTyonantaja()
         {
-            return View();
+            var kayttajaId = (int)Session["UserId"];
+
+            var omatTiedot = db.Kayttajat.Include(k => k.Kirjautuminen).Include(k => k.Postitoimipaikat).
+                Where(x => x.KayttajaID == kayttajaId);
+            return View(omatTiedot.ToList());
             throw new NotImplementedException();
         }
 

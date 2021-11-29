@@ -1,18 +1,48 @@
-﻿@model Hyvinvointisovellus.Models.Hymynaama
+﻿@model IEnumerable<Hyvinvointisovellus.Models.Kayttajat>
 
 @{
-	ViewBag.Title = "Home Page";
+	ViewBag.Title = "OmattiedotTyonantaja";
 }
 
 <div class="jumbotron">
 	<h1>Omat tiedot</h1>
+
 	<p class="lead">
-		Tämä sivu on vielä tyhjä, mutta täällä pääset jatkossa tarkastelemaan tai muokkaamaan omia tietojasi.
+		Täällä näet omat tietosi ja halutessasi pääset myös muokkaamaan niitä.
 	</p>
-	@*<p><a href="~/Home/Palautteet" class="btn btn-primary btn-lg">Lue palautteita  &raquo;</a></p>*@ @*<-- jumbotronin button, tarvitaanko?*@
 </div>
 
+<p></p>
+<table class="table">
+	<tr>
+		<th>@Html.DisplayNameFor(model => model.KayttajaID)</th>
+		<th>@Html.DisplayNameFor(model => model.Etunimi)</th>
+		<th>@Html.DisplayNameFor(model => model.Sukunimi)</th>
+		<th>@Html.DisplayNameFor(model => model.Osoite)</th>
+		<th>@Html.DisplayNameFor(model => model.Postinumero)</th>
+		<th>@Html.DisplayNameFor(model => model.Postitoimipaikat.Postitoimipaikka)</th>
+		<th>Käyttäjätunnus</th>
+		<th>Salasana</th>
+	</tr>
+
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>@Html.DisplayFor(modelItem => item.KayttajaID)</td>
+			<td>@Html.DisplayFor(modelItem => item.Etunimi)</td>
+			<td>@Html.DisplayFor(modelItem => item.Sukunimi)</td>
+			<td>@Html.DisplayFor(modelItem => item.Osoite)</td>
+			<td>@Html.DisplayFor(modelItem => item.Postinumero)</td>
+			<td>@Html.DisplayFor(modelItem => item.Postitoimipaikat.Postitoimipaikka)</td>
+			<td>@Session["UserName"]</td>
+			<td>@Session["PassWord"]</td>
+
+			<td align="right">
+				@Html.ActionLink("Muokkaa", "Muokkaa", new { id = item.KayttajaID }, new { @class = "btn btn-outline-primary" })
+			</td>
+		</tr>
+	}
+</table>
 <div>
-    <a class="btn btn-outline-dark" href="/Home/IndexTyonantaja">Takaisin etusivulle</a>
+	<a class="btn btn-outline-dark" href="/Home/IndexTyontekija">Takaisin etusivulle</a>
 </div>
-

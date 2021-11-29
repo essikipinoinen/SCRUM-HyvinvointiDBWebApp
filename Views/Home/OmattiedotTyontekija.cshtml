@@ -7,12 +7,9 @@
 	<h1>Omat tiedot</h1>
 
 	<p class="lead">
-		Tämä sivu on vielä kehitystyön alla mutta täällä pääset jatkossa tarkastelemaan tai muokkaamaan omia tietojasi,
-		katsomaan antamiasi palautteita sekä näkemään aiemmat fiiliskirjauksesi kalenterista.
+		Täällä näet omat tietosi ja halutessasi pääset myös muokkaamaan niitä.
 	</p>
-	@*<p><a href="~/Home/Palautteet" class="btn btn-primary btn-lg">Lue palautteita  &raquo;</a></p>*@ @*<-- jumbotronin button, tarvitaanko?*@
 </div>
-
 
 <p></p>
 <table class="table">
@@ -25,12 +22,6 @@
         <th>@Html.DisplayNameFor(model => model.Postitoimipaikat.Postitoimipaikka)</th>
         <th>Käyttäjätunnus</th>
         <th>Salasana</th>
-
-
-
-        @*<th>@Html.DisplayNameFor(model => model.Start)</th>
-        <th>@Html.DisplayNameFor(model => model.End)</th>
-        <th>@Html.DisplayNameFor(model => model.IsFullDay)</th>*@
     </tr>
 
 	@foreach (var item in Model)
@@ -44,14 +35,6 @@
 			<td>@Html.DisplayFor(modelItem => item.Postitoimipaikat.Postitoimipaikka)</td>
 			<td>@Session["UserName"]</td>
 			<td>@Session["PassWord"]</td>
-
-
-
-
-
-			@*<td>@Html.DisplayFor(modelItem => item.Start)</td>
-				<td>@Html.DisplayFor(modelItem => item.End)</td>
-				<td>@Html.DisplayFor(modelItem => item.IsFullDay)</td>*@
 
 			<td align="right">
 				@Html.ActionLink("Muokkaa", "Muokkaa", new { id = item.KayttajaID }, new { @class = "btn btn-outline-primary" })
