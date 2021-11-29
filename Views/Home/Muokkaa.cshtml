@@ -1,7 +1,6 @@
 ﻿<h2><b>Muokkaa</b></h2>
 
 @model Hyvinvointisovellus.Models.Kayttajat
-
 @{
     ViewBag.Title = "Muokkaa";
 }
@@ -16,67 +15,80 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.KayttajaID)
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.KayttajaID)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Etunimi, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Etunimi, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Etunimi, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Etunimi, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Etunimi, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Etunimi, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Sukunimi, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Sukunimi, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Sukunimi, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Osoite, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Osoite, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Osoite, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Postinumero, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Postinumero, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Postinumero, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Postitoimipaikat.Postitoimipaikka, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Postitoimipaikat.Postitoimipaikka, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Postitoimipaikat.Postitoimipaikka, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*<div class="form-group">
+        @Session["UserName"]
+        <div class="col-md-10">
+            @Session["UserName"]
+        </div>
+    </div>
+    <div class="form-group">
+        @Session["PassWord"]
+        <div class="col-md-10">
+            @Session["PassWord"]
+        </div>
+    </div>*@
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Tallenna" class="btn btn-info" onclick="meth_alert();" />
+            <div>
+                <a class="btn btn-outline-dark" href="/Home/IndexTyontekija">Takaisin etusivulle</a>
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Sukunimi, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Sukunimi, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Sukunimi, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Osoite, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Osoite, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Osoite, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Postinumero, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Postinumero, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Postinumero, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Postitoimipaikat.Postitoimipaikka, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Postitoimipaikat.Postitoimipaikka, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Postitoimipaikat.Postitoimipaikka, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Tallenna" class="btn btn-info" onclick="meth_alert();" />
-                <div>
-                    <a class="btn btn-outline-dark" href="/Home/IndexTyontekija">Takaisin etusivulle</a>
-                </div>            
-            </div>
-
-            <script type="text/javascript">
+        <script type="text/javascript">
             meth_alert = function () {
 
                 alert("Tiedot tallennettu!");
             };
-            </script>
-        </div>
+        </script>
     </div>
+</div>
 }
 
 @section Scripts {

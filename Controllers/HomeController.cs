@@ -120,6 +120,7 @@ namespace Hyvinvointisovellus.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Kayttajat omattiedot = db.Kayttajat.Find(id);
             if (omattiedot == null)
             {
@@ -132,7 +133,7 @@ namespace Hyvinvointisovellus.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Muokkaa([Bind(Include = "KayttajaID,Etunimi,Sukunimi,Osoite,Postinumero,Postitoimipaikka")] Kayttajat tyontekijat)
+        public ActionResult Muokkaa([Bind(Include = "KayttajaID,Etunimi,Sukunimi,Osoite,Postinumero,Postitoimipaikka, Kayttajatunnus, Salasana")] Kayttajat omattiedot)
         {
             if (Session["UserName"] == null)
             {
@@ -141,11 +142,11 @@ namespace Hyvinvointisovellus.Controllers
             else ViewBag.LoggedStatus = "Kirjautunut";
             if (ModelState.IsValid)
             {
-                db.Entry(tyontekijat).State = EntityState.Modified;
+                db.Entry(omattiedot).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexTyontekija");
             }
-            return View(tyontekijat);
+            return View(omattiedot);
         }
 
 
