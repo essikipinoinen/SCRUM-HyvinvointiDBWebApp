@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Data.Entity;
 using Hyvinvointisovellus.Models;
+using System.Net;
 
 namespace Hyvinvointisovellus.Controllers
 {
@@ -104,6 +105,47 @@ namespace Hyvinvointisovellus.Controllers
         {
             return View();
             throw new NotImplementedException();
+        }
+
+        //OMIEN TIETOJEN MUOKKAUS (Edit kopioitu työntekijät-controllerista)
+        // GET: Tyontekijat/Edit/5
+        public ActionResult Muokkaa(int? id)
+        {
+            if (Session["UserName"] == null)
+            {
+                ViewBag.LoggedStatus = "Ei kirjautunut";
+            }
+            else ViewBag.LoggedStatus = "Kirjautunut";
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Kayttajat omattiedot = db.Kayttajat.Find(id);
+            if (omattiedot == null)
+            {
+                return HttpNotFound();
+            }
+            return View(omattiedot);
+        }
+        // POST: Tyontekijat/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Muokkaa([Bind(Include = "KayttajaID,Etunimi,Sukunimi,Osoite,Postinumero,Postitoimipaikka")] Kayttajat tyontekijat)
+        {
+            if (Session["UserName"] == null)
+            {
+                ViewBag.LoggedStatus = "Ei kirjautunut";
+            }
+            else ViewBag.LoggedStatus = "Kirjautunut";
+            if (ModelState.IsValid)
+            {
+                db.Entry(tyontekijat).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(tyontekijat);
         }
 
 

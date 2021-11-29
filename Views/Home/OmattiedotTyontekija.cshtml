@@ -53,9 +53,9 @@
 				<td>@Html.DisplayFor(modelItem => item.IsFullDay)</td>*@
 
 			<td align="right">
-				@Html.ActionLink("Muokkaa", "Edit", new { id = item.KayttajaID }, new { @class = "btn btn-outline-primary" })
+				@Html.ActionLink("Muokkaa", "Muokkaa", new { id = item.KayttajaID }, new { @class = "btn btn-outline-primary" })
 				@Html.ActionLink("Tietoja", "Details", new { id = item.KayttajaID }, new { @class = "btn btn-outline-primary" })
-				@Html.ActionLink("Poista", "Delete", new { id = item.KayttajaID }, new { @class = "btn btn-outline-primary" })
+				@*@Html.ActionLink("Poista", "Delete", new { id = item.KayttajaID }, new { @class = "btn btn-outline-primary" })*@
 			</td>
 		</tr>
 	}
