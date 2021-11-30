@@ -28,10 +28,14 @@ namespace Hyvinvointisovellus.Controllers
             }
             else
             {
-                //var hymynaama = db.Events.Include(e => e.KayttajaID);
+                //var hymynaama = db.Event.Include(e => e.KayttajaID);
                 //return View(hymynaama.ToList());
 
-                return View();
+                var kayttajaId = (int)Session["UserId"];
+                var events = db.Event.Include(e => e.Kayttajat).
+                    Where(x => x.KayttajaID == kayttajaId);
+                return View(events.ToList());
+                //throw new NotImplementedException();
             }
 
         }
@@ -92,5 +96,41 @@ namespace Hyvinvointisovellus.Controllers
             }
             return new JsonResult { Data = new { status = status } };
         }
+
+        //[HttpPost]
+        //public ActionResult Authorize(Kirjautuminen LoginModel)
+        //{
+        //    HyvinvointiDBEntities1 db = new HyvinvointiDBEntities1();
+        //    //Haetaan käyttäjän/Loginin tiedot annetuilla tunnustiedoilla tietokannasta LINQ -kyselyllä
+        //    var LoggedUser = db.Kirjautuminen.SingleOrDefault(x => x.Kayttajatunnus == LoginModel.Kayttajatunnus && x.Salasana == LoginModel.Salasana);
+
+
+
+        //    if (LoggedUser != null)
+        //    {
+        //        //ViewBag.LoginMessage = "Kirjautuminen onnistui!";
+        //        ViewBag.LoggedStatus = "Kirjautunut";
+        //        Session["UserName"] = LoggedUser.Kayttajatunnus;
+        //        Session["UserId"] = LoggedUser.KayttajaID;
+        //        Session["PassWord"] = LoggedUser.Salasana;
+
+        //        if (LoggedUser.Kayttajatunnus == "Tiina")
+        //        {
+        //            Session["Admin"] = LoggedUser.Kayttajatunnus;
+        //            return RedirectToAction("IndexTyonantaja", "Home");
+        //        }
+        //        else
+        //        {
+        //            return RedirectToAction("IndexTyontekija", "Home"); //Tässä määritellään mihin onnistunut kirjautuminen johtaa --> Home/Index
+        //        }
+        //    }
+        //    else
+        //    {
+        //        ViewBag.LoginMessage = "Kirjautuminen epäonnistui!";
+        //        ViewBag.LoggedStatus = "Ei kirjautunut";
+        //        LoginModel.LoginErrorMessage = "Tuntematon käyttäjätunnus tai salasana. Yritä uudelleen!";
+        //        return View("Kirjautuminen", LoginModel);
+        //    }
+        //}
     }
 }
