@@ -105,7 +105,7 @@ namespace Hyvinvointisovellus.Controllers
             throw new NotImplementedException();
         }
 
-        //OMIEN TIETOJEN MUOKKAUS (Edit kopioitu työntekijät-controllerista)
+        //OMIEN TIETOJEN MUOKKAUS
         // GET: Tyontekijat/Edit/5
         public ActionResult Muokkaa(int? id)
         {
