@@ -36,9 +36,13 @@ namespace Hyvinvointisovellus.Controllers
             }
             else
             {
-                var palaute = db.Palaute.Include(p => p.Kayttajat);
+                var kayttajaId = (int)Session["UserId"];
+                var palaute = db.Palaute.Include(p => p.Kayttajat).
+                Where(x => x.KayttajaID == kayttajaId); //Vaan käyttäjän omat palauteet
                 return View(palaute.ToList());
+                
             }
+
 
             //tämä esiin kun kirjautuminen halutaan käyttöön ->
 
