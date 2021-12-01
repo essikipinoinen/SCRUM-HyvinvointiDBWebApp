@@ -32,10 +32,21 @@
 	}
 </div>
 
+<p></p>
+<p></p>
 
 
 <div class="container-fluid">
-
+	<div class="card-header">
+		<a class="card-link">
+			<form>
+			<div class="input-group">
+				<input style="max-width: 20%" type="text" class="form-control bg-secondary font-weight-bold px-2 text-light" value="Palautteen antaja" disabled>
+				<input style="max-width: 100%" type="text" class="form-control bg-secondary font-weight-bold px-2 text-light" value="Palaute" disabled>
+			</div>
+		</form>
+		</a>
+	</div>
 	<div id="accordion">
 		@foreach (var item in Model)
 		{
@@ -44,10 +55,8 @@
 				<a class="card-link naytaPalaute" data-palauteId="@item.PalauteID" data-toggle="collapse" href="#collapse_@item.PalauteID">
 					<form>
 						<div class="input-group">
-
-							<input type="text" class="form-control px-2" value="@item.Kayttajat.Etunimi @item.Kayttajat.Sukunimi " disabled>
-							<input type="text" class="form-control px-2" value="@item.Palaute1" style="text-overflow: ellipsis" disabled>
-
+							<input style="max-width: 20%" type="text" class="form-control col-6" value="@item.Kayttajat.Etunimi @item.Kayttajat.Sukunimi" disabled>
+							<input type="text" class="form-control col-12" value="@item.Palaute1" style="text-overflow: ellipsis; max-width:80%" disabled>
 						</div>
 					</form>
 				</a>
