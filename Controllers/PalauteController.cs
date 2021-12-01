@@ -87,6 +87,7 @@ namespace Hyvinvointisovellus.Controllers
             else ViewBag.LoggedStatus = "Kirjautunut";
             ViewBag.TyontekijaID = new SelectList(db.Kayttajat, "KayttajaID", "Etunimi");
             return View();
+            throw new NotImplementedException();
         }
 
         // POST: Palaute/Create
