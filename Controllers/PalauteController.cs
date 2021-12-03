@@ -36,11 +36,18 @@ namespace Hyvinvointisovellus.Controllers
             }
             else
             {
-                var kayttajaId = (int)Session["UserId"];
-                var palaute = db.Palaute.Include(p => p.Kayttajat).
-                Where(x => x.KayttajaID == kayttajaId); //Vaan käyttäjän omat palauteet
-                return View(palaute.ToList());
-                
+                if (Session["Admin"] != null)
+                {
+                    var palaute = db.Palaute.Include(p => p.Kayttajat);
+                    return View(palaute.ToList());
+                }
+                else
+                {
+                    var kayttajaId = (int)Session["UserId"];
+                    var palaute = db.Palaute.Include(p => p.Kayttajat).
+                    Where(x => x.KayttajaID == kayttajaId); //Vaan käyttäjän omat palauteet
+                    return View(palaute.ToList());
+                }
             }
 
 
