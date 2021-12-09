@@ -19,7 +19,7 @@ namespace Hyvinvointisovellus.Controllers
         //{
         //    this.db = db;
         //}
-
+        
         // GET: Palaute
         public ActionResult Index()
         {
@@ -92,7 +92,12 @@ namespace Hyvinvointisovellus.Controllers
                 ViewBag.LoggedStatus = "Ei kirjautunut";
             }
             else ViewBag.LoggedStatus = "Kirjautunut";
-            ViewBag.TyontekijaID = new SelectList(db.Kayttajat, "KayttajaID", "Etunimi");
+            var kayttajaId = (int)Session["UserId"];
+
+            var omatTiedot = db.Kayttajat.Include(k => k.Kirjautuminen).Include(k => k.Postitoimipaikat).
+                Where(x => x.KayttajaID == kayttajaId);
+
+            ViewBag.KayttajaID = new SelectList(omatTiedot, "KayttajaID", "Etunimi");
             return View();
             throw new NotImplementedException();
         }
