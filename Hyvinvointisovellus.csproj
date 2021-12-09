@@ -234,6 +234,8 @@
     <Content Include="Scripts\datetimepicker.js" />
     <Content Include="Scripts\fullcalendar3.10.2.js" />
     <Content Include="Scripts\fullcalendarfinnish.js" />
+    <Content Include="Scripts\jquery.cookie-1.4.1.min.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Scripts\jquery.js" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
