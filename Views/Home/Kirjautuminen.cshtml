@@ -21,6 +21,8 @@
         <div class="col-md-10">
             @Html.EditorFor(model => model.Kayttajatunnus, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Kayttajatunnus, "", new { @class = "text-danger" })
+            <small id="kayttajaHelp" class="form-text text-muted">Syötä käyttäjätunnuksesi.</small>
+
         </div>
     </div>
 
@@ -29,6 +31,8 @@
         <div class="col-md-10">
             @Html.EditorFor(model => model.Salasana, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Salasana, "", new { @class = "text-danger" })
+            <small id="salasanaHelp" class="form-text text-muted">Syötä salasanasi.</small>
+
         </div>
     </div>
 

@@ -32,10 +32,12 @@
 
 	<div class="form-group">
 		@Html.LabelFor(model => model.Palaute1, "Palaute", htmlAttributes: new { @class = "control-label col-md-2" })
-		<div class="col-md-10">
-			@Html.EditorFor(model => model.Palaute1, new { htmlAttributes = new { @class = "form-control" } })
-			@Html.ValidationMessageFor(model => model.Palaute1, "", new { @class = "text-danger" })
-		</div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Palaute1, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Palaute1, "", new { @class = "text-danger" })
+            <small id="palauteHelp" class="form-text text-muted">Anna palautetta päivästäsi.</small>
+
+        </div>
 	</div>
 
 	@*KOMMENTTI MAHDOLLISUUS TYÖNTEKIJÄLLE? (Muokataan ens sprintissä?*@
