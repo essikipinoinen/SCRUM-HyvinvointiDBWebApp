@@ -36,7 +36,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
+                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Sulje</button>
             </div>
         </div>
     </div>
@@ -55,7 +55,7 @@
                     @*marginaalia lomakkeen kenttien eteen vasemmalle*@
                     <input type="hidden" id="hdEventID" value="0" />
                     <div class="form-group">
-                        <label>Subject</label>
+                        <label>Otsikko</label>
                         <input type="text" id="txtSubject" class="form-control" />
                     </div>
                     <div class="form-group">
@@ -69,11 +69,11 @@
                     </div>
                     <div class="form-group">
                         <div class="checkbox">
-                            <label><input type="checkbox" id="chkIsFullDay" checked="checked" />  Kokopäivä</label>
+                            <label><input type="checkbox" id="chkIsFullDay" checked="checked" />  Koko päivä</label>
                         </div>
                     </div>
                     <div class="form-group" id="divEndDate" style="display:none">
-                        <label>End</label>
+                        <label>Loppuu</label>
                         <div class="input-group date" id="dtp2">
                             <input type="text" id="txtEnd" class="form-control" />
                             <span class="input-group-addon">
@@ -81,19 +81,20 @@
                             </span>
                         </div>
                     </div>
-                    <div class="form-group">
+                    @*<div class="form-group">
                         <label>Kuvaus</label>
                         <textarea id="txtDescription" rows="3" class="form-control"></textarea>
-                    </div>
+                    </div>*@
                     <div class="form-group">
                         <label>Väriteema</label>
-                        <select id="ddThemeColor" class="form-control">
-                            <option value="">Oletus</option>
-                            <option value="red">Punainen</option>
-                            <option value="blue">Sininen</option>
-                            <option value="black">Musta</option>
-                            <option value="green">Vihreä</option>
-                        </select>
+						<select id="ddThemeColor" class="form-control">
+							<option value="">Oletus</option>
+							<option value="green">:)</option>
+							<option value="blue">:I</option>
+							<option value="red">:(</option>
+							@*<option value="black">Musta</option>*@
+
+						</select>
                     </div>
                     <button type="button" id="btnSave" class="btn btn-success">Tallenna</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
