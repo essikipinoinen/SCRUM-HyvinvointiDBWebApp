@@ -12,13 +12,13 @@ namespace Hyvinvointisovellus.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Palaute
+    public partial class ipv6_database_firewall_rules
     {
-        public int PalauteID { get; set; }
-        public string Palaute1 { get; set; }
-        public Nullable<int> KayttajaID { get; set; }
-        public Nullable<System.DateTime> Pvm { get; set; }
-    
-        public virtual Kayttajat Kayttajat { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public string start_ipv6_address { get; set; }
+        public string end_ipv6_address { get; set; }
+        public System.DateTime create_date { get; set; }
+        public System.DateTime modify_date { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace Hyvinvointisovellus.Controllers
 {
     public class TyontekijatController : Controller
     {
-        private HyvinvointiDBEntities1 db = new HyvinvointiDBEntities1();
+        private HyvinvointiDBEntities db = new HyvinvointiDBEntities();
 
         // GET: Tyontekijat
         public ActionResult Index()

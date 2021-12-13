@@ -12,7 +12,7 @@ namespace Hyvinvointisovellus.Controllers
     {
 
         //Tietokantayhteys esitellään kertaalleen Controllerin päätasolla? miksi
-        private readonly HyvinvointiDBEntities1 db = new HyvinvointiDBEntities1();
+        private readonly HyvinvointiDBEntities db = new HyvinvointiDBEntities();
 
 
         public ActionResult Index()

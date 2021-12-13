@@ -81,7 +81,7 @@ namespace Hyvinvointisovellus.Controllers
             return View();
         }
 
-        private HyvinvointiDBEntities1 db = new HyvinvointiDBEntities1();
+        private HyvinvointiDBEntities db = new HyvinvointiDBEntities();
 
 
         public ActionResult OmattiedotTyontekija()
@@ -151,7 +151,7 @@ namespace Hyvinvointisovellus.Controllers
         [HttpPost]
         public ActionResult Authorize(Kirjautuminen LoginModel)
         {
-            HyvinvointiDBEntities1 db = new HyvinvointiDBEntities1();
+            HyvinvointiDBEntities db = new HyvinvointiDBEntities();
             //Haetaan käyttäjän/Loginin tiedot annetuilla tunnustiedoilla tietokannasta LINQ -kyselyllä
             var LoggedUser = db.Kirjautuminen.SingleOrDefault(x => x.Kayttajatunnus == LoginModel.Kayttajatunnus && x.Salasana == LoginModel.Salasana);
 
@@ -181,6 +181,50 @@ namespace Hyvinvointisovellus.Controllers
                 ViewBag.LoggedStatus = "Ei kirjautunut";
                 LoginModel.LoginErrorMessage = "Tuntematon käyttäjätunnus tai salasana. Yritä uudelleen!";
                 return View("Kirjautuminen", LoginModel);
+            }
+        }
+
+        public ActionResult Rekisterointi()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult TallennaRekisterointi(Kayttajat rekisterointiTiedot)
+        {
+            //We check if the model state is valid or not. We have used DataAnnotation attributes.
+            //If any form value fails the DataAnnotation validation the model state becomes invalid.
+            if (ModelState.IsValid)
+            {
+                //create database context using Entity framework 
+                using (var hyvinvointidb = new HyvinvointiDBEntities())
+                {
+                    //If the model state is valid i.e. the form values passed the validation then we are storing the User's details in DB.
+                    Kayttajat rekkay = new Kayttajat();
+
+                    //Save all details in RegitserUser object
+
+                    rekkay.Etunimi = rekisterointiTiedot.Etunimi;
+                    rekkay.Sukunimi = rekisterointiTiedot.Sukunimi;
+                    rekkay.Osoite = rekisterointiTiedot.Osoite;
+                    rekkay.Postinumero = rekisterointiTiedot.Postinumero;
+                    rekkay.Kayttajatunnus = rekisterointiTiedot.Kayttajatunnus;
+                    rekkay.Salasana = rekisterointiTiedot.Salasana;
+
+
+                    //Calling the SaveDetails method which saves the details.
+                    hyvinvointidb.Kayttajat.Add(rekkay);
+                    hyvinvointidb.SaveChanges();
+                }
+
+                ViewBag.Message = "Rekisteröinti onnistui!";
+                return View("Rekisterointi");
+            }
+            else
+            {
+                //If the validation fails, we are returning the model object with errors to the view, which will display the error messages.
+                ViewBag.Message = "Rekisteröinti epäonnistui!";
+                return View("Rekisterointi", rekisterointiTiedot);
             }
         }
 

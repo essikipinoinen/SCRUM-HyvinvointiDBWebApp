@@ -27,6 +27,8 @@ namespace Hyvinvointisovellus.Models
         public string Sukunimi { get; set; }
         public string Osoite { get; set; }
         public string Postinumero { get; set; }
+        public string Kayttajatunnus { get; set; }
+        public string Salasana { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Event> Event { get; set; }

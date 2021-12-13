@@ -1,4 +1,4 @@
-﻿@model Hyvinvointisovellus.Models.Kirjautuminen
+﻿@model Hyvinvointisovellus.Models.Kayttajat
 
 @{
     ViewBag.Title = "Kirjautuminen";
@@ -14,7 +14,7 @@
 <div class="form-horizontal">
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.KirjautumisID)
+    @Html.HiddenFor(model => model.KayttajaID)
 
     <div class="form-group">
         <p class="control-label col-md-2">Käyttäjätunnus</p>
@@ -43,6 +43,8 @@
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Kirjaudu" class="btn btn-success" />
+            <p>Eikö sinulla ole vielä käyttäjätunnusta?  @Html.ActionLink("Rekisteröidy tästä!", "Rekisterointi", "Home")</p>
+            @*@Html.ActionLink("Rekisteröityminen", "Rekisterointi", "Home")*@
         </div>
     </div>
 </div>

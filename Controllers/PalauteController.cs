@@ -13,7 +13,7 @@ namespace Hyvinvointisovellus.Controllers
 {
     public class PalauteController : Controller
     {
-        private HyvinvointiDBEntities1 db = new HyvinvointiDBEntities1();
+        private HyvinvointiDBEntities db = new HyvinvointiDBEntities();
 
         //public PalauteController(HyvinvointiDBEntities db)
         //{
