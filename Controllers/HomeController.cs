@@ -126,6 +126,27 @@ namespace Hyvinvointisovellus.Controllers
             }
             return View(omattiedot);
         }
+
+        public ActionResult _ModalMuokkaa(int? id)
+        {
+            if (Session["UserName"] == null)
+            {
+                ViewBag.LoggedStatus = "Ei kirjautunut";
+            }
+            else ViewBag.LoggedStatus = "Kirjautunut";
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Kayttajat omattiedot = db.Kayttajat.Find(id);
+            if (omattiedot == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView("_ModalMuokkaa", omattiedot);
+        }
+
         // POST: Tyontekijat/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
