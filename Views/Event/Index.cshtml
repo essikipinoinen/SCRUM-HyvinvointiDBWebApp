@@ -85,6 +85,23 @@
                         <label>Kuvaus</label>
                         <textarea id="txtDescription" rows="3" class="form-control"></textarea>
                     </div>*@
+
+                <div class="form-group">
+                    <label>Valitse päivääsi sopiva hymiö:</label>
+                    <div class="row">
+                        <div class="col-md-3">
+                            @Html.RadioButton("Hymynaama1", "Neutraali", false) <img style="width: 60%; padding: 10px" src="https://res.cloudinary.com/turdlife/image/upload/v1492864443/neutral_t3q8hz.svg" alt="neutraali" />
+                        </div>
+                        <div class="col-md-3">
+                            @Html.RadioButton("Hymynaama1", "Negatiivinen", false) <img style="width: 60%; padding: 10px" src="https://res.cloudinary.com/turdlife/image/upload/v1492864443/sad_bj1tuj.svg" alt="surku" />
+                        </div>
+                        <div class="col-md-3">
+                            @Html.RadioButton("Hymynaama1", "Positiivinen", false) <img style="width: 60%; padding: 10px" src="https://res.cloudinary.com/turdlife/image/upload/v1492864443/happy_ampvnc.svg" alt="ilo" />
+                        </div>
+                    </div>
+
+                </div>
+
                     <div class="form-group">
                         <label>Väriteema</label>
 						<select id="ddThemeColor" class="form-control">
