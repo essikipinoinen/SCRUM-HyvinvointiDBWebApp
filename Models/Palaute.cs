@@ -11,12 +11,16 @@ namespace Hyvinvointisovellus.Models
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class Palaute
+	using System.ComponentModel.DataAnnotations;
+
+	public partial class Palaute
     {
         public int PalauteID { get; set; }
         public string Palaute1 { get; set; }
         public Nullable<int> KayttajaID { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public Nullable<System.DateTime> Pvm { get; set; }
     
         public virtual Kayttajat Kayttajat { get; set; }

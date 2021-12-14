@@ -117,6 +117,7 @@ namespace Hyvinvointisovellus.Controllers
             if (ModelState.IsValid)
             {
                 db.Palaute.Add(palaute);
+                palaute.Pvm = DateTime.Now;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
