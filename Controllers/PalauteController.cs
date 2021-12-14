@@ -102,6 +102,23 @@ namespace Hyvinvointisovellus.Controllers
             throw new NotImplementedException();
         }
 
+        public ActionResult _ModalCreate()
+        {
+            if (Session["UserName"] == null)
+            {
+                ViewBag.LoggedStatus = "Ei kirjautunut";
+            }
+            else ViewBag.LoggedStatus = "Kirjautunut";
+            var kayttajaId = (int)Session["UserId"];
+
+            var omatTiedot = db.Kayttajat.Include(k => k.Kirjautuminen).Include(k => k.Postitoimipaikat).
+                Where(x => x.KayttajaID == kayttajaId);
+
+            ViewBag.KayttajaID = new SelectList(omatTiedot, "KayttajaID", "Etunimi");
+            return PartialView();
+            throw new NotImplementedException();
+        }
+
         // POST: Palaute/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.

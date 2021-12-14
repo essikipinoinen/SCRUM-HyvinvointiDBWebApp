@@ -384,6 +384,7 @@
     <Content Include="Scripts\momentjs.js" />
     <Content Include="Views\Home\_FiilisModal.cshtml" />
     <Content Include="Views\Home\Rekisterointi.cshtml" />
+    <Content Include="Views\Palaute\_ModalCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

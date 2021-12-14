@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<Hyvinvointisovellus.Models.Palaute>
+@*jos halutaan käyttää fas -ikoneita alla viittaus*@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
 @{
     ViewBag.Title = "Index";
@@ -16,10 +18,29 @@
             });
         });
 
-       /* Tooltip scripti*/
+        /* Tooltip scripti*/
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
+
+        @* JQuery joka suoritetaan kun klikataan creNewPalaute - luokan mukaista elementtiä, lisäys *@
+        $(function () {
+            $(".creNewPalaute").click(function () {
+                let palauteId = $(this).data("palauteid");
+                console.log("Klikkasit uuden palautteen luontipainiketta: " + palauteId);
+                var url = "/Palaute/_ModalCreate/?id=";
+                console.log(url);
+
+                $("#palauteCreate").append(" <b> Avataan palautteen luonti-ikkuna...</b>");
+
+                var $palauteDivCreate = $("#palauteCreate");
+                $.get(url, function (data) {
+                    $palauteDivCreate.replaceWith(data);
+                    $("#ModalPalauteCreate").modal("show");
+                });
+            });
+        });
+
     </script>
 }
 
@@ -37,10 +58,17 @@
     {
 
         //Tooltip lisätty linkki buttoniin
-        <a class="btn btn-info" href="/Palaute/Create" data-toggle="tooltip" data-placement="right" title="Lisää uusia palautteita">Lisää uusi palaute</a>
-
+        @*<a class="btn btn-info" href="/Palaute/Create" data-toggle="tooltip" data-placement="right" title="Lisää uusia palautteita">Lisää uusi palaute</a>*@
+        <button class="creNewPalaute btn btn-success" data-toggle="tooltip" data-placement="right" title="Lisää uusia palautteita">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-plus" viewBox="0 0 16 16">
+                <path d="M8.5 6a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V10a.5.5 0 0 0 1 0V8.5H10a.5.5 0 0 0 0-1H8.5V6z" />
+                <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z" />
+            </svg> Lisää uusi palaute
+        </button>
     }
 </div>
+
+<div id="palauteCreate"></div> @*modaalin lisäys-ikkunan paikka*@
 
 <p></p>
 <p></p>
@@ -50,11 +78,11 @@
     <div class="card-header">
         <a class="card-link">
             <form>
-				<div class="input-group">
-					<input style="max-width: 10%" type="text" class="form-control bg-secondary font-weight-bold px-2 text-light" value="Pvm" disabled>
-					<input style="max-width: 20%" type="text" class="form-control bg-secondary font-weight-bold px-2 text-light" value="Palautteen antaja" disabled>
-					<input style="max-width: 100%" type="text" class="form-control bg-secondary font-weight-bold px-2 text-light" value="Palaute" disabled>
-				</div>
+                <div class="input-group">
+                    <input style="max-width: 10%" type="text" class="form-control bg-secondary font-weight-bold px-2 text-light" value="Pvm" disabled>
+                    <input style="max-width: 20%" type="text" class="form-control bg-secondary font-weight-bold px-2 text-light" value="Palautteen antaja" disabled>
+                    <input style="max-width: 100%" type="text" class="form-control bg-secondary font-weight-bold px-2 text-light" value="Palaute" disabled>
+                </div>
             </form>
         </a>
     </div>
@@ -65,11 +93,11 @@
                 <div class="card-header">
                     <a class="card-link naytaPalaute" data-palauteId="@item.PalauteID" data-toggle="collapse" href="#collapse_@item.PalauteID">
                         <form>
-							<div class="input-group">
-								<input style="max-width: 10%" type="text" class="form-control col-6" value="@(item.Pvm == null ? "" : ((DateTime)item.Pvm).ToString("d/M/yyyy"))" disabled>
-								<input style="max-width: 20%" type="text" class="form-control col-6" value="@item.Kayttajat.Etunimi @item.Kayttajat.Sukunimi" disabled>
-								<input type="text" class="form-control col-12" value="@item.Palaute1" style="text-overflow: ellipsis; max-width:80%" disabled>
-							</div>
+                            <div class="input-group">
+                                <input style="max-width: 10%" type="text" class="form-control col-6" value="@(item.Pvm == null ? "" : ((DateTime)item.Pvm).ToString("d/M/yyyy"))" disabled>
+                                <input style="max-width: 20%" type="text" class="form-control col-6" value="@item.Kayttajat.Etunimi @item.Kayttajat.Sukunimi" disabled>
+                                <input type="text" class="form-control col-12" value="@item.Palaute1" style="text-overflow: ellipsis; max-width:80%" disabled>
+                            </div>
                         </form>
                     </a>
                 </div>
