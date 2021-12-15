@@ -60,6 +60,25 @@ namespace Hyvinvointisovellus.Controllers
             return View(tyontekijat);
         }
 
+        public ActionResult _ModalDetails(int? id)
+        {
+            if (Session["UserName"] == null)
+            {
+                ViewBag.LoggedStatus = "Ei kirjautunut";
+            }
+            else ViewBag.LoggedStatus = "Kirjautunut";
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Kayttajat tyontekijat = db.Kayttajat.Find(id);
+            if (tyontekijat == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView("_ModalDetails", tyontekijat);
+        }
+
         // GET: Tyontekijat/Create
         public ActionResult Create()
         {
@@ -69,6 +88,16 @@ namespace Hyvinvointisovellus.Controllers
             }
             else ViewBag.LoggedStatus = "Kirjautunut";
             return View();
+        }
+
+        public ActionResult _ModalCreate()
+        {
+            if (Session["UserName"] == null)
+            {
+                ViewBag.LoggedStatus = "Ei kirjautunut";
+            }
+            else ViewBag.LoggedStatus = "Kirjautunut";
+            return PartialView();
         }
 
         // POST: Tyontekijat/Create
@@ -111,6 +140,25 @@ namespace Hyvinvointisovellus.Controllers
                 return HttpNotFound();
             }
             return View(tyontekijat);
+        }
+
+        public ActionResult _ModalEdit(int? id)
+        {
+            if (Session["UserName"] == null)
+            {
+                ViewBag.LoggedStatus = "Ei kirjautunut";
+            }
+            else ViewBag.LoggedStatus = "Kirjautunut";
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Kayttajat tyontekijat = db.Kayttajat.Find(id);
+            if (tyontekijat == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView("_ModalEdit", tyontekijat);
         }
 
         // POST: Tyontekijat/Edit/5
@@ -158,6 +206,40 @@ namespace Hyvinvointisovellus.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
+        {
+            if (Session["UserName"] == null)
+            {
+                ViewBag.LoggedStatus = "Ei kirjautunut";
+            }
+            else ViewBag.LoggedStatus = "Kirjautunut";
+            Kayttajat tyontekijat = db.Kayttajat.Find(id);
+            db.Kayttajat.Remove(tyontekijat);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult _ModalDelete(int? id)
+        {
+            if (Session["UserName"] == null)
+            {
+                ViewBag.LoggedStatus = "Ei kirjautunut";
+            }
+            else ViewBag.LoggedStatus = "Kirjautunut";
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Kayttajat tyontekijat = db.Kayttajat.Find(id);
+            if (tyontekijat == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView("_ModalDelete", tyontekijat);
+        }
+
+        [HttpPost, ActionName("_ModalDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult _ModalDeleteConfirmed(int id)
         {
             if (Session["UserName"] == null)
             {

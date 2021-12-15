@@ -1,0 +1,37 @@
+﻿@model Hyvinvointisovellus.Models.Kayttajat
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<div class="modal fade" id="ModalTyontekijaDetails">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Työntekijän tiedot</h4>
+            </div>
+
+            <div class="modal-body">
+                <div>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>@Html.DisplayNameFor(model => model.Etunimi)</dt>
+                        <dd>@Html.DisplayFor(model => model.Etunimi)</dd>
+                        <dt>@Html.DisplayNameFor(model => model.Sukunimi)</dt>
+                        <dd>@Html.DisplayFor(model => model.Sukunimi)</dd>
+                        <dt>@Html.DisplayNameFor(model => model.Osoite)</dt>
+                        <dd>@Html.DisplayFor(model => model.Osoite)</dd>
+                        <dt>@Html.DisplayNameFor(model => model.Postinumero)</dt>
+                        <dd>@Html.DisplayFor(model => model.Postinumero)</dd>
+                        <dt>@Html.DisplayNameFor(model => model.Postitoimipaikat.Postitoimipaikka)</dt>
+                        <dd>@Html.DisplayFor(model => model.Postitoimipaikat.Postitoimipaikka)</dd>
+                    </dl>
+                </div>
+                <div class="modal-footer">
+
+                    <a class="btn btn-success" href="~/Tyontekijat/Edit/@Model.KayttajaID">Muokkaa tietoja</a>
+                    <a class="btn btn-secondary" href="~/Tyontekijat/Index/">Takaisin</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

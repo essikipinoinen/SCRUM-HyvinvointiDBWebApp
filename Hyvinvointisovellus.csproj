@@ -386,6 +386,10 @@
     <Content Include="Views\Home\Rekisterointi.cshtml" />
     <Content Include="Views\Palaute\_ModalCreate.cshtml" />
     <Content Include="Views\Home\_ModalMuokkaa.cshtml" />
+    <Content Include="Views\Tyontekijat\_ModalCreate.cshtml" />
+    <Content Include="Views\Tyontekijat\_ModalEdit.cshtml" />
+    <Content Include="Views\Tyontekijat\_ModalDetails.cshtml" />
+    <Content Include="Views\Tyontekijat\_ModalDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

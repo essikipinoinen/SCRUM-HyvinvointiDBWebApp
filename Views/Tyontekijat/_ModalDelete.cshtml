@@ -1,0 +1,46 @@
+﻿@model Hyvinvointisovellus.Models.Kayttajat
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+
+<div class="modal fade" id="ModalTyontekijaDelete">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Työntekijätietojen poistaminen</h4>
+            </div>
+
+            <div class="modal-body">
+                <h3>Haluatko varmasti poistaa tämän työntekijän?</h3>
+                <div>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>@Html.DisplayNameFor(model => model.Etunimi)</dt>
+                        <dd>@Html.DisplayFor(model => model.Etunimi)</dd>
+                        <dt>@Html.DisplayNameFor(model => model.Sukunimi)</dt>
+                        <dd>@Html.DisplayFor(model => model.Sukunimi)</dd>
+                    </dl>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Poista" class="btn btn-danger" onclick="meth_alert();" />
+                            <a class="btn btn-secondary" href="/Tyontekijat">Takaisin</a>
+                        </div>
+
+                        <script type="text/javascript">
+                            meth_alert = function () {
+
+                                alert("Työntekijä poistettu listalta!");
+                            };
+                        </script>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

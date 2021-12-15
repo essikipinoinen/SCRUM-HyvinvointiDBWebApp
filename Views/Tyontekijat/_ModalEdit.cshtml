@@ -1,0 +1,84 @@
+﻿@model Hyvinvointisovellus.Models.Kayttajat
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<div class="modal fade" id="ModalTyontekijaEdit">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Työntekijän tietojen muokkaus</h4>
+            </div>
+
+            <div class="modal-body">
+                @using (Html.BeginForm("Edit", "Tyontekijat", FormMethod.Post, new { id = "editForm" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.KayttajaID)
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Etunimi, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Etunimi, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Etunimi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Sukunimi, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Sukunimi, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Sukunimi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Osoite, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Osoite, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Osoite, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Postinumero, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Postinumero, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Postinumero, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Postitoimipaikat.Postitoimipaikka, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Postitoimipaikat.Postitoimipaikka, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Postitoimipaikat.Postitoimipaikka, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="modal-footer">
+
+                <button type="submit" class="btn btn-success" onclick="meth_alert();" form="editForm"><i class="fas fa-check"></i></button>
+                <a href="@Url.Action("Index", "Tyontekijat")" class="btn btn-danger"><i class="fas fa-times"></i></a>
+
+                <script type="text/javascript">
+                    meth_alert = function () {
+
+                        alert("Tiedot tallennettu!");
+                    };
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+@Scripts.Render("~/bundles/jqueryval")
+}
+
+
