@@ -1,6 +1,9 @@
 ﻿@model Hyvinvointisovellus.Models.Kayttajat
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
 <!-- The Modal -->
 <div class="modal fade" id="ModalKayttajaEdit">
 
@@ -15,89 +18,89 @@
                 {
                     @Html.AntiForgeryToken()
 
-                <div class="form-horizontal">
-                    <hr />
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    @Html.HiddenFor(model => model.KayttajaID)
+                    <div class="form-horizontal">
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.KayttajaID)
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Etunimi, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Etunimi, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Etunimi, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Etunimi, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Etunimi, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Etunimi, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Sukunimi, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Sukunimi, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Sukunimi, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Sukunimi, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Sukunimi, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Sukunimi, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Osoite, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Osoite, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Osoite, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Osoite, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Osoite, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Osoite, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Postinumero, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Postinumero, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Postinumero, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Postinumero, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Postinumero, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Postinumero, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Postitoimipaikat.Postitoimipaikka, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Postitoimipaikat.Postitoimipaikka, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Postitoimipaikat.Postitoimipaikka, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Postitoimipaikat.Postitoimipaikka, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Postitoimipaikat.Postitoimipaikka, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Postitoimipaikat.Postitoimipaikka, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Kayttajatunnus, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => @Session["UserName"], new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Kayttajatunnus, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Kayttajatunnus, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => @Session["UserName"], new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Kayttajatunnus, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Salasana, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => @Session["PassWord"], new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Salasana, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Salasana, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => @Session["PassWord"], new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Salasana, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
 
-                </div>
+                    </div>
                 }
-                </div>
+            </div>
 
-			<div class="modal-footer">
-				@if (Session["Admin"] != null)
-				{
-					<button type="submit" class="btn btn-success" onclick="meth_alert();" form="editForm"><i class="fas fa-check"></i></button>
-					<a href="@Url.Action("OmattiedotTyonantaja", "Home")" class="btn btn-danger"><i class="fas fa-times"></i></a>
-				}
-				else
-				{
-					<button type="submit" class="btn btn-success" onclick="meth_alert();" form="editForm"><i class="fas fa-check"></i></button>
-					<a href="@Url.Action("OmattiedotTyontekija", "Home")" class="btn btn-danger"><i class="fas fa-times"></i></a>
-				}
+            <div class="modal-footer">
+                @if (Session["Admin"] != null)
+                {
+                    <button type="submit" class="btn btn-success" onclick="meth_alert();" form="editForm"><i class="fas fa-check"></i></button>
+                    <a href="@Url.Action("OmattiedotTyonantaja", "Home")" class="btn btn-danger"><i class="fas fa-times"></i></a>
+                }
+                else
+                {
+                    <button type="submit" class="btn btn-success" onclick="meth_alert();" form="editForm"><i class="fas fa-check"></i></button>
+                    <a href="@Url.Action("OmattiedotTyontekija", "Home")" class="btn btn-danger"><i class="fas fa-times"></i></a>
+                }
 
 
-				<script type="text/javascript">
-					meth_alert = function () {
+                <script type="text/javascript">
+                    meth_alert = function () {
 
-						alert("Tiedot tallennettu!");
-					};
-				</script>
-			</div>
+                        swal("Tiedot tallennettu!");
+                    };
+                </script>
+            </div>
         </div>
     </div>
 </div>

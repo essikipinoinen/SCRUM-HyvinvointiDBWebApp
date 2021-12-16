@@ -58,12 +58,12 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-success" form="createForm" onclick="meth_alert();"><i class="fas fa-plus-square"></i></button>
+                            <button type="submit" class="btn btn-success" form="createForm" id="btnAlert" onclick="meth_alert();"><i class="fas fa-plus-square"></i></button>
                             <a href="@Url.Action("Index", "Tyontekijat")" class="btn btn-danger"><i class="fas fa-times"></i></a>
 
                             <script type="text/javascript">
                                 meth_alert = function () {
-                                    alert("Uusi työntekijä lisätty onnistuneesti!");
+                                    swal("Uusi työntekijä lisätty onnistuneesti!");
                                 };
                             </script>
 
@@ -75,7 +75,7 @@
     </div>
 </div>
 
-}
+
 
 @section Scripts {
 @Scripts.Render("~/bundles/jqueryval")

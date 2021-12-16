@@ -1,5 +1,7 @@
 ﻿@model Hyvinvointisovellus.Models.Palaute
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
 <!-- The Modal -->
 <div class="modal fade" id="ModalPalauteCreate">
@@ -53,7 +55,7 @@
                             <label for="floatingTextarea2"></label>
                         </div>
                     </div>
-                    
+
                 }
             </div>
 
@@ -63,7 +65,7 @@
 
                 <script type="text/javascript">
                     meth_alert = function () {
-                        alert("Uusi palaute lisätty onnistuneesti!");
+                        swal("Uusi palaute lisätty onnistuneesti!");
                     };
                 </script>
 
