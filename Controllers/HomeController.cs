@@ -163,7 +163,15 @@ namespace Hyvinvointisovellus.Controllers
             {
                 db.Entry(omattiedot).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("OmattiedotTyontekija");
+                if(Session["Admin"] != null)
+
+                {
+                    return RedirectToAction("OmattiedotTyonantaja");
+                }
+				else
+				{
+                    return RedirectToAction("OmattiedotTyontekija");
+                }
             }
             return View(omattiedot);
         }
