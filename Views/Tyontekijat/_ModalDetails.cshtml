@@ -1,6 +1,15 @@
 ﻿@model Hyvinvointisovellus.Models.Kayttajat
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
+@section scripts {
+    <script type="text/javascript">
+        /* Tooltip scripti*/
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+}
+
 <div class="modal fade" id="ModalTyontekijaDetails">
 
     <div class="modal-dialog">
@@ -26,9 +35,9 @@
                     </dl>
                 </div>
                 <div class="modal-footer">
-
-                    <a class="btn btn-success" href="~/Tyontekijat/Edit/@Model.KayttajaID">Muokkaa tietoja</a>
-                    <a class="btn btn-secondary" href="~/Tyontekijat/Index/">Takaisin</a>
+                    
+                    <a class="btn btn-primary" href="~/Tyontekijat/Edit/@Model.KayttajaID" data-toggle="tooltip" data-placement="right" title="Muokkaa tietoja">Muokkaa tietoja</a>
+                    <a class="btn btn-outline-secondary" href="~/Tyontekijat/Index/">Takaisin</a>
                 </div>
 
             </div>
