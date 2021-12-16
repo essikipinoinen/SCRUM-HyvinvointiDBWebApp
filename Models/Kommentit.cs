@@ -12,21 +12,15 @@ namespace Hyvinvointisovellus.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Palaute
+    public partial class Kommentit
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Palaute()
-        {
-            this.Kommentit = new HashSet<Kommentit>();
-        }
-    
-        public int PalauteID { get; set; }
-        public string Palaute1 { get; set; }
-        public Nullable<int> KayttajaID { get; set; }
+        public int KommenttiID { get; set; }
+        public string Kommentti { get; set; }
         public Nullable<System.DateTime> Pvm { get; set; }
+        public Nullable<int> PalauteID { get; set; }
+        public Nullable<int> KayttajaID { get; set; }
     
         public virtual Kayttajat Kayttajat { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Kommentit> Kommentit { get; set; }
+        public virtual Palaute Palaute { get; set; }
     }
 }

@@ -17,6 +17,9 @@
         <AssociationConnector Association="HyvinvointiDBModel.FK__Palaute__Kayttajat" ManuallyRouted="false" />
         <AssociationConnector Association="HyvinvointiDBModel.FK_Kayttajat_Postitoimipaikat" ManuallyRouted="false" />
         <AssociationConnector Association="HyvinvointiDBModel.FK_Kirjautuminen_Kayttajat" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HyvinvointiDBModel.Kommentit" Width="1.5" PointX="7.5" PointY="6.625" />
+        <AssociationConnector Association="HyvinvointiDBModel.FK_Kommentit_Kayttajat" />
+        <AssociationConnector Association="HyvinvointiDBModel.FK_Kommentit_Palaute" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

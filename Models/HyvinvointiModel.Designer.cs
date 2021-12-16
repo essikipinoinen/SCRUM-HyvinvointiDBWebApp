@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\wirpi\source\repos\SCRUM-HyvinvointiDBWebApp5_031221\Models\HyvinvointiModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Essi Kipinoinen\source\repos\SCRUM-HyvinvointiDBWebApp\Models\HyvinvointiModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

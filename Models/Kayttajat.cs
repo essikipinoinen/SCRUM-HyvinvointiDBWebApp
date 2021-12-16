@@ -20,6 +20,7 @@ namespace Hyvinvointisovellus.Models
             this.Event = new HashSet<Event>();
             this.Palaute = new HashSet<Palaute>();
             this.Kirjautuminen = new HashSet<Kirjautuminen>();
+            this.Kommentit = new HashSet<Kommentit>();
         }
     
         public int KayttajaID { get; set; }
@@ -37,5 +38,7 @@ namespace Hyvinvointisovellus.Models
         public virtual Postitoimipaikat Postitoimipaikat { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Kirjautuminen> Kirjautuminen { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Kommentit> Kommentit { get; set; }
     }
 }

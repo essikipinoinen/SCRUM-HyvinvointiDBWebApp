@@ -177,6 +177,9 @@
     <Compile Include="Models\Kirjautuminen.cs">
       <DependentUpon>HyvinvointiModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Kommentit.cs">
+      <DependentUpon>HyvinvointiModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Palaute.cs">
       <DependentUpon>HyvinvointiModel.tt</DependentUpon>
     </Compile>

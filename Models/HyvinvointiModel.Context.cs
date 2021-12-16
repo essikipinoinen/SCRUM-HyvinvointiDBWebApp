@@ -33,5 +33,6 @@ namespace Hyvinvointisovellus.Models
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
         public virtual DbSet<ipv6_database_firewall_rules> ipv6_database_firewall_rules { get; set; }
+        public virtual DbSet<Kommentit> Kommentit { get; set; }
     }
 }

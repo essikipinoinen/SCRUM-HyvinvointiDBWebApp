@@ -38,11 +38,12 @@ namespace Hyvinvointisovellus.Controllers
             {
                 if (Session["Admin"] != null)
                 {
-                    var palaute = db.Palaute.Include(p => p.Kayttajat);
+                    var palaute = db.Palaute.Include(p => p.Kayttajat).Include(p => p.Kommentit);
                     return View(palaute.ToList());
                 }
                 else
                 {
+                    var kommentit = db.Palaute.Include(p => p.Kommentit);
                     var kayttajaId = (int)Session["UserId"];
                     var palaute = db.Palaute.Include(p => p.Kayttajat).
                     Where(x => x.KayttajaID == kayttajaId); //Vaan käyttäjän omat palauteet
@@ -220,6 +221,21 @@ namespace Hyvinvointisovellus.Controllers
             else ViewBag.LoggedStatus = "Kirjautunut";
             Palaute palaute = db.Palaute.Find(id);
             db.Palaute.Remove(palaute);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+        // POST: Palaute/Kommentoi
+        [HttpPost]
+        public ActionResult Kommentoi(Kommentit obj)
+        {
+            Kommentit k = new Kommentit();
+            k.KayttajaID = (int)Session["UserId"];
+            k.Pvm = DateTime.Now;
+            k.Kommentti = obj.Kommentti;
+            k.PalauteID = obj.KommenttiID;
+            db.Kommentit.Add(k);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

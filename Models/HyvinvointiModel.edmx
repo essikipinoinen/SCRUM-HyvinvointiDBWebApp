@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HyvinvointiDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="HyvinvointiDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Event">
           <Key>
             <PropertyRef Name="EventID" />
@@ -40,6 +40,16 @@
           <Property Name="Salasana" Type="nvarchar" MaxLength="50" />
           <Property Name="KayttajaID" Type="int" />
         </EntityType>
+        <EntityType Name="Kommentit">
+          <Key>
+            <PropertyRef Name="KommenttiID" />
+          </Key>
+          <Property Name="KommenttiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kommentti" Type="varchar" MaxLength="500" />
+          <Property Name="Pvm" Type="datetime" />
+          <Property Name="PalauteID" Type="int" />
+          <Property Name="KayttajaID" Type="int" />
+        </EntityType>
         <EntityType Name="Palaute">
           <Key>
             <PropertyRef Name="PalauteID" />
@@ -70,12 +80,12 @@
 warning 6002: The table/view 'HyvinvointiDB.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="database_firewall_rules">
           <Key>
-            <PropertyRef Name="id" />
             <PropertyRef Name="name" />
             <PropertyRef Name="start_ip_address" />
             <PropertyRef Name="end_ip_address" />
             <PropertyRef Name="create_date" />
             <PropertyRef Name="modify_date" />
+            <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
@@ -150,10 +160,35 @@ warning 6002: The table/view 'HyvinvointiDB.sys.ipv6_database_firewall_rules' do
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Kommentit_Kayttajat">
+          <End Role="Kayttajat" Type="Self.Kayttajat" Multiplicity="0..1" />
+          <End Role="Kommentit" Type="Self.Kommentit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kayttajat">
+              <PropertyRef Name="KayttajaID" />
+            </Principal>
+            <Dependent Role="Kommentit">
+              <PropertyRef Name="KayttajaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kommentit_Palaute">
+          <End Role="Palaute" Type="Self.Palaute" Multiplicity="0..1" />
+          <End Role="Kommentit" Type="Self.Kommentit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Palaute">
+              <PropertyRef Name="PalauteID" />
+            </Principal>
+            <Dependent Role="Kommentit">
+              <PropertyRef Name="PalauteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="HyvinvointiDBModelStoreContainer">
           <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Kayttajat" EntityType="Self.Kayttajat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Kirjautuminen" EntityType="Self.Kirjautuminen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kommentit" EntityType="Self.Kommentit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Palaute" EntityType="Self.Palaute" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Postitoimipaikat" EntityType="Self.Postitoimipaikat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -193,9 +228,16 @@ warning 6002: The table/view 'HyvinvointiDB.sys.ipv6_database_firewall_rules' do
             <End Role="Kayttajat" EntitySet="Kayttajat" />
             <End Role="Kirjautuminen" EntitySet="Kirjautuminen" />
           </AssociationSet>
+          <AssociationSet Name="FK_Kommentit_Kayttajat" Association="Self.FK_Kommentit_Kayttajat">
+            <End Role="Kayttajat" EntitySet="Kayttajat" />
+            <End Role="Kommentit" EntitySet="Kommentit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kommentit_Palaute" Association="Self.FK_Kommentit_Palaute">
+            <End Role="Palaute" EntitySet="Palaute" />
+            <End Role="Kommentit" EntitySet="Kommentit" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HyvinvointiDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -229,6 +271,7 @@ warning 6002: The table/view 'HyvinvointiDB.sys.ipv6_database_firewall_rules' do
           <NavigationProperty Name="Palaute" Relationship="Self.FK__Palaute__Kayttajat" FromRole="Kayttajat" ToRole="Palaute" />
           <NavigationProperty Name="Postitoimipaikat" Relationship="Self.FK_Kayttajat_Postitoimipaikat" FromRole="Kayttajat" ToRole="Postitoimipaikat" />
           <NavigationProperty Name="Kirjautuminen" Relationship="Self.FK_Kirjautuminen_Kayttajat" FromRole="Kayttajat" ToRole="Kirjautuminen" />
+          <NavigationProperty Name="Kommentit" Relationship="HyvinvointiDBModel.FK_Kommentit_Kayttajat" FromRole="Kayttajat" ToRole="Kommentit" />
         </EntityType>
         <EntityType Name="Kirjautuminen">
           <Key>
@@ -249,6 +292,7 @@ warning 6002: The table/view 'HyvinvointiDB.sys.ipv6_database_firewall_rules' do
           <Property Name="KayttajaID" Type="Int32" />
           <Property Name="Pvm" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Kayttajat" Relationship="Self.FK__Palaute__Kayttajat" FromRole="Palaute" ToRole="Kayttajat" />
+          <NavigationProperty Name="Kommentit" Relationship="HyvinvointiDBModel.FK_Kommentit_Palaute" FromRole="Palaute" ToRole="Kommentit" />
         </EntityType>
         <EntityType Name="Postitoimipaikat">
           <Key>
@@ -270,12 +314,12 @@ warning 6002: The table/view 'HyvinvointiDB.sys.ipv6_database_firewall_rules' do
         </EntityType>
         <EntityType Name="database_firewall_rules">
           <Key>
-            <PropertyRef Name="id" />
             <PropertyRef Name="name" />
             <PropertyRef Name="start_ip_address" />
             <PropertyRef Name="end_ip_address" />
             <PropertyRef Name="create_date" />
             <PropertyRef Name="modify_date" />
+            <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
@@ -373,7 +417,52 @@ warning 6002: The table/view 'HyvinvointiDB.sys.ipv6_database_firewall_rules' do
             <End Role="Kayttajat" EntitySet="Kayttajat" />
             <End Role="Kirjautuminen" EntitySet="Kirjautuminen" />
           </AssociationSet>
+          <EntitySet Name="Kommentit" EntityType="HyvinvointiDBModel.Kommentit" />
+          <AssociationSet Name="FK_Kommentit_Kayttajat" Association="HyvinvointiDBModel.FK_Kommentit_Kayttajat">
+            <End Role="Kayttajat" EntitySet="Kayttajat" />
+            <End Role="Kommentit" EntitySet="Kommentit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kommentit_Palaute" Association="HyvinvointiDBModel.FK_Kommentit_Palaute">
+            <End Role="Palaute" EntitySet="Palaute" />
+            <End Role="Kommentit" EntitySet="Kommentit" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Kommentit">
+          <Key>
+            <PropertyRef Name="KommenttiID" />
+          </Key>
+          <Property Name="KommenttiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kommentti" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Pvm" Type="DateTime" Precision="3" />
+          <Property Name="PalauteID" Type="Int32" />
+          <Property Name="KayttajaID" Type="Int32" />
+          <NavigationProperty Name="Kayttajat" Relationship="HyvinvointiDBModel.FK_Kommentit_Kayttajat" FromRole="Kommentit" ToRole="Kayttajat" />
+          <NavigationProperty Name="Palaute" Relationship="HyvinvointiDBModel.FK_Kommentit_Palaute" FromRole="Kommentit" ToRole="Palaute" />
+        </EntityType>
+        <Association Name="FK_Kommentit_Kayttajat">
+          <End Type="HyvinvointiDBModel.Kayttajat" Role="Kayttajat" Multiplicity="0..1" />
+          <End Type="HyvinvointiDBModel.Kommentit" Role="Kommentit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kayttajat">
+              <PropertyRef Name="KayttajaID" />
+            </Principal>
+            <Dependent Role="Kommentit">
+              <PropertyRef Name="KayttajaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kommentit_Palaute">
+          <End Type="HyvinvointiDBModel.Palaute" Role="Palaute" Multiplicity="0..1" />
+          <End Type="HyvinvointiDBModel.Kommentit" Role="Kommentit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Palaute">
+              <PropertyRef Name="PalauteID" />
+            </Principal>
+            <Dependent Role="Kommentit">
+              <PropertyRef Name="PalauteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -468,6 +557,17 @@ warning 6002: The table/view 'HyvinvointiDB.sys.ipv6_database_firewall_rules' do
                 <ScalarProperty Name="end_ipv6_address" ColumnName="end_ipv6_address" />
                 <ScalarProperty Name="create_date" ColumnName="create_date" />
                 <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kommentit">
+            <EntityTypeMapping TypeName="HyvinvointiDBModel.Kommentit">
+              <MappingFragment StoreEntitySet="Kommentit">
+                <ScalarProperty Name="KayttajaID" ColumnName="KayttajaID" />
+                <ScalarProperty Name="PalauteID" ColumnName="PalauteID" />
+                <ScalarProperty Name="Pvm" ColumnName="Pvm" />
+                <ScalarProperty Name="Kommentti" ColumnName="Kommentti" />
+                <ScalarProperty Name="KommenttiID" ColumnName="KommenttiID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
