@@ -1,5 +1,8 @@
 ﻿@model Hyvinvointisovellus.ViewModel.Rekisterointi
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
 @{
     ViewBag.Title = "Rekisterointi";
 }
@@ -15,66 +18,79 @@
         <div style="color:red;">@Html.ValidationSummary()</div>
         <div class="row">
             <!--Show details are saved successfully message-->
-            <div class="col-lg-12">@ViewBag.Message</div>
+            @*<div class="col-lg-12">@ViewBag.Message</div>*@
         </div><br />
         <div class="row">
             <div class="col-lg-2">@Html.LabelFor(a => a.Etunimi)</div>
             <div class="col-lg-10">
                 @Html.TextBoxFor(a => a.Etunimi, new { @class = "form-control" })
-                @Html.ValidationMessageFor(a => a.Etunimi)</div>
+                @Html.ValidationMessageFor(a => a.Etunimi)
+            </div>
         </div><br />
         <div class="row">
             <div class="col-lg-2">@Html.LabelFor(a => a.Sukunimi)</div>
             <div class="col-lg-10">
                 @Html.TextBoxFor(a => a.Sukunimi, new { @class = "form-control" })
-                @Html.ValidationMessageFor(a => a.Sukunimi)</div>
+                @Html.ValidationMessageFor(a => a.Sukunimi)
+            </div>
         </div><br />
         <div class="row">
             <div class="col-lg-2">@Html.LabelFor(a => a.Osoite)</div>
             <div class="col-lg-10">
                 @Html.TextBoxFor(a => a.Osoite, new { @class = "form-control" })
-                @Html.ValidationMessageFor(a => a.Osoite)</div>
+                @Html.ValidationMessageFor(a => a.Osoite)
+            </div>
         </div><br />
         <div class="row">
             <div class="col-lg-2">@Html.LabelFor(a => a.Postinumero)</div>
             <div class="col-lg-10">
                 @Html.TextBoxFor(a => a.Postinumero, new { @class = "form-control" })
-                @Html.ValidationMessageFor(a => a.Postinumero)</div>
+                @Html.ValidationMessageFor(a => a.Postinumero)
+            </div>
         </div><br />
         <div class="row">
             <div class="col-lg-2">@Html.LabelFor(a => a.Kayttajatunnus)</div>
             <div class="col-lg-10">
                 @Html.TextBoxFor(a => a.Kayttajatunnus, new { @class = "form-control", })
-                @Html.ValidationMessageFor(a => a.Kayttajatunnus)</div>
+                @Html.ValidationMessageFor(a => a.Kayttajatunnus)
+            </div>
         </div><br />
         <div class="row">
             <div class="col-lg-2">@Html.LabelFor(a => a.Salasana)</div>
             <div class="col-lg-10">
                 @Html.TextBoxFor(a => a.Salasana, new { @class = "form-control", type = "Password" })
-                @Html.ValidationMessageFor(a => a.Salasana)</div><br /><br />
+                @Html.ValidationMessageFor(a => a.Salasana)
+            </div><br /><br />
 
-        <div class="row">
-            <div class="col-lg-4">Vahvista salasana</div>
-            <div class="col-lg-8">
-                @Html.TextBoxFor(a => a.VahvistaSalasana, new { @class = "form-control", type = "Password" })
-                @Html.ValidationMessageFor(a => a.VahvistaSalasana)
-           </div>
-<br /><br />
+                        <div class="row">
+                            <div class="col-lg-4">Vahvista salasana</div>
+                            <div class="col-lg-8">
+                                @Html.TextBoxFor(a => a.VahvistaSalasana, new { @class = "form-control", type = "Password" })
+                                @Html.ValidationMessageFor(a => a.VahvistaSalasana)
+                            </div>
+                            <br /><br />
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Rekisteröidy" class="btn btn-primary" /></div>
-            <br />
-            <div><a class="btn btn-outline-dark" href="/Home/Kirjautuminen">Takaisin etusivulle</a>
+                                  <div class="form-group">
+                                      <div class="col-md-offset-2 col-md-10">
+                                          <<button type="submit" class="btn btn-success" onclick="meth_alert();">Rekisteröidy</button>
+                                           <script type="text/javascript">
+                                               meth_alert = function () {
+                                                   swal("Rekisteröityminen onnistui!");
+                                               };
+                                           </script>
+                                          </div><br />
+                                      <div>
+                                          <a class="btn btn-outline-dark" href="/Home/Kirjautuminen">Takaisin etusivulle</a>
+                                      </div>
+                                      
+                                  </div>
+
+                            @*<div class="col-lg-12"><input type="submit" value="Rekisteröidy" class="btn btn-primary" /></div>*@
+
+                        </div>
+
         </div>
-        </div>
 
-@*<div class="col-lg-12"><input type="submit" value="Rekisteröidy" class="btn btn-primary" /></div>*@
-
-         </div>
-                                                                           
-        </div>
-        
     }
 </div>
 

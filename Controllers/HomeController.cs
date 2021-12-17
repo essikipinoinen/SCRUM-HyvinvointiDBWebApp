@@ -247,7 +247,8 @@ namespace Hyvinvointisovellus.Controllers
                 }
 
                 ViewBag.Message = "Rekisteröinti onnistui!";
-                return View("Rekisterointi");
+                ModelState.Clear();
+                return RedirectToAction("Kirjautuminen");
             }
             else
             {
