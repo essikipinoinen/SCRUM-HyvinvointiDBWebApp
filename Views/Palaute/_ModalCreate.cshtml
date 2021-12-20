@@ -43,8 +43,12 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.Palaute1, "Palaute", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.Palaute1, new { htmlAttributes = new { @id = "Palaute", @class = "form-control" } })
+                                @Html.TextAreaFor(model => model.Palaute1, new { htmlAttributes = new { @id = "Palaute", @class = "form-control", @maxlength = "100", @aria_describedby = "text-counter-parent" } })
                                 @Html.ValidationMessageFor(model => model.Palaute1, "", new { @class = "text-danger" })
+                                <div id="the-count">
+                                    <span id="current">0</span>
+                                    <span id="maximum">/ 500</span>
+                                </div>
                                 <small id="palauteHelp" class="form-text text-muted">Anna palautetta päivästäsi.</small>
                             </div>
                         </div>
@@ -67,9 +71,20 @@
                     meth_alert = function () {
                         swal("Uusi palaute lisätty onnistuneesti!");
                     };
+
+
                     ////Tekstin counteri
-                    //$("#Palaute").keyup(function () {
-                    //    $("#count").text("Characters left: " + (500 - $(this).val().lenght));
+                    $('textarea').keyup(function () {
+
+                        var characterCount = $(this).val().length,
+                            current = $('#current'),
+                            maximum = $('#maximum'),
+                            theCount = $('#the-count');
+
+                        current.text(characterCount);
+
+                    });
+
                 </script>
 
             </div>
