@@ -40,6 +40,31 @@ namespace Hyvinvointisovellus.Controllers
 
         }
 
+        public ActionResult Index2()
+        {
+            if (Session["UserName"] == null)
+            {
+                ViewBag.LoggedStatus = "Ei kirjautunut";
+            }
+            else ViewBag.LoggedStatus = "Kirjautunut";
+            if (Session["UserName"] == null)
+            {
+                return RedirectToAction("Kirjautuminen", "Home");
+            }
+            else
+            {
+                //var hymynaama = db.Event.Include(e => e.KayttajaID);
+                //return View(hymynaama.ToList());
+
+                var kayttajaId = (int)Session["UserId"];
+                var events = db.Event.Include(e => e.Kayttajat).
+                    Where(x => x.KayttajaID == kayttajaId);
+                return View(events.ToList());
+                //throw new NotImplementedException();
+            }
+
+        }
+
         // Palauttaa tapahtumien datan kun jQueryllä toteutettu ajax pyyntö tulee näkymästä
         public JsonResult GetEvents()
         {
