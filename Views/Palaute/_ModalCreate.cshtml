@@ -43,7 +43,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.Palaute1, "Palaute", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.TextAreaFor(model => model.Palaute1, new { htmlAttributes = new { @id = "Palaute", @class = "form-control", @maxlength = "100", @aria_describedby = "text-counter-parent" } })
+                                @Html.TextAreaFor(model => model.Palaute1, new { htmlAttributes = new { @id = "Palaute", @class = "form-control", @maxlength = "100", @aria_describedby = "text-counter-parent"} })
                                 @Html.ValidationMessageFor(model => model.Palaute1, "", new { @class = "text-danger" })
                                 <div id="the-count">
                                     <span id="current">0</span>
