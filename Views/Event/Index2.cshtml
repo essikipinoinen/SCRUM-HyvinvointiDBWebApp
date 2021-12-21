@@ -5,7 +5,7 @@
 <div class="jumbotron">
 	<h1>Fiilis-kirjaukset</h1>
 	<p class="lead">
-		Tarkastele työntekijöiden fiiliksiä.
+		Tarkastele työntekijöiden fiiliksiä. @*työnantajan näkymä*@
 	</p>
 	@*<p><a href="~/Home/Palautteet" class="btn btn-primary btn-lg">Lue palautteita  &raquo;</a></p>*@ @*<-- jumbotronin button, tarvitaanko?*@
 </div>
@@ -135,7 +135,6 @@
                 $.ajax({
                     type: "GET",
                     //Controllerin metodin osoite:
-                    //url: "https://localhost:44308/Event/GetEvents",
                     url: "/Event/GetEvents",
                     success: function (data) {
                         $.each(data, function (turha, data) { // 1. parametri tulee muttei käytetä

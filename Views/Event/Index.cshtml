@@ -5,7 +5,7 @@
 <div class="jumbotron">
     <h1>Fiilis-kirjaukset</h1>
 	<p class="lead">
-		Kirjaa päivän fiilis.
+		Kirjaa päivän fiilis.  @*työntekijöiden näkymä*@
 	</p>
     @*<p><a href="~/Home/Palautteet" class="btn btn-primary btn-lg">Lue palautteita  &raquo;</a></p>*@ @*<-- jumbotronin button, tarvitaanko?*@
 </div>
@@ -88,17 +88,24 @@
 
                 <div class="form-group">
                     <label>Valitse päivääsi sopiva hymiö:</label>
-                    <div class="row">
-                        <div class="col-md-3">
-                            @Html.RadioButton("Hymynaama1", "Neutraali", false) <img style="width: 60%; padding: 10px" src="https://res.cloudinary.com/turdlife/image/upload/v1492864443/neutral_t3q8hz.svg" alt="neutraali" />
+					<div class="row">
+						<div class="col-md-3">
+							@Html.RadioButton("Hymynaama1", "Positiivinen", false) <img style="width: 60%; padding: 10px" src="https://res.cloudinary.com/turdlife/image/upload/v1492864443/happy_ampvnc.svg" alt="ilo" />
+							@*@Html.RadioButtonFor(h => h.HymynaamaID, 1, false) <img style="width: 60%; padding: 10px" src="https://res.cloudinary.com/turdlife/image/upload/v1492864443/happy_ampvnc.svg" alt="ilo" />*@
+						
                         </div>
-                        <div class="col-md-3">
-                            @Html.RadioButton("Hymynaama1", "Negatiivinen", false) <img style="width: 60%; padding: 10px" src="https://res.cloudinary.com/turdlife/image/upload/v1492864443/sad_bj1tuj.svg" alt="surku" />
-                        </div>
-                        <div class="col-md-3">
-                            @Html.RadioButton("Hymynaama1", "Positiivinen", false) <img style="width: 60%; padding: 10px" src="https://res.cloudinary.com/turdlife/image/upload/v1492864443/happy_ampvnc.svg" alt="ilo" />
-                        </div>
-                    </div>
+						<div class="col-md-3">
+							@Html.RadioButton("Hymynaama1", "Neutraali", false) <img style="width: 60%; padding: 10px" src="https://res.cloudinary.com/turdlife/image/upload/v1492864443/neutral_t3q8hz.svg" alt="neutraali" />
+							@*@Html.RadioButtonFor(h => h.HymynaamaID, 2, false) <img style="width: 60%; padding: 10px" src="https://res.cloudinary.com/turdlife/image/upload/v1492864443/neutral_t3q8hz.svg" alt="neutraali" />*@
+
+						</div>
+						<div class="col-md-3">
+							@Html.RadioButton("Hymynaama1", "Negatiivinen", false) <img style="width: 60%; padding: 10px" src="https://res.cloudinary.com/turdlife/image/upload/v1492864443/sad_bj1tuj.svg" alt="surku" />
+							@*@Html.RadioButtonFor(h => h.HymynaamaID, 3, false) <img style="width: 60%; padding: 10px" src="https://res.cloudinary.com/turdlife/image/upload/v1492864443/sad_bj1tuj.svg" alt="surku" />*@
+
+						</div>
+
+					</div>
 
                 </div>
 
@@ -126,7 +133,7 @@
     <script>
     // Ajetaan kun sivu on latautunut selaimeen
         $(document).ready(function () {
-            var events = [];
+			var events = [];
             var selectedEvent = null;
             FetchEventAndRenderCalendar();
 
@@ -142,7 +149,7 @@
                             events.push({
                                 // Ao. title, description, color, start, stop, allDay ovat full calendarin tunnistamia sanoja,
                                 //kun taas asetettava arvo data.jotain on se ominaisuuden nimi mikä tulee tietokannan perusteella.
-                                title: data.Subject,
+                                title: data.hymynaamaID, /*subject*/
                                 description: data.Description,
                                 start: moment(data.Start),
                                 end: data.End != null ? moment(data.End) : null,
@@ -303,7 +310,7 @@
             $('#btnSave').click(function () {
                 //Tarkistuksia
                 if ($('#txtSubject').val().trim() == "") {
-                    alert('Kalenterimerkinnän aihe on pakollionen tieto');
+                    alert('Kalenterimerkinnän aihe on pakollinen tieto');
                     return;
                 }
                 if ($('#txtStart').val().trim() == "") {
