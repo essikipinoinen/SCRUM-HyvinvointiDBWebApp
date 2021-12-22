@@ -11,7 +11,8 @@ namespace Hyvinvointisovellus.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Kayttajat
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,15 +23,26 @@ namespace Hyvinvointisovellus.Models
             this.Kirjautuminen = new HashSet<Kirjautuminen>();
             this.Kommentit = new HashSet<Kommentit>();
         }
-    
+
         public int KayttajaID { get; set; }
+        [Required(ErrorMessage = "Kirjoita etunimesi!")]
         public string Etunimi { get; set; }
+        [Required(ErrorMessage = "Kirjoita sukunimesi!")]
         public string Sukunimi { get; set; }
+        [Required(ErrorMessage = "Kirjoita osoitteesi!")]
         public string Osoite { get; set; }
+        [Required(ErrorMessage = "Kirjoita postinumerosi!")]
         public string Postinumero { get; set; }
+        [Required(ErrorMessage = "Kirjoita k‰ytt‰j‰tunnuksesi!")]
         public string Kayttajatunnus { get; set; }
+        //[DataType(DataType.Password)]
+        [Required(ErrorMessage = "Kirjoita salasanasi!")]
         public string Salasana { get; set; }
-    
+        //[Compare("Salasana", ErrorMessage = "Salasanat eiv‰t t‰sm‰‰!")]
+        //[DataType(DataType.Password)]
+        //public string VahvistaSalasana { get; set; }
+        public string LoginErrorMessage { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Event> Event { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

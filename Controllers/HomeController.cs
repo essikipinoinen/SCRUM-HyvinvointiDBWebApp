@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using Hyvinvointisovellus.Models;
 using System.Net;
+using Hyvinvointisovellus.ViewModel;
 
 namespace Hyvinvointisovellus.Controllers
 {
@@ -88,7 +89,7 @@ namespace Hyvinvointisovellus.Controllers
         {
             var kayttajaId = (int)Session["UserId"];
 
-            var omatTiedot = db.Kayttajat.Include(k => k.Kirjautuminen).Include(k => k.Postitoimipaikat).
+            var omatTiedot = db.Kayttajat.Include(k => k.Postitoimipaikat).
                 Where(x => x.KayttajaID == kayttajaId);
             return View(omatTiedot.ToList());
             throw new NotImplementedException();
@@ -99,7 +100,7 @@ namespace Hyvinvointisovellus.Controllers
         {
             var kayttajaId = (int)Session["UserId"];
 
-            var omatTiedot = db.Kayttajat.Include(k => k.Kirjautuminen).Include(k => k.Postitoimipaikat).
+            var omatTiedot = db.Kayttajat.Include(k => k.Postitoimipaikat).
                 Where(x => x.KayttajaID == kayttajaId);
             return View(omatTiedot.ToList());
             throw new NotImplementedException();
@@ -163,26 +164,27 @@ namespace Hyvinvointisovellus.Controllers
             {
                 db.Entry(omattiedot).State = EntityState.Modified;
                 db.SaveChanges();
-                if(Session["Admin"] != null)
+                if (Session["Admin"] != null)
 
                 {
                     return RedirectToAction("OmattiedotTyonantaja");
                 }
-				else
-				{
+                else
+                {
                     return RedirectToAction("OmattiedotTyontekija");
                 }
             }
-            return View(omattiedot);
+            ViewBag.Error = "Tapahtui virhe. Yritä uudelleen!";
+            return RedirectToAction("OmattiedotTyontekija", "Home");
         }
 
 
         [HttpPost]
-        public ActionResult Authorize(Kirjautuminen LoginModel)
+        public ActionResult Authorize(Kayttajat LoginModel)
         {
             HyvinvointiDBEntities db = new HyvinvointiDBEntities();
             //Haetaan käyttäjän/Loginin tiedot annetuilla tunnustiedoilla tietokannasta LINQ -kyselyllä
-            var LoggedUser = db.Kirjautuminen.SingleOrDefault(x => x.Kayttajatunnus == LoginModel.Kayttajatunnus && x.Salasana == LoginModel.Salasana);
+            var LoggedUser = db.Kayttajat.SingleOrDefault(x => x.Kayttajatunnus == LoginModel.Kayttajatunnus && x.Salasana == LoginModel.Salasana);
 
 
 
@@ -219,7 +221,7 @@ namespace Hyvinvointisovellus.Controllers
         }
 
         [HttpPost]
-        public ActionResult TallennaRekisterointi(Kayttajat rekisterointiTiedot)
+        public ActionResult TallennaRekisterointi([Bind(Include = "Etunimi,Sukunimi,Osoite,Postinumero, Kayttajatunnus, Salasana")] Kayttajat rekisterointiTiedot)
         {
             //We check if the model state is valid or not. We have used DataAnnotation attributes.
             //If any form value fails the DataAnnotation validation the model state becomes invalid.
@@ -252,9 +254,18 @@ namespace Hyvinvointisovellus.Controllers
             }
             else
             {
+                Rekisterointi rek = new Rekisterointi();
+
+                rek.Etunimi = rekisterointiTiedot.Etunimi;
+                rek.Sukunimi = rekisterointiTiedot.Sukunimi;
+                rek.Osoite = rekisterointiTiedot.Osoite;
+                rek.Postinumero = rekisterointiTiedot.Postinumero;
+                rek.Kayttajatunnus = rekisterointiTiedot.Kayttajatunnus;
+                rek.Salasana = rekisterointiTiedot.Salasana;
+
                 //If the validation fails, we are returning the model object with errors to the view, which will display the error messages.
                 ViewBag.Message = "Rekisteröinti epäonnistui!";
-                return View("Rekisterointi", rekisterointiTiedot);
+                return View("Rekisterointi", rek);
             }
         }
 

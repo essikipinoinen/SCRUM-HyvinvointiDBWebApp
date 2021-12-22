@@ -31,9 +31,9 @@ namespace Hyvinvointisovellus.ViewModel
         [Required(ErrorMessage = "Kirjoita salasanasi!", AllowEmptyStrings = false)]
         [DataType(DataType.Password)]
         public string Salasana { get; set; }
-        [Compare("Salasana", ErrorMessage = "Salasanat eivät täsmää!")]
-        [DataType(DataType.Password)]
-        public string VahvistaSalasana { get; set; }
+        //[Compare("Salasana", ErrorMessage = "Salasanat eivät täsmää!")]
+        //[DataType(DataType.Password)]
+        //public string VahvistaSalasana { get; set; }
 
     }
 }
