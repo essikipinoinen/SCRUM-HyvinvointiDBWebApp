@@ -30,7 +30,7 @@ footer {
 	text-align: center
 }
 
-div.form-horizontal {
+div.login-form-horizontal {
 	display: flex;
 	width: 550px;
 	background-color: azure;
