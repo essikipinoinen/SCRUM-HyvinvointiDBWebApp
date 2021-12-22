@@ -1,38 +1,41 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Hyvinvointisovellus</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/jquery.cookie.js")
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@ViewBag.Title - Hyvinvointisovellus</title>
+	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/modernizr")
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/bootstrap")
+	@Scripts.Render("~/bundles/jquery.cookie.js")
 
-    @*Alla vanha viittaus cookieseihin, vielä varalta kommenteissa*@
-    @*<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js">*@
+	@*Alla vanha viittaus cookieseihin, vielä varalta kommenteissa*@
+	@*<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js">*@
 
-    <!-- Moment js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    @*<script src="~/Scripts/momentjs.js"></script>*@
+	<!-- Hyvinvointisovelluksen uudet tyylit -->
+	<link rel="stylesheet" type="text/css" href="~/Content/StyleSheet.css" />
 
-    <!--Full Calendar css/js-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" integrity="sha512-KXkS7cFeWpYwcoXxyfOumLyRGXMp7BTMTjwrgjMg0+hls4thG2JGzRgQtRfnAuKTn2KWTDZX4UdPg+xTs8k80Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js" integrity="sha512-o0rWIsZigOfRAgBxl4puyd0t6YKzeAw9em/29Ag7lhCQfaaua/mDwnpE2PVzwqJ08N7/wqrgdjc2E0mwdSY2Tg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/locale/fi.min.js" integrity="sha512-t5eq++ZiGqtbZDrvCh6fN9bw9uM7QZvUIRdAX2zFQdn6MEQ5fi+KPDUgC4tbToqJDbZ2azRELoDncYqgf/PpLQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    @*<script src="~/Scripts/fullcalendar3.10.2.js"></script>*@
-    @*<script src="~/Scripts/fullcalendarfinnish.js"></script>*@
+	<!-- Moment js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	@*<script src="~/Scripts/momentjs.js"></script>*@
 
-
-    <!-- qTip js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js" integrity="sha512-BxJRFdTKV85fhFUw+olPr0B+UEzk8FTLxRB7dAdhoQ7SXmwMECj1I4BlSmZfeoSfy0OVA8xFLTDyObu3Nv1FoQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    @*<script src="~/Scripts/jquery.js"></script>*@
+	<!--Full Calendar css/js-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" integrity="sha512-KXkS7cFeWpYwcoXxyfOumLyRGXMp7BTMTjwrgjMg0+hls4thG2JGzRgQtRfnAuKTn2KWTDZX4UdPg+xTs8k80Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js" integrity="sha512-o0rWIsZigOfRAgBxl4puyd0t6YKzeAw9em/29Ag7lhCQfaaua/mDwnpE2PVzwqJ08N7/wqrgdjc2E0mwdSY2Tg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/locale/fi.min.js" integrity="sha512-t5eq++ZiGqtbZDrvCh6fN9bw9uM7QZvUIRdAX2zFQdn6MEQ5fi+KPDUgC4tbToqJDbZ2azRELoDncYqgf/PpLQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	@*<script src="~/Scripts/fullcalendar3.10.2.js"></script>*@
+	@*<script src="~/Scripts/fullcalendarfinnish.js"></script>*@
 
 
-    <!-- DateTime picker js -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-    @*<script src="~/Scripts/datetimepicker.js"></script>*@
+	<!-- qTip js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js" integrity="sha512-BxJRFdTKV85fhFUw+olPr0B+UEzk8FTLxRB7dAdhoQ7SXmwMECj1I4BlSmZfeoSfy0OVA8xFLTDyObu3Nv1FoQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	@*<script src="~/Scripts/jquery.js"></script>*@
+
+
+	<!-- DateTime picker js -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+	@*<script src="~/Scripts/datetimepicker.js"></script>*@
 
 
 
@@ -41,27 +44,27 @@
 <body>
 
     @*Yläpalkki valikko alkaa*@
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            @if (Session["Admin"] != null)
-            {
-                <a class="navbar-brand" href="~/Home/IndexTyonantaja">Hyvinvointisovellus</a>
-            }
-            else
-            {
-                <a class="navbar-brand" href="~/Home/IndexTyontekija">Hyvinvointisovellus</a>
-            }
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+			@if (Session["Admin"] != null)
+			{
+				<a class="navbar-brand" href="~/Home/IndexTyonantaja"><i class="fas fa-h-square fa-2x"></i>Hyvinvointisovellus</a>
+			}
+			else
+			{
+				<a class="navbar-brand" href="~/Home/IndexTyontekija"><i class="fas fa-h-square fa-2x"></i>Hyvinvointisovellus</a>
+			}
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-            <div class="collapse navbar-collapse" id="navbarColor02">
-				<ul class="navbar-nav me-auto">
+			<div class="collapse navbar-collapse" id="navbarColor02">
+				<ul class="navbar-nav mx-auto">
 					@*<li class="nav-item">
-			<a class="nav-link active" href="#">Home<span class="visually-hidden">(current)</span>
-			</a>
-		</li>*@
+						<a class="nav-link active" href="#">Home<span class="visually-hidden">(current)</span>
+						</a>
+					</li>*@
 					@if (Session["Admin"] != null)
 					{
 						<li class="nav-item">
@@ -102,25 +105,34 @@
 					}
 
 					@*<li class="nav-item">
-			<a class="nav-link" href="~/Home/About">About</a>
-		</li>*@
+						<a class="nav-link" href="~/Home/About">About</a>
+					</li>*@
 					<!--<li class="nav-item dropdown">
-	<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>-->
+				<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>-->
 					@*DROPDOWN ALKAA TÄSTÄ*@
 					<!--<div class="dropdown-menu">
-		<a class="dropdown-item" href="#">Action</a>
-		<a class="dropdown-item" href="#">Another action</a>
-		<a class="dropdown-item" href="#">Something else here</a>
-		<div class="dropdown-divider"></div>
-		<a class="dropdown-item" href="#">Separated link</a>
-	</div>-->
+					<a class="dropdown-item" href="#">Action</a>
+					<a class="dropdown-item" href="#">Another action</a>
+					<a class="dropdown-item" href="#">Something else here</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">Separated link</a>
+				</div>-->
 					@*DROPDOWN PÄÄTTYY*@
 					<!--</li>-->
 				</ul>
-            </div>
-        </div>
-        <span class="badge badge-dark">@ViewBag.LoggedStatus</span>
-    </nav> @*Yläpalkki valikko päättyy*@
+			</div>
+		</div>
+		@if (Session["UserName"] == null)
+		{
+			<span class="badge badge-dark">@ViewBag.LoggedStatus</span>
+		}
+		else
+		{
+			<span class="badge badge-dark">@ViewBag.LoggedStatus käyttäjällä:</span>
+			<span class="badge badge-name">@Session["UserName"]</span>
+		}
+	</nav> 
+	@*Yläpalkki valikko päättyy*@
 
 
     @*Aiempi (alkuperäinen) valikkosysteemi:*@
@@ -149,7 +161,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Hyvinvointisovellus</p>
+			<p>&copy; @DateTime.Now.Year - Hyvinvointisovellus | <a href="#">Tietosuojaseloste</a></p>
         </footer>
     </div>
 

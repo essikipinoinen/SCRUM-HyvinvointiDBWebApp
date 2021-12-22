@@ -1,0 +1,86 @@
+﻿/*!
+Hyvinvointisovellukseen liittyvät ulkoasumuutokset tässä .css-tiedostossa.
+ */
+
+
+/*_LAYOUT.CSHTML*/
+
+a.navbar-brand {
+	display: flex;
+	align-items: center
+}
+
+i.fas {
+	margin-right: 20px
+}
+
+span.badge-dark {
+	margin-left: 50px
+}
+
+span.badge-name {
+	color: aqua
+}
+/*KIRJAUTUMINEN.CSHTML*/
+div.center {
+	display: flex !important;
+}
+
+footer {
+	text-align: center
+}
+
+div.form-horizontal {
+	display: flex;
+	width: 550px;
+	background-color: azure;
+	margin: 50px auto;
+	display: inline-block;
+	padding: 5%;
+	border: solid thin;
+	border-radius: 20px;
+	border-color: #00b4b4
+}
+
+h3.small-col-bottom-padding {
+	margin-bottom: 10px
+}
+
+p.col-bottom-padding {
+	margin-bottom: 40px
+}
+
+div.form-group {
+	width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+/*INDEX.TYONTEKIJA.CSHTML*/
+
+div.jumbotron {
+	background-image: linear-gradient(to left, rgba(255,255,255,0.2) -10%,rgb(255 255 255) 80%), url('https://cdn.pixabay.com/photo/2017/07/31/11/21/people-2557396_960_720.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 400px;
+	margin: 0px;
+	padding-top: 100px;
+	padding-right: 500px
+}
+/*Tämä vaikuttaa kaikkiin sivuihin*/
+div.col-top-padding {
+	padding-top: 50px;
+}
+
+div.col-bottom-padding {
+	padding-bottom: 50px;
+}
+
+span.fa-lg {
+	color: #00b4b4
+}
+
+i.icon-button {
+	margin-right: 10px
+}

@@ -1,54 +1,136 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+@{
+	ViewBag.Title = "Home Page";
 }
-
-
 
 @*JQuery, joka suoritetaan aina, kun sivu latautuu*@
 @section scripts {
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            if ($.cookie('pop') == null) {
-                $('#FiilisRuutu').modal('show');
-                $.cookie('pop', '1');
-            }
-        });
-    </script>
-
-    
-
+	<script type="text/javascript">
+		$(document).ready(function () {
+			if ($.cookie('pop') == null) {
+				$('#FiilisRuutu').modal('show');
+				$.cookie('pop', '1');
+			}
+		});
+	</script>
 }
 
 <div class="jumbotron">
-    <h1>Hei @Session["UserName"]!</h1>
-    <p class="lead">
-        Tämä on työpaikoille suunnattu sovellus, jonka tarkoituksena on edistää työpaikan ja erityisesti työntekijöiden hyvinvointia.
-        Sovelluksen avulla pystyt tarkastelemaan ja muokkaamaan omia tietojasi, antamaan palautetta päivästäsi sekä kirjaamaan päivän fiiliksesi kalenteriin. Työnantajasi saa antamasi palautteet sekä fiiliskirjaukset, ja hänellä on myös mahdollisuus kommentoida niitä.
-    </p>
-    @*<p><a href="~/Home/Palautteet" class="btn btn-primary btn-lg">Lue palautteita  &raquo;</a></p>*@ @*<-- jumbotronin button, tarvitaanko?*@
+	<div class="container">
+		<h1><strong>Rakentamassa hyvinvoivaa työyhteisöä</strong></h1>
+		<br />
+		<p class="lead">
+			@Session["Username"], hyvinvointisi on meille tärkeää. <br /> Pidetään siitä huolta yhdessä.
+		</p>
+	</div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Päivän fiilis</h2>
-        <p>Millainen päivä sinulla on tänään? Haluatko kirjata päivän fiiliksesi? </p>
-        <p><a class="btn btn-outline-dark" href="~/Event/Index">Kirjaamaan päivän fiilis &raquo;</a></p>
-    </div>
+<div class="col-top-padding">
+	<h2><strong>Miten hyvinvointia edistetään?</strong></h2>
+	<p class="lead">
+		Sovelluksen tarkoituksena on edistää työpaikan ja erityisesti työntekijöiden hyvinvointia.
+	</p>
 
-    <div class="col-md-4">
-        <h2>Palaute</h2>
-        <p>Haluatko antaa palautetta päivästäsi? Tai katsoa onko työnantajasi kommentoinut palautteitasi?</p>
-        <p><a class="btn btn-outline-dark" href="/Palaute/Index">Palautteisiin &raquo;</a></p>
-    </div>
+	<div class="row col-top-padding">
+		<div class="col-4">
+			<div class="row">
+				<div class="col-2">
+					<span class="fa-stack fa-lg">
+						<i class="fa fa-circle fa-stack-2x"></i>
+						<i class="fa fa-heart fa-stack-1x fa-inverse"></i>
+					</span>
+				</div>
+				<div class="col-10">
+					<h5>Hyvinvointi</h5>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-2"></div>
+				<div class="col-10">
+					<p>
+						Sovelluksen avulla pystymme keskittymään jokaisen
+						työntekijän hyvinvointiin yksilöllisemmin.
+					</p>
+				</div>
+			</div>
 
-    <div class="col-md-4">
-        <h2>Omat tiedot</h2>
-        <p>Haluatko tarkastella tai muokata omia tietojasi?</p>
-        <p><a class="btn btn-outline-dark" href="/Home/OmattiedotTyontekija">Omiin tietoihin &raquo;</a></p>
-    </div>
+		</div>
+		<div class="col-4">
+			<div class="row">
+				<div class="col-2">
+					<span class="fa-stack fa-lg">
+						<i class="fa fa-circle fa-stack-2x"></i>
+						<i class="fa fa-users fa-stack-1x fa-inverse"></i>
+					</span>
+				</div>
+				<div class="col-10">
+					<h5>Yhteisöllisyys</h5>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-2"></div>
+				<div class="col-10">
+					<p>
+						Sovellus tuo työtekijän ja työnantajan yhteen
+						sekä helpottaa heidän välistä kommunikaatiota.
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-4">
+			<div class="row">
+				<div class="col-2">
+					<span class="fa-stack fa-lg">
+						<i class="fa fa-circle fa-stack-2x"></i>
+						<i class="fa fa-child fa-stack-1x fa-inverse"></i>
+					</span>
+				</div>
+				<div class="col-10">
+					<h5>Motivaatio</h5>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-2"></div>
+				<div class="col-10">
+					<p>
+						Työyhteisön hyvinvoinnin edistäminen tukee myös motivaatiota työntekoon,
+						jolloin työ on tehokkaampaa ja työn tulokset parempia.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<hr />
+<div class="col-top-padding col-bottom-padding">
+	<h2><strong>Mitä sovellus tarjoaa?</strong></h2>
+	<p class="lead">
+		Sovelluksen avulla pystyt tarkastelemaan omia tietojasi, antamaan palautetta työantajillesi sekä kertomaan päivän fiiliksesi.
+	</p>
+
+	<div class="row" style="padding-top: 50px">
+		<div class="col-md-4">
+			<h2>Päivän fiilis</h2>
+			<p>Millainen päivä sinulla on tänään? </p>
+			<button type="submit" value="Lähetä" class="btn btn-info" onclick="location.href='/Event/Index'"><i class="fas fa-grin-beam icon-button"></i> Fiiliskirjaukset </button>
+		</div>
+
+		<div class="col-md-4">
+			<h2>Palaute</h2>
+			<p>Haluatko antaa palautetta työnantajallesi?</p>
+			<button type="submit" value="Lähetä" class="btn btn-info" onclick="location.href='/Palaute/Index'"><i class="fas fa-comments icon-button"></i> Palautteet </button>
+		</div>
+
+		<div class="col-md-4">
+			<h2>Omat tiedot</h2>
+			<p>Haluatko tarkastella tai muokata omia tietojasi?</p>
+			<button type="submit" value="Lähetä" class="btn btn-info" onclick="location.href='/Home/OmattiedotTyontekija'"><i class="fas fa-user icon-button"></i> Omat tiedot </button>
+		</div>
+	</div>
 </div>
 
 @{
-    Html.RenderPartial("_FiilisModal");
+	Html.RenderPartial("_FiilisModal");
 }
