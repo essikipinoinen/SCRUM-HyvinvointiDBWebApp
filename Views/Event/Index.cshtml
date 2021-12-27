@@ -3,11 +3,17 @@
     ViewBag.Title = "Index";
 }
 <div class="jumbotron">
-    <h1>Fiilis-kirjaukset</h1>
-	<p class="lead">
-		Kirjaa päivän fiilis.  @*työntekijöiden näkymä*@
-	</p>
-    @*<p><a href="~/Home/Palautteet" class="btn btn-primary btn-lg">Lue palautteita  &raquo;</a></p>*@ @*<-- jumbotronin button, tarvitaanko?*@
+	<h1>Fiilis-kirjaukset</h1>
+	@if (Session["Admin"] != null)
+	{
+		<p class="lead"> Tältä sivulta löydät työntekijöidesi fiilisnäkymät.</p>
+	}
+	else
+	{
+		<p class="lead"> Kirjaa päivän fiilis.</p>
+	}
+
+	@*<p><a href="~/Home/Palautteet" class="btn btn-primary btn-lg">Lue palautteita  &raquo;</a></p>*@ @*<-- jumbotronin button, tarvitaanko?*@
 </div>
 <p></p>
 <div id="calender"></div>
@@ -416,7 +422,16 @@
 }
 
 <div>
-    <a class="btn btn-outline-dark" href="/Home/IndexTyonantaja">Takaisin etusivulle</a>
+	@if (Session["Admin"] != null)
+	{
+		<a class="btn btn-outline-dark" href="/Home/IndexTyonantaja">Takaisin etusivulle</a>
+	}
+
+
+	else
+	{
+		<a class="btn btn-outline-dark" href="/Home/IndexTyontekija">Takaisin etusivulle</a>
+	}
+
+
 </div>
-
-

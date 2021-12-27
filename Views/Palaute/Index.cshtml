@@ -47,12 +47,19 @@
 }
 
 <div class="jumbotron">
-    <h1>Palautteet</h1>
-    <p class="lead">
-        Täällä näet antamasi palautteet ja voit myös lisätä uusia, sekä kommentoida jo antamiasi palautteita. Samalla näet myös työnantajasi kommentit jo annettuihin palautteisiin.
-    </p>
-    @*<p><a href="~/Home/Palautteet" class="btn btn-primary btn-lg">Lue palautteita  &raquo;</a></p>*@ @*<-- jumbotronin button, tarvitaanko?*@
-</div>
+	<h1>Palautteet</h1>
+	@if (Session["Admin"] != null)
+	{
+		<p class="lead"> Täällä näet työntekijöidesi antamat palautteet ja voit kommentoida niitä.</p>
+	}
+	else
+	{
+		<p class="lead">
+			Täällä näet antamasi palautteet ja voit myös lisätä uusia, sekä kommentoida jo antamiasi palautteita. Samalla näet myös työnantajasi kommentit jo annettuihin palautteisiin.
+		</p>
+	}
+		@*<p><a href="~/Home/Palautteet" class="btn btn-primary btn-lg">Lue palautteita  &raquo;</a></p>*@ @*<-- jumbotronin button, tarvitaanko?*@
+	</div>
 <p></p>
 <p></p>
 <div>
