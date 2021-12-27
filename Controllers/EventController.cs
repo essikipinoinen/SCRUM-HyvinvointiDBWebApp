@@ -1,4 +1,5 @@
 ﻿using Hyvinvointisovellus.Models;
+using Hyvinvointisovellus.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -28,39 +29,7 @@ namespace Hyvinvointisovellus.Controllers
             }
             else
             {
-                //var hymynaama = db.Event.Include(e => e.KayttajaID);
-                //return View(hymynaama.ToList());
-
-                var kayttajaId = (int)Session["UserId"];
-                var events = db.Event.Include(e => e.Kayttajat).
-                    Where(x => x.KayttajaID == kayttajaId);
-                return View(events.ToList());
-                //throw new NotImplementedException();
-            }
-
-        }
-
-        public ActionResult Index2()
-        {
-            if (Session["UserName"] == null)
-            {
-                ViewBag.LoggedStatus = "Ei kirjautunut";
-            }
-            else ViewBag.LoggedStatus = "Kirjautunut";
-            if (Session["UserName"] == null)
-            {
-                return RedirectToAction("Kirjautuminen", "Home");
-            }
-            else
-            {
-                //var hymynaama = db.Event.Include(e => e.KayttajaID);
-                //return View(hymynaama.ToList());
-
-                var kayttajaId = (int)Session["UserId"];
-                var events = db.Event.Include(e => e.Kayttajat).
-                    Where(x => x.KayttajaID == kayttajaId);
-                return View(events.ToList());
-                //throw new NotImplementedException();
+                return View();
             }
 
         }
@@ -68,9 +37,42 @@ namespace Hyvinvointisovellus.Controllers
         // Palauttaa tapahtumien datan kun jQueryllä toteutettu ajax pyyntö tulee näkymästä
         public JsonResult GetEvents()
         {
+            List<FiilisModel1> fiilikset = new List<FiilisModel1>();
+
             var events = db.Event.ToList();
-            return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            foreach (var i in events)
+            {
+                if (Session["UserName"].ToString() == "Tiina")
+                {
+                    FiilisModel1 f = new FiilisModel1();
+                    f.Subject = i.Subject;
+                    f.Description = i.Description;
+                    f.Start = i.Start;
+                    f.End = i.End;
+                    f.ThemeColor = i.ThemeColor;
+                    f.IsFullDay = i.IsFullDay;
+                    f.KayttajaID = i.KayttajaID;
+                    f.HymynaamaID = i.HymynaamaID;
+                    fiilikset.Add(f);
+                }
+                if (i.KayttajaID == Convert.ToInt32(Session["UserId"]))
+                {
+                    FiilisModel1 f = new FiilisModel1();
+                    f.Subject = i.Subject;
+                    f.Description = i.Description;
+                    f.Start = i.Start;
+                    f.End = i.End;
+                    f.ThemeColor = i.ThemeColor;
+                    f.IsFullDay = i.IsFullDay;
+                    f.KayttajaID = i.KayttajaID;
+                    f.HymynaamaID = i.HymynaamaID;
+                    fiilikset.Add(f);
+                }
+
+            }
+            return new JsonResult { Data = fiilikset, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
+
 
         // Käytetään sekä uuden luontiin että olemassaolevan tapahtuman muokkaukseen
         [HttpPost]
@@ -84,16 +86,20 @@ namespace Hyvinvointisovellus.Controllers
                 var existingEventInDB = db.Event.Where(ex => ex.EventID == ev.EventID).FirstOrDefault();
                 if (existingEventInDB != null) // Jos id:tä vastaava rivi löytyy kannasta, päivitetään kyseisen eventin tiedot 
                 {
-                    existingEventInDB.Subject = ev.Subject;
+                    existingEventInDB.Subject = "";
                     existingEventInDB.Start = ev.Start;
                     existingEventInDB.End = ev.End;
-                    existingEventInDB.Description = ev.Description;
+                    existingEventInDB.Description = "";
                     existingEventInDB.IsFullDay = ev.IsFullDay;
                     existingEventInDB.ThemeColor = ev.ThemeColor;
+                    existingEventInDB.KayttajaID = Convert.ToInt32(Session["UserId"]);
+                    existingEventInDB.HymynaamaID = ev.HymynaamaID;
                 }
             }
             else //Jos taasen ev.EventID = 0 (nolla), on kyseessä uuden kalenterimerkinnän lisääminen
             {
+
+                ev.KayttajaID = Convert.ToInt32(Session["UserId"]);
                 db.Event.Add(ev);
             }
 
@@ -121,41 +127,5 @@ namespace Hyvinvointisovellus.Controllers
             }
             return new JsonResult { Data = new { status = status } };
         }
-
-        //[HttpPost]
-        //public ActionResult Authorize(Kirjautuminen LoginModel)
-        //{
-        //    HyvinvointiDBEntities1 db = new HyvinvointiDBEntities1();
-        //    //Haetaan käyttäjän/Loginin tiedot annetuilla tunnustiedoilla tietokannasta LINQ -kyselyllä
-        //    var LoggedUser = db.Kirjautuminen.SingleOrDefault(x => x.Kayttajatunnus == LoginModel.Kayttajatunnus && x.Salasana == LoginModel.Salasana);
-
-
-
-        //    if (LoggedUser != null)
-        //    {
-        //        //ViewBag.LoginMessage = "Kirjautuminen onnistui!";
-        //        ViewBag.LoggedStatus = "Kirjautunut";
-        //        Session["UserName"] = LoggedUser.Kayttajatunnus;
-        //        Session["UserId"] = LoggedUser.KayttajaID;
-        //        Session["PassWord"] = LoggedUser.Salasana;
-
-        //        if (LoggedUser.Kayttajatunnus == "Tiina")
-        //        {
-        //            Session["Admin"] = LoggedUser.Kayttajatunnus;
-        //            return RedirectToAction("IndexTyonantaja", "Home");
-        //        }
-        //        else
-        //        {
-        //            return RedirectToAction("IndexTyontekija", "Home"); //Tässä määritellään mihin onnistunut kirjautuminen johtaa --> Home/Index
-        //        }
-        //    }
-        //    else
-        //    {
-        //        ViewBag.LoginMessage = "Kirjautuminen epäonnistui!";
-        //        ViewBag.LoggedStatus = "Ei kirjautunut";
-        //        LoginModel.LoginErrorMessage = "Tuntematon käyttäjätunnus tai salasana. Yritä uudelleen!";
-        //        return View("Kirjautuminen", LoginModel);
-        //    }
-        //}
     }
 }

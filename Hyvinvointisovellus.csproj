@@ -190,6 +190,7 @@
       <DependentUpon>HyvinvointiModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\FiilisModel1.cs" />
     <Compile Include="ViewModel\Rekisterointi.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -394,7 +395,6 @@
     <Content Include="Views\Tyontekijat\_ModalEdit.cshtml" />
     <Content Include="Views\Tyontekijat\_ModalDetails.cshtml" />
     <Content Include="Views\Tyontekijat\_ModalDelete.cshtml" />
-    <Content Include="Views\Event\Index2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -24,7 +24,7 @@ namespace Hyvinvointisovellus.Models
             this.Kommentit = new HashSet<Kommentit>();
         }
 
-        public int KayttajaID { get; set; }
+        public int? KayttajaID { get; set; }
         [Required(ErrorMessage = "Kirjoita etunimesi!")]
         public string Etunimi { get; set; }
         [Required(ErrorMessage = "Kirjoita sukunimesi!")]
