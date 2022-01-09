@@ -29,17 +29,9 @@
             </div>
 
             <div class="modal-body">
-
-                <button id="btnDelete" class="btn btn-danger btn-sm pull-right">
-                    <span class="glyphicon glyphicon-remove"></span> Poista
-                </button>
-
-                <button id="btnEdit" class="btn btn-info btn-sm pull-right" style="margin-right:5px;">
-                    <span class="glyphicon glyphicon-pencil"></span> Muokkaa
-                </button>
-
+                <button id="btnDelete" class="btn btn-danger btn-sm pull-right">Poista </button>
+                <button id="btnEdit" class="btn btn-info btn-sm pull-right" style="margin-right:5px;">Muokkaa</button>
                 <p id="pDetails"></p>
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Sulje</button>
@@ -68,9 +60,6 @@
                         <label>Alkaa</label>
                         <div class="input-group date" id="dtp1">
                             <input type="text" id="txtStart" class="form-control" />
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -82,9 +71,6 @@
                         <label>Loppuu</label>
                         <div class="input-group date" id="dtp2">
                             <input type="text" id="txtEnd" class="form-control" />
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
                         </div>
                     </div>
                     @*<div class="form-group">
@@ -92,43 +78,31 @@
                         <textarea id="txtDescription" rows="3" class="form-control"></textarea>
                     </div>*@
 
-                <div class="form-group">
-                    <label>Valitse päivääsi sopiva hymiö:</label>
-					<div class="row">
-						<div class="col-md-3">
-							@*@Html.RadioButton("HymynaamaID", 1, false) <img style="width: 60%; padding: 10px" src="https://res.cloudinary.com/turdlife/image/upload/v1492864443/happy_ampvnc.svg" alt="ilo" />*@
-							@*@Html.RadioButtonFor(model => model.HymynaamaID, "1") <img style="width: 60%; padding: 10px" src="https://res.cloudinary.com/turdlife/image/upload/v1492864443/happy_ampvnc.svg" alt="ilo" />*@
-							<input type="radio" id="hymynaama1" /><img style="width: 60%; padding: 10px" src="https://res.cloudinary.com/turdlife/image/upload/v1492864443/happy_ampvnc.svg" alt="ilo" />
+                    <div class="form-group">
+                        <label>Valitse päivääsi sopiva hymiö:</label>
+					    <div class="row">
+						    <div class="col-md-3">
+							    <input type="radio" id="hymynaama1" /> 🙂
+						    </div>
+						    <div class="col-md-3">
+							    <input type="radio" id="hymynaama2"/> 😐
+						    </div>
+						    <div class="col-md-3">
+							    <input type="radio" id="hymynaama3"/> 🙁
+						    </div>
+					       </div>
+                    </div>
 
-						</div>
-						<div class="col-md-3">
-							@*@Html.RadioButton("HymynaamaID", 2, false) <img style="width: 60%; padding: 10px" src="https://res.cloudinary.com/turdlife/image/upload/v1492864443/neutral_t3q8hz.svg" alt="neutraali" />*@
-							@*@Html.RadioButtonFor(h => h.HymynaamaID, 2,) <img style="width: 60%; padding: 10px" src="https://res.cloudinary.com/turdlife/image/upload/v1492864443/neutral_t3q8hz.svg" alt="neutraali" />*@
-							<input type="radio" id="hymynaama2" /><img style="width: 60%; padding: 10px" src="https://res.cloudinary.com/turdlife/image/upload/v1492864443/neutral_t3q8hz.svg" alt="ilo" />
-
-						</div>
-						<div class="col-md-3">
-							@*@Html.RadioButton("HymynaamaID", 3, false) <img style="width: 60%; padding: 10px" src="https://res.cloudinary.com/turdlife/image/upload/v1492864443/sad_bj1tuj.svg" alt="surku" />*@
-							@*@Html.RadioButtonFor(h => h.HymynaamaID, 3, ) <img style="width: 60%; padding: 10px" src="https://res.cloudinary.com/turdlife/image/upload/v1492864443/sad_bj1tuj.svg" alt="surku" />*@
-							<input type="radio" id="hymynaama3" /><img style="width: 60%; padding: 10px" src="https://res.cloudinary.com/turdlife/image/upload/v1492864443/sad_bj1tuj.svg" alt="ilo" />
-
-						</div>
-
-					</div>
-
-                </div>
                     <p></p>
-                    @*<div class="form-group">
+
+                    <div class="form-group">
                         <label>Väriteema</label>
 						<select id="ddThemeColor" class="form-control">
-							<option value="">Oletus</option>
-							<option value="green">:)</option>
-							<option value="blue">:I</option>
-							<option value="red">:(</option>
-							<option value="black">Musta</option>
-
+							<option value="green">Vihreä</option>
+							<option value="blue">Sininen</option>
+							<option value="red">Punainen</option>
 						</select>
-                    </div>*@
+                    </div>
                     <button type="button" id="btnSave" class="btn btn-success">Tallenna</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
                 </form>
@@ -150,8 +124,6 @@
                 events = [];
                 $.ajax({
                     type: "GET",
-                    //Controllerin metodin osoite:
-                    //url: "https://localhost:44308/Event/GetEvents",
                     url: "/Event/GetEvents",
                     success: function (data) {
                         $.each(data, function (turha, data) { // 1. parametri tulee muttei käytetä
@@ -165,7 +137,7 @@
 							}
 							if (data.HymynaamaID === 3) {
                                 emo = "🙁";
-							}
+                            }
 
 
                             events.push({
@@ -177,7 +149,7 @@
                                 end: data.End != null ? moment(data.End) : null,
                                 color: data.ThemeColor,
                                 allDay: data.IsFullDay,
-                                EVENT_ID: data.EventID,  /*lisätty EVENT_ID, jotta voisi käyttää kummankin eventin kohdistukseen / esim poistoissa*/
+                                EVENT_ID: data.EventID,  /*lisätty EVENT_ID, jotta voisi käyttää kummankin eventin kohdistukseen, esim poistoissa*/
                                 KayttajaID: data.KayttajaID,
                                 HymynaamaID: data.HymynaamaID,
                             });
@@ -240,7 +212,7 @@
                             $description.append($('<p/>').html('<b>Päättyy: </b>' + calEvent.end.format("DD-MMM-YYYY HH:mm")));
                         }
 
-                        // itse eventin id
+                        //// itse eventin id
                         if (calEvent.EVENT_ID != null) {
                             $description.append($('<p/>').html('<b>EventID: </b>' + calEvent.EVENT_ID));  /*Tässä pitäisi saada eventid esiin*/
                         }
@@ -253,8 +225,8 @@
 							$description.append($('<p/>').html('<b>HymynaamaID: </b>' + calEvent.HymynaamaID));
 						}
 
+                        /*$description.append($('<p/>').html('<b>Kuvaus: </b>' + calEvent.description));*/
 
-                        $description.append($('<p/>').html('<b>Kuvaus: </b>' + calEvent.description));
                         $('#myModalDisplayEvent #pDetails').empty().html($description);
 
                         $('#myModalDisplayEvent').modal();
@@ -278,7 +250,7 @@
                     editable: true,
                     eventDrop: function (event) {
                         var data = {
-                            EventID: event.eventID,
+                            EventID: event.EventID,
                             Subject: event.title,
                             Start: event.start.format('DD/MM/YYYY HH:mm A'),
                             End: event.end != null ? event.end.format('DD/MM/YYYY HH:mm A') : null,
@@ -304,8 +276,8 @@
                     alert("Poistan kalenterimerkinnän: " + eventti + '...');
                     $.ajax({
                         type: "POST",
-                        url: '/event/DeleteEvent/?id=' + selectedEvent.EVENT_ID,
-                        data: { 'eventID': selectedEvent.EVENT_ID },
+                        url: '/Event/DeleteEvent/?id=' + selectedEvent.EVENT_ID,
+                        data: { 'EventID': selectedEvent.EVENT_ID },
                         success: function (data) {
                             if (data.status) {
                                 //Refresh the calender
@@ -340,6 +312,9 @@
                     $('#txtEnd').val(selectedEvent.end != null ? selectedEvent.end.format('DD/MM/YYYY HH:mm A') : '');
                     $('#txtDescription').val(selectedEvent.description);
                     $('#ddThemeColor').val(selectedEvent.color);
+                    //$('#hdkayttajaid').val(selectedEvent.kayttajaid);
+                    //$('#hdhymynaamaID').val(selectedEvent.HymynaamaID);
+
                 }
                 $('#myModalDisplayEvent').modal('hide');
                 $('#myModalSaveEvent').modal();
@@ -368,15 +343,15 @@
                 }
 
 				//hymynaamajuttuja
-				var hymyid = 0;
+				var HymynaamaID = 0;  //hymyid
 				if (document.getElementById("hymynaama1").checked) {
-					hymyid = 1;
+					HymynaamaID = 1;
 				}
-				if (document.getElementById("hymynaama2").checked) {
-					hymyid = 2;
+                if (document.getElementById("hymynaama2").checked) {
+                    HymynaamaID = 2;
 				}
-				if (document.getElementById("hymynaama3").checked) {
-					hymyid = 3;
+                if (document.getElementById("hymynaama3").checked) {
+                    HymynaamaID = 3;
                 }
 
 
@@ -388,19 +363,19 @@
                     /*Description: $('#txtDescription').val(),*/
                     ThemeColor: $('#ddThemeColor').val(),
                     IsFullDay: $('#chkIsFullDay').is(':checked'),
-                    HymynaamaID: hymyid
+                    HymynaamaID: HymynaamaID
                 }
                 SaveEvent(data);  //Funktiokutsu tietojen lähettämiseksi palvelimelle/kontrollerille
 
             })
-            //Funktio, joka vie uudet taikka päivitetyt tiedot palvelimelle/kontrollerille
+            //Funktio, joka vie uudet tai päivitetyt tiedot palvelimelle/kontrollerille
             function SaveEvent(data) {
-                //Pari seuraavaa koodiriviä vain debuggausta varten (otetaanctapahtuman EVENT_ID esiin)
+                //Pari seuraavaa koodiriviä vain debuggausta varten (otetaan tapahtuman EVENT_ID esiin)
                 let eventti = selectedEvent.EVENT_ID;
                 alert("Muokkaan kalenterimerkintää: " + eventti + '...');
                 data.EventID = selectedEvent.EVENT_ID; //Strateginen sijoitus: Kontrollerille lähetettävän objektin avaintiedon pitää olla oikein ja siksi EVENT:ID sijoitetaan nyt
                 //Kalenterimerkinnän (event) tiedot viedään kontrollerille data-objektissa.
-                //Kontrolleri tietää EVENT_ID: n arvon (0 taikka joku muu) perusteella onko kyseessä uusi vaiko vanha merkintä
+                //Kontrolleri tietää EVENT_ID: n arvon (0 tai joku muu) perusteella onko kyseessä uusi vai vanha merkintä
                 $.ajax({
                     type: "POST",
                     url: '/Event/SaveEvent',
