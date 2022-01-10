@@ -152,9 +152,22 @@
 	</div>
 </div>
 <br />
+
 <div>
-	<a class="btn btn-info" href="/Home/IndexTyontekija"><i class="fas fa-arrow-circle-left icon-button"></i>Takaisin etusivulle</a>
+	@if (Session["Admin"] != null)
+	{
+		<a class="btn btn-info" href="/Home/IndexTyonantaja"><i class="fas fa-arrow-circle-left icon-button"></i>Takaisin etusivulle</a>
+	}
+
+
+	else
+	{
+		<a class="btn btn-info" href="/Home/IndexTyontekija"><i class="fas fa-arrow-circle-left icon-button"></i>Takaisin etusivulle</a>
+	}
+
+
 </div>
+
 <br />
 <br />
 

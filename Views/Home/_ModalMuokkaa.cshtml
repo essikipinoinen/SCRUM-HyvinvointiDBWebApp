@@ -82,13 +82,13 @@
             <div class="modal-footer">
                 @if (Session["Admin"] != null)
                 {
-                    <button type="submit" class="btn btn-success" onclick="meth_alert();" form="editForm"><i class="fas fa-check"></i></button>
-                    <a href="@Url.Action("OmattiedotTyonantaja", "Home")" class="btn btn-danger"><i class="fas fa-times"></i></a>
+                    <button type="submit" class="btn btn-success" onclick="meth_alert();" form="editForm"><i class="fas fa-check icon-button"></i>Tallenna</button>
+                    <a href="@Url.Action("OmattiedotTyonantaja", "Home")" class="btn btn-danger"><i class="fas fa-times icon-button"></i>Peruuta</a>
                 }
                 else
                 {
-                    <button type="submit" class="btn btn-success" onclick="meth_alert();" form="editForm"><i class="fas fa-check"></i></button>
-                    <a href="@Url.Action("OmattiedotTyontekija", "Home")" class="btn btn-danger"><i class="fas fa-times"></i></a>
+                    <button type="submit" class="btn btn-success" onclick="meth_alert();" form="editForm"><i class="fas fa-check icon-button"></i>Tallenna</button>
+                    <a href="@Url.Action("OmattiedotTyontekija", "Home")" class="btn btn-danger"><i class="fas fa-times icon-button"></i>Peruuta</a>
                 }
 
 
