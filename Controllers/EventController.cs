@@ -45,6 +45,7 @@ namespace Hyvinvointisovellus.Controllers
                 if (Session["UserName"].ToString() == "Tiina")
                 {
                     FiilisModel1 f = new FiilisModel1();
+                    f.EventID = i.EventID; //lisätty
                     f.Subject = i.Subject;
                     f.Description = i.Description;
                     f.Start = i.Start;
@@ -58,6 +59,7 @@ namespace Hyvinvointisovellus.Controllers
                 if (i.KayttajaID == Convert.ToInt32(Session["UserId"]))
                 {
                     FiilisModel1 f = new FiilisModel1();
+                    f.EventID = i.EventID;
                     f.Subject = i.Subject;
                     f.Description = i.Description;
                     f.Start = i.Start;
