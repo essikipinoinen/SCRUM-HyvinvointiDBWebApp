@@ -16,6 +16,7 @@
 	@*<p><a href="~/Home/Palautteet" class="btn btn-primary btn-lg">Lue palautteita  &raquo;</a></p>*@ @*<-- jumbotronin button, tarvitaanko?*@
 </div>
 <p></p>
+<br />
 <div id="calender"></div>
 
 <!-- Tapahtumatiedon näyttöikkuna modal-->
@@ -395,17 +396,17 @@
         })</script>
 
 }
-
+<br />
 <div>
 	@if (Session["Admin"] != null)
 	{
-		<a class="btn btn-outline-dark" href="/Home/IndexTyonantaja">Takaisin etusivulle</a>
+		<a class="btn btn-info" href="/Home/IndexTyonantaja"><i class="fas fa-arrow-circle-left icon-button"></i>Takaisin etusivulle</a>
 	}
 
 
 	else
 	{
-		<a class="btn btn-outline-dark" href="/Home/IndexTyontekija">Takaisin etusivulle</a>
+		<a class="btn btn-info" href="/Home/IndexTyontekija"><i class="fas fa-arrow-circle-left icon-button"></i>Takaisin etusivulle</a>
 	}
 
 

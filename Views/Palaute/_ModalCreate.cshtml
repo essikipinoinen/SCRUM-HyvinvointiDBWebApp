@@ -18,7 +18,6 @@
                     @Html.AntiForgeryToken()
 
                     <div class="form-horizontal">
-                        <hr />
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="form-group">
                             @Html.LabelFor(model => model.KayttajaID, "Palautteen antaja", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -31,7 +30,7 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.Pvm, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.Pvm, "Päivämäärä", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.Pvm, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.Pvm, "", new { @class = "text-danger" })
@@ -53,19 +52,14 @@
                             </div>
                         </div>
 
-                        @*KOMMENTTI MAHDOLLISUUS TYÖNTEKIJÄLLE? (Muokataan ens sprintissä?*@
-                        <div class="form-floating">
-                            <textarea class="form-control" placeholder="Jätä kommentti" id="floatingTextarea2" style="height: 100px"></textarea>
-                            <label for="floatingTextarea2"></label>
-                        </div>
                     </div>
 
                 }
             </div>
 
             <div class="modal-footer">
-                <button type="submit" class="btn btn-success" form="createForm" onclick="meth_alert();"><i class="fas fa-plus-square"></i></button>
-                <a href="@Url.Action("Index", "Palaute")" class="btn btn-danger"><i class="fas fa-times"></i></a>
+                <button type="submit" class="btn btn-success" form="createForm" onclick="meth_alert();"><i class="fas fa-share icon-button"></i>Lähetä</button>
+                <a href="@Url.Action("Index", "Palaute")" class="btn btn-danger"><i class="fas fa-times icon-button"></i>Peruuta</a>
 
                 <script type="text/javascript">
                     meth_alert = function () {

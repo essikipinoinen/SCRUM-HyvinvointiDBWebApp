@@ -84,3 +84,19 @@ span.fa-lg {
 i.icon-button {
 	margin-right: 10px
 }
+
+tr:nth-child(even) {
+	background-color: #e2f1f1
+}
+
+.btn-danger {
+	background-color: #ed2f57
+}
+
+.btn-success {
+	background-color: #38ba57
+}
+
+.comment {
+	height: 50px
+}

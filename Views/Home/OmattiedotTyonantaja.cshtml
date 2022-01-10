@@ -1,83 +1,88 @@
 ﻿@model IEnumerable<Hyvinvointisovellus.Models.Kayttajat>
 
 @{
-    ViewBag.Title = "OmattiedotTyonantaja";
+	ViewBag.Title = "OmattiedotTyonantaja";
 }
 
 @*JQuery joka suoritetaan kun klikataan getKayttajaId-luokan mukaista elementtiä, muokkaus*@
 @section scripts {
-    <script type="text/javascript">
-        $(function () {
-            $(".getKayttajaId").click(function () {
-                let kayttajaId = $(this).data("kayttajaid");
-                console.log("Klikkasit käyttäjää: " + kayttajaId);
-                var url = "/Home/_ModalMuokkaa/?id=" + kayttajaId;
-                console.log(url);
+	<script type="text/javascript">
+		$(function () {
+			$(".getKayttajaId").click(function () {
+				let kayttajaId = $(this).data("kayttajaid");
+				console.log("Klikkasit käyttäjää: " + kayttajaId);
+				var url = "/Home/_ModalMuokkaa/?id=" + kayttajaId;
+				console.log(url);
 
-                $("#kayttajaEdit").append(" <b> Avataan käyttäjän " + kayttajaId + " tietojen muokkausikkuna...</b>");
+				$("#kayttajaEdit").append(" <b> Avataan käyttäjän " + kayttajaId + " tietojen muokkausikkuna...</b>");
 
-                var $detailDivEdit = $("#kayttajaEdit");
-                $.get(url, function (data) {
-                    $detailDivEdit.replaceWith(data);
-                    $("#ModalKayttajaEdit").modal("show");
-                });
-            });
-        });
-        /* Tooltip scripti*/
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
+				var $detailDivEdit = $("#kayttajaEdit");
+				$.get(url, function (data) {
+					$detailDivEdit.replaceWith(data);
+					$("#ModalKayttajaEdit").modal("show");
+				});
+			});
+		});
+		/* Tooltip scripti*/
+		$(document).ready(function () {
+			$('[data-toggle="tooltip"]').tooltip();
+		});
+	</script>
 }
-    <div class="jumbotron">
-        <h1>Omat tiedot</h1>
+<div class="jumbotron">
+	<h1>Omat tiedot</h1>
 
-        <p class="lead">
-            Tältä sivulta näet omat tietosi ja pääset myös muokkaamaan niitä.
-        </p>
-    </div>
+	<p class="lead">
+		Tältä sivulta näet omat tietosi ja pääset myös muokkaamaan niitä.
+	</p>
+</div>
 
-    <div id="kayttajaEdit"></div>
+<div id="kayttajaEdit"></div>
 
-    <p></p>
+<p></p>
+<br />
 
 
-    <table class="table">
-        <tr>
-            <th>Työnantajatunnus</th>
-            <th>@Html.DisplayNameFor(model => model.Etunimi)</th>
-            <th>@Html.DisplayNameFor(model => model.Sukunimi)</th>
-            <th>@Html.DisplayNameFor(model => model.Osoite)</th>
-            <th>@Html.DisplayNameFor(model => model.Postinumero)</th>
-            <th>@Html.DisplayNameFor(model => model.Postitoimipaikat.Postitoimipaikka)</th>
-            <th>Käyttäjätunnus</th>
-            <th>Salasana</th>
-        </tr>
+<table class="table">
+	<tr>
+		<th>Työnantajatunnus</th>
+		<th>@Html.DisplayNameFor(model => model.Etunimi)</th>
+		<th>@Html.DisplayNameFor(model => model.Sukunimi)</th>
+		<th>@Html.DisplayNameFor(model => model.Osoite)</th>
+		<th>@Html.DisplayNameFor(model => model.Postinumero)</th>
+		<th>@Html.DisplayNameFor(model => model.Postitoimipaikat.Postitoimipaikka)</th>
+		<th>Käyttäjätunnus</th>
+		<th>Salasana</th>
+	</tr>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => item.KayttajaID)</td>
-                <td>@Html.DisplayFor(modelItem => item.Etunimi)</td>
-                <td>@Html.DisplayFor(modelItem => item.Sukunimi)</td>
-                <td>@Html.DisplayFor(modelItem => item.Osoite)</td>
-                <td>@Html.DisplayFor(modelItem => item.Postinumero)</td>
-                <td>@Html.DisplayFor(modelItem => item.Postitoimipaikat.Postitoimipaikka)</td>
-                <td>@Session["UserName"]</td>
-                <td>@Session["PassWord"]</td>
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>@Html.DisplayFor(modelItem => item.KayttajaID)</td>
+			<td>@Html.DisplayFor(modelItem => item.Etunimi)</td>
+			<td>@Html.DisplayFor(modelItem => item.Sukunimi)</td>
+			<td>@Html.DisplayFor(modelItem => item.Osoite)</td>
+			<td>@Html.DisplayFor(modelItem => item.Postinumero)</td>
+			<td>@Html.DisplayFor(modelItem => item.Postitoimipaikat.Postitoimipaikka)</td>
+			<td>@Session["UserName"]</td>
+			<td>@Session["PassWord"]</td>
 
-                <td align="right">
-                    
-                    <button class="getKayttajaId btn btn-primary" data-toggle="tooltip" data-placement="right" title="Muokkaa tietoja" data-kayttajaid="@item.KayttajaID">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                        </svg>
-                    </button>
-                </td>
-            </tr>
-        }
-    </table>
-    <div>
-        <a class="btn btn-outline-dark" href="/Home/IndexTyonantaja">Takaisin etusivulle</a>
-    </div>
+			<td align="right">
+
+				<button class="getKayttajaId btn btn-info" data-toggle="tooltip" data-placement="right" title="Muokkaa tietoja" data-kayttajaid="@item.KayttajaID">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+						<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+						<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+					</svg>
+				</button>
+			</td>
+		</tr>
+	}
+</table>
+<br />
+
+<div>
+	<a class="btn btn-info" href="/Home/IndexTyonantaja"><i class="fas fa-arrow-circle-left icon-button"></i>Takaisin etusivulle</a>
+</div>
+<br />
+
