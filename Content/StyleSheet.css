@@ -42,6 +42,7 @@ div.login-form-horizontal {
 	border-color: #00b4b4
 }
 
+
 h3.small-col-bottom-padding {
 	margin-bottom: 10px
 }
@@ -49,11 +50,34 @@ h3.small-col-bottom-padding {
 p.col-bottom-padding {
 	margin-bottom: 40px
 }
+.danger-text-bold {
+	color: red;
+	font-weight: 500
+}
+
+.danger-text {
+	color: red;
+	font-size:small
+}
+
 
 div.form-group {
 	width: 300px;
 	margin-left: auto;
 	margin-right: auto;
+}
+div.form-group-reg {
+	width: 550px;
+	padding:5%;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: azure;
+	border: solid thin;
+	border-radius: 20px;
+	border-color: #00b4b4
+}
+.input-field {
+	max-width:100%
 }
 
 

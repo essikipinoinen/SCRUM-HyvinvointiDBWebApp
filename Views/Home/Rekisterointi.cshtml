@@ -4,89 +4,100 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
 @{
-    ViewBag.Title = "Rekisterointi";
+	ViewBag.Title = "Rekisterointi";
 }
 
 
-<h2>Rekisteröityminen</h2>
-<div style="color:red;">@ViewBag.Message</div>
+
+
 <div>
-    @using (Html.BeginForm("TallennaRekisterointi", "Home"))
-    {
-        @*@Html.ValidationSummary()*@
+	@using (Html.BeginForm("TallennaRekisterointi", "Home"))
+	{
+		@*@Html.ValidationSummary()*@
 
-        @*<div style="color:red;">@Html.ValidationSummary()</div>*@
-        <div class="row">
-            <!--Show details are saved successfully message-->
-            @*<div class="col-lg-12">@ViewBag.Message</div>*@
-        </div><br />
-        <div class="row">
-            <div class="col-lg-2">@Html.LabelFor(a => a.Etunimi)</div>
-            <div class="col-lg-10">
-                @Html.ValidationMessageFor(a => a.Etunimi)
-                @Html.TextBoxFor(a => a.Etunimi, new { @class = "form-control" })
-            </div>
-        </div><br />
-        <div class="row">
-            <div class="col-lg-2">@Html.LabelFor(a => a.Sukunimi)</div>
-            <div class="col-lg-10">
-                @Html.ValidationMessageFor(a => a.Sukunimi)
-                @Html.TextBoxFor(a => a.Sukunimi, new { @class = "form-control" })
-            </div>
-        </div><br />
-        <div class="row">
-            <div class="col-lg-2">@Html.LabelFor(a => a.Osoite)</div>
-            <div class="col-lg-10">
-                @Html.ValidationMessageFor(a => a.Osoite)
-                @Html.TextBoxFor(a => a.Osoite, new { @class = "form-control" })
-            </div>
-        </div><br />
-        <div class="row">
-            <div class="col-lg-2">@Html.LabelFor(a => a.Postinumero)</div>
-            <div class="col-lg-10">
-                @Html.ValidationMessageFor(a => a.Postinumero)
-                @Html.TextBoxFor(a => a.Postinumero, new { @class = "form-control" })
-            </div>
-        </div><br />
-        <div class="row">
-            <div class="col-lg-2">@Html.LabelFor(a => a.Kayttajatunnus)</div>
-            <div class="col-lg-10">
-                @Html.ValidationMessageFor(a => a.Kayttajatunnus)
-                @Html.TextBoxFor(a => a.Kayttajatunnus, new { @class = "form-control", })
-            </div>
-        </div><br />
-        <div class="row">
-            <div class="col-lg-2">@Html.LabelFor(a => a.Salasana)</div>
-            <div class="col-lg-10">
-                @Html.ValidationMessageFor(a => a.Salasana)
-                @Html.TextBoxFor(a => a.Salasana, new { @class = "form-control", type = "Password" })
-            </div><br /><br />
+		@*<div style="color:red;">@Html.ValidationSummary()</div>*@
+		<div class="row">
+			<!--Show details are saved successfully message-->
+			@*<div class="col-lg-12">@ViewBag.Message</div>*@
+		</div><br />
 
-            @*<div class="row">
-                <div class="col-lg-4">Vahvista salasana</div>
-                <div class="col-lg-8">
-                    @Html.TextBoxFor(a => a.VahvistaSalasana, new { @class = "form-control", type = "Password" })
-                    @Html.ValidationMessageFor(a => a.VahvistaSalasana)
-                </div>
-                <br /><br />
-                </div>*@
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <button type="submit" class="btn btn-success" @*onclick="meth_alert();"*@>Rekisteröidy</button>
-                    @*<script type="text/javascript">
-                            meth_alert = function () {
-                                swal("Rekisteröityminen onnistui!");
-                            };
-                        </script> ei toimi vielä koska pitäisi tulla vain jos ModelState.IsValid eikä aina klikatessa*@
-                </div><br />
-                <div>
-                    <a class="btn btn-outline-dark" href="/Home/Kirjautuminen">Takaisin etusivulle</a>
-                </div>
+		<br /><br />
+			  <div class="form-group-reg">
+			  	<h2 class="text-center">Rekisteröityminen</h2>
+			  	<p class="text-center">Täytä alla olevat tiedot reksiteröityäksesi Hyvinvointisovelluksen käyttäjäksi.</p>
+			  	<div class="text-center danger-text-bold">@ViewBag.Message</div>
+			  <br />
+			  <div class="row">
+			  	<div class="col-lg-3">@Html.LabelFor(a => a.Etunimi)</div>
+				<div class="col-lg-9">
+					@Html.TextBoxFor(a => a.Etunimi, new { @class = "form-control input-field" })
+					@Html.ValidationMessageFor(a => a.Etunimi, "", new { @class = "danger-text" })
+				</div>
+			  </div><br />
+			  <div class="row">
+			  	<div class="col-lg-3">@Html.LabelFor(a => a.Sukunimi)</div>
+				<div class="col-lg-9">
 
-            </div>
-            @*<div class="col-lg-12"><input type="submit" value="Rekisteröidy" class="btn btn-primary" /></div>*@
-        </div>
-    }
+					@Html.TextBoxFor(a => a.Sukunimi, new { @class = "form-control input-field" })
+					@Html.ValidationMessageFor(a => a.Sukunimi, "", new { @class = "danger-text" })
+				</div>
+			  </div><br />
+			  <div class="row">
+			  	<div class="col-lg-3">@Html.LabelFor(a => a.Osoite)</div>
+				<div class="col-lg-9">
+					@Html.TextBoxFor(a => a.Osoite, new { @class = "form-control input-field" })
+					@Html.ValidationMessageFor(a => a.Osoite, "", new { @class = "danger-text" })
+				</div>
+			  </div><br />
+			  <div class="row">
+			  	<div class="col-lg-3">@Html.LabelFor(a => a.Postinumero)</div>
+				<div class="col-lg-9">
+					@Html.TextBoxFor(a => a.Postinumero, new { @class = "form-control input-field" })
+					@Html.ValidationMessageFor(a => a.Postinumero, "", new { @class = "danger-text" })
+				</div>
+			  </div><br />
+			  <div class="row">
+			  	<div class="col-lg-3">@Html.LabelFor(a => a.Kayttajatunnus)</div>
+				<div class="col-lg-9">
+					@Html.TextBoxFor(a => a.Kayttajatunnus, new { @class = "form-control input-field" })
+					@Html.ValidationMessageFor(a => a.Kayttajatunnus, "", new { @class = "danger-text" })
+				</div>
+			  </div><br />
+			  <div class="row">
+			  	<div class="col-lg-3">@Html.LabelFor(a => a.Salasana)</div>
+				<div class="col-lg-9">
+					@Html.TextBoxFor(a => a.Salasana, new { @class = "form-control input-field", type = "Password" })
+					@Html.ValidationMessageFor(a => a.Salasana, "", new { @class = "danger-text" })
+				</div><br /><br />
+
+			  @*<div class="row">
+	<div class="col-lg-4">Vahvista salasana</div>
+	<div class="col-lg-8">
+		@Html.TextBoxFor(a => a.VahvistaSalasana, new { @class = "form-control", type = "Password" })
+		@Html.ValidationMessageFor(a => a.VahvistaSalasana)
+	</div>
+	<br /><br />
+	</div>*@
+			  </div><br /><p></p>
+			  <div class="form-group text-center">
+			  	<div>
+			  		<button type="submit" class="btn btn-success" @*onclick="meth_alert();"*@><i class="fas fa-clipboard-check icon-button"></i>Rekisteröidy</button>
+			  		@*<script type="text/javascript">
+				meth_alert = function () {
+					swal("Rekisteröityminen onnistui!");
+				};
+			</script> ei toimi vielä koska pitäisi tulla vain jos ModelState.IsValid eikä aina klikatessa*@
+			  </div><br />
+			  <div>
+			  	<a class="btn btn-info" href="/Home/Kirjautuminen"><i class="fas fa-arrow-circle-left icon-button"></i>Takaisin etusivulle</a>
+			  </div>
+
+			  </div>
+			  @*<div class="col-lg-12"><input type="submit" value="Rekisteröidy" class="btn btn-primary" /></div>*@
+
+			  </div>
+	}
+	<br /><br />
 </div>
 
