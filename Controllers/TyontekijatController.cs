@@ -105,21 +105,23 @@ namespace Hyvinvointisovellus.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "KayttajaID,Etunimi,Sukunimi,Osoite,Postinumero,Postitoimipaikka")] Kayttajat tyontekijat)
+        public ActionResult Create([Bind(Include = "Etunimi,Sukunimi,Osoite,Postinumero,Kayttajatunnus,Salasana")] Kayttajat tyontekijat)
         {
             if (Session["UserName"] == null)
             {
                 ViewBag.LoggedStatus = "Ei kirjautunut";
             }
             else ViewBag.LoggedStatus = "Kirjautunut";
+            Postitoimipaikat p = db.Postitoimipaikat.Find(tyontekijat.Postinumero);
+            tyontekijat.Postitoimipaikat = p;
             if (ModelState.IsValid)
             {
                 db.Kayttajat.Add(tyontekijat);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            return View(tyontekijat);
+            //return View(tyontekijat);
+            return RedirectToAction("Index", "Tyontekijat");
         }
 
         // GET: Tyontekijat/Edit/5
@@ -166,20 +168,23 @@ namespace Hyvinvointisovellus.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "KayttajaID,Etunimi,Sukunimi,Osoite,Postinumero,Postitoimipaikka")] Kayttajat tyontekijat)
+        public ActionResult Edit([Bind(Include = "KayttajaID,Etunimi,Sukunimi,Osoite,Postinumero,Kayttajatunnus,Salasana")] Kayttajat tyontekijat)
         {
             if (Session["UserName"] == null)
             {
                 ViewBag.LoggedStatus = "Ei kirjautunut";
             }
             else ViewBag.LoggedStatus = "Kirjautunut";
+            Postitoimipaikat p = db.Postitoimipaikat.Find(tyontekijat.Postinumero);
+            tyontekijat.Postitoimipaikat = p;
             if (ModelState.IsValid)
             {
                 db.Entry(tyontekijat).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(tyontekijat);
+            //return View(tyontekijat);
+            return RedirectToAction("Index", "Tyontekijat");
         }
 
         // GET: Tyontekijat/Delete/5
