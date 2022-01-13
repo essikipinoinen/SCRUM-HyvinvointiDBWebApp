@@ -1,19 +1,21 @@
-﻿
+﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
 @{
     ViewBag.Title = "Index";
 }
 <div class="jumbotron">
-	<h1>Fiilis-kirjaukset</h1>
-	@if (Session["Admin"] != null)
-	{
-		<p class="lead"> Tältä sivulta löydät työntekijöidesi fiilisnäkymät.</p>
-	}
-	else
-	{
-		<p class="lead"> Kirjaa päivän fiilis.</p>
-	}
+    <h1>Fiilis-kirjaukset</h1>
+    @if (Session["Admin"] != null)
+    {
+        <p class="lead"> Tältä sivulta löydät työntekijöidesi fiilisnäkymät.</p>
+    }
+    else
+    {
+        <p class="lead"> Kirjaa päivän fiilis.</p>
+    }
 
-	@*<p><a href="~/Home/Palautteet" class="btn btn-primary btn-lg">Lue palautteita  &raquo;</a></p>*@ @*<-- jumbotronin button, tarvitaanko?*@
+    @*<p><a href="~/Home/Palautteet" class="btn btn-primary btn-lg">Lue palautteita  &raquo;</a></p>*@ @*<-- jumbotronin button, tarvitaanko?*@
 </div>
 <p></p>
 <br />
@@ -23,27 +25,27 @@
 <div id="myModalDisplayEvent" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title"><span id="eventTitle"></span></h4>
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-			</div>
-			<div class="modal-body">
-				<p id="pDetails"></p>
-				<br />  
-				<button id="btnDelete" class="btn btn-danger btn-sm pull-right">
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash icon-button" viewBox="0 0 16 16">
-						<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
-						<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
-					</svg>Poista
-				</button>
-				<button id="btnEdit" class="btn btn-info btn-sm pull-right">
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square icon-button" viewBox="0 0 16 16">
-						<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-						<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-					</svg>Muokkaa
-				</button>
+            <div class="modal-header">
+                <h4 class="modal-title"><span id="eventTitle"></span></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="pDetails"></p>
+                <br />
+                <button id="btnDelete" class="btn btn-danger btn-sm pull-right">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash icon-button" viewBox="0 0 16 16">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                    </svg>Poista
+                </button>
+                <button id="btnEdit" class="btn btn-info btn-sm pull-right">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square icon-button" viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                    </svg>Muokkaa
+                </button>
 
-			</div>
+            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Sulje</button>
             </div>
@@ -55,71 +57,71 @@
 <div id="myModalSaveEvent" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title">Tapahtuman muokkaus ja tallennus</h4>
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-			</div>
+            <div class="modal-header">
+                <h4 class="modal-title">Tapahtuman muokkaus ja tallennus</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
             <div class="modal-body">
-				<form class="form-horizontal" style="margin-left:20px;">
-					@*marginaalia lomakkeen kenttien eteen vasemmalle*@
-					<input type="hidden" id="hdEventID" value="0" />
-					@*<div class="form-group">
-			<label>Otsikko</label>
-			<input type="text" id="txtSubject" class="form-control" />
-		</div>*@
-					<div class="form-group">
-						<label>Alkaa</label>
-						<div class="input-group date" id="dtp1">
-							<input type="text" id="txtStart" class="form-control" />
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="checkbox">
-							<label><input type="checkbox" id="chkIsFullDay" checked="checked" />  Koko päivä</label>
-						</div>
-					</div>
-					<div class="form-group" id="divEndDate" style="display:none">
-						<label>Loppuu</label>
-						<div class="input-group date" id="dtp2">
-							<input type="text" id="txtEnd" class="form-control" />
-						</div>
-					</div>
-					@*<div class="form-group">
-			<label>Kuvaus</label>
-			<textarea id="txtDescription" rows="3" class="form-control"></textarea>
-		</div>*@
+                <form class="form-horizontal" style="margin-left:20px;">
+                    @*marginaalia lomakkeen kenttien eteen vasemmalle*@
+                    <input type="hidden" id="hdEventID" value="0" />
+                    @*<div class="form-group">
+                            <label>Otsikko</label>
+                            <input type="text" id="txtSubject" class="form-control" />
+                        </div>*@
+                    <div class="form-group">
+                        <label>Alkaa</label>
+                        <div class="input-group date" id="dtp1">
+                            <input type="text" id="txtStart" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label><input type="checkbox" id="chkIsFullDay" checked="checked" />  Koko päivä</label>
+                        </div>
+                    </div>
+                    <div class="form-group" id="divEndDate" style="display:none">
+                        <label>Loppuu</label>
+                        <div class="input-group date" id="dtp2">
+                            <input type="text" id="txtEnd" class="form-control" />
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                            <label>Kuvaus</label>
+                            <textarea id="txtDescription" rows="3" class="form-control"></textarea>
+                        </div>*@
 
-					<div class="form-group">
-						<label>Valitse päivääsi sopiva hymiö:</label>
-						<div class="row">
-							<div class="col-md-3">
-								<input type="radio" id="hymynaama1" name="HymynaamaID" /> 🙂
-							</div>
-							<div class="col-md-3">
-								<input type="radio" id="hymynaama2" name="HymynaamaID" /> 😐
-							</div>
-							<div class="col-md-3">
-								<input type="radio" id="hymynaama3" name="HymynaamaID" /> 🙁
-							</div>
-						</div>
-					</div>
+                    <div class="form-group">
+                        <label>Valitse päivääsi sopiva hymiö:</label>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="radio" id="hymynaama1" name="HymynaamaID" /> 🙂
+                            </div>
+                            <div class="col-md-3">
+                                <input type="radio" id="hymynaama2" name="HymynaamaID" /> 😐
+                            </div>
+                            <div class="col-md-3">
+                                <input type="radio" id="hymynaama3" name="HymynaamaID" /> 🙁
+                            </div>
+                        </div>
+                    </div>
 
-					<p></p>
+                    <p></p>
 
-					<div class="form-group">
-						<label>Väriteema</label>
-						<select id="ddThemeColor" class="form-control">
-							<option value="green">Vihreä</option>
-							<option value="blue">Sininen</option>
-							<option value="red">Punainen</option>
-						</select>
-					</div>
-					<br />
-					<div class="modal-footer">
-						<button type="button" id="btnSave" class="btn btn-success"><i class="fas fa-save icon-button"></i>Tallenna</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
-					</div>
-				</form>
+                    <div class="form-group">
+                        <label>Väriteema</label>
+                        <select id="ddThemeColor" class="form-control">
+                            <option value="green">Vihreä</option>
+                            <option value="blue">Sininen</option>
+                            <option value="red">Punainen</option>
+                        </select>
+                    </div>
+                    <br />
+                    <div class="modal-footer">
+                        <button type="button" id="btnSave" class="btn btn-success"><i class="fas fa-save icon-button"></i>Tallenna</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -128,9 +130,9 @@
 @section Scripts{
 
     <script>
-    // Ajetaan kun sivu on latautunut selaimeen
+        // Ajetaan kun sivu on latautunut selaimeen
         $(document).ready(function () {
-			var events = [];
+            var events = [];
             var selectedEvent = null;
             FetchEventAndRenderCalendar();
 
@@ -142,14 +144,14 @@
                     success: function (data) {
                         $.each(data, function (turha, data) { // 1. parametri tulee muttei käytetä
 
-							var emo = "";
-							if (data.HymynaamaID === 1) {
+                            var emo = "";
+                            if (data.HymynaamaID === 1) {
                                 emo = "🙂";
-							}
-							if (data.HymynaamaID === 2) {
+                            }
+                            if (data.HymynaamaID === 2) {
                                 emo = "😐";
-							}
-							if (data.HymynaamaID === 3) {
+                            }
+                            if (data.HymynaamaID === 3) {
                                 emo = "🙁";
                             }
 
@@ -230,14 +232,14 @@
                         if (calEvent.EVENT_ID != null) {
                             $description.append($('<p/>').html('<b>EventID: </b>' + calEvent.EVENT_ID));  /*Tässä pitäisi saada eventid esiin*/
                         }
-						// kayttajaid
-						if (calEvent.KayttajaID != null) {
-							$description.append($('<p/>').html('<b>KayttajaID: </b>' + calEvent.KayttajaID));
-						}
-						// hymynaamaid
-						if (calEvent.HymynaamaID != null) {
-							$description.append($('<p/>').html('<b>HymynaamaID: </b>' + calEvent.HymynaamaID));
-						}
+                        // kayttajaid
+                        if (calEvent.KayttajaID != null) {
+                            $description.append($('<p/>').html('<b>KayttajaID: </b>' + calEvent.KayttajaID));
+                        }
+                        // hymynaamaid
+                        if (calEvent.HymynaamaID != null) {
+                            $description.append($('<p/>').html('<b>HymynaamaID: </b>' + calEvent.HymynaamaID));
+                        }
 
                         /*$description.append($('<p/>').html('<b>Kuvaus: </b>' + calEvent.description));*/
 
@@ -271,8 +273,8 @@
                             Description: event.description,
                             ThemeColor: event.color,
                             IsFullDay: event.allDay,
-							KayttajaID: data.KayttajaID,
-							HymynaamaID: data.HymynaamaID,
+                            KayttajaID: data.KayttajaID,
+                            HymynaamaID: data.HymynaamaID,
                         };
                         SaveEvent(data);
                     }
@@ -287,7 +289,7 @@
                 if (selectedEvent != null && confirm('Poistetaanko kalenterimerkintä: ' + selectedEvent.EVENT_ID + '?')) {
                     //Pari seuraavaa koodiriviä vain debuggausta varten (tutkitaan miten saadaan tapahtuman EVENT_ID esiin)
                     let eventti = selectedEvent.EVENT_ID;
-                    alert("Poistan kalenterimerkinnän: " + eventti + '...');
+                    swal("Kalenterimerkintä " + eventti + ' poistettu!');
                     $.ajax({
                         type: "POST",
                         url: '/Event/DeleteEvent/?id=' + selectedEvent.EVENT_ID,
@@ -354,16 +356,17 @@
                         alert('Loppupäivämäärän pitää olla myöhäisempi kuin alkupäivämäärä!');
                         return;
                     }
+                    swal("Tiedot tallennettu!");
                 }
 
-				//hymynaamajuttuja
-				var HymynaamaID = 0;  //hymyid
-				if (document.getElementById("hymynaama1").checked) {
-					HymynaamaID = 1;
-				}
+                //hymynaamajuttuja
+                var HymynaamaID = 0;  //hymyid
+                if (document.getElementById("hymynaama1").checked) {
+                    HymynaamaID = 1;
+                }
                 if (document.getElementById("hymynaama2").checked) {
                     HymynaamaID = 2;
-				}
+                }
                 if (document.getElementById("hymynaama3").checked) {
                     HymynaamaID = 3;
                 }
@@ -373,7 +376,7 @@
                     EventID: $('#hdEventID').val(),
                     /*Subject: $('#txtSubject').val().trim(),*/
                     Start: $('#txtStart').val().trim(),
-					End: $('#chkIsFullDay').is(':checked') ? null : $('#txtEnd').val().trim(),
+                    End: $('#chkIsFullDay').is(':checked') ? null : $('#txtEnd').val().trim(),
                     /*Description: $('#txtDescription').val(),*/
                     ThemeColor: $('#ddThemeColor').val(),
                     IsFullDay: $('#chkIsFullDay').is(':checked'),
@@ -386,7 +389,7 @@
             function SaveEvent(data) {
                 //Pari seuraavaa koodiriviä vain debuggausta varten (otetaan tapahtuman EVENT_ID esiin)
                 let eventti = selectedEvent.EVENT_ID;
-                alert("Muokkaan kalenterimerkintää: " + eventti + '...');
+                /*alert("Muokkaan kalenterimerkintää: " + eventti + '...');*/
                 data.EventID = selectedEvent.EVENT_ID; //Strateginen sijoitus: Kontrollerille lähetettävän objektin avaintiedon pitää olla oikein ja siksi EVENT:ID sijoitetaan nyt
                 //Kalenterimerkinnän (event) tiedot viedään kontrollerille data-objektissa.
                 //Kontrolleri tietää EVENT_ID: n arvon (0 tai joku muu) perusteella onko kyseessä uusi vai vanha merkintä
@@ -405,22 +408,23 @@
                         alert('Error happened.');
                     }
                 })
+                swal("Tiedot tallennettu!");
             }
         })</script>
 
 }
 <br />
 <div>
-	@if (Session["Admin"] != null)
-	{
-		<a class="btn btn-info" href="/Home/IndexTyonantaja"><i class="fas fa-arrow-circle-left icon-button"></i>Takaisin etusivulle</a>
-	}
+    @if (Session["Admin"] != null)
+    {
+        <a class="btn btn-info" href="/Home/IndexTyonantaja"><i class="fas fa-arrow-circle-left icon-button"></i>Takaisin etusivulle</a>
+    }
 
 
-	else
-	{
-		<a class="btn btn-info" href="/Home/IndexTyontekija"><i class="fas fa-arrow-circle-left icon-button"></i>Takaisin etusivulle</a>
-	}
+    else
+    {
+        <a class="btn btn-info" href="/Home/IndexTyontekija"><i class="fas fa-arrow-circle-left icon-button"></i>Takaisin etusivulle</a>
+    }
 
 
 </div>
